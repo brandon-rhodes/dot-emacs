@@ -17,7 +17,7 @@ DIRS=(Pymacs-0.23)
 rm -rf $USR $DIRS
 
 src/virtualenv.py $USR
-source $USR/src/bin/activate
+source $USR/bin/activate
 
 pip install src/closure_linter-2.3.5.tar.gz
 pip install src/pyflakes-0.5.0.tar.gz
