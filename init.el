@@ -155,6 +155,23 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 
+;; Have dired hide irrelevant files by default; this can be toggled
+;; interactively with M-o.
+
+(require 'dired-x)
+(setq dired-omit-files
+      (rx (or (seq bol (? ".") "#")         ;; emacs autosave files
+              (seq "~" eol)                 ;; backup-files
+              (seq ".pyc" eol)
+              (seq ".pyo" eol)
+              )))
+(setq dired-omit-extensions
+      (append dired-latex-unclean-extensions
+              dired-bibtex-unclean-extensions
+              dired-texinfo-unclean-extensions))
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
 ;; slides while staying in the same buffer with the "PageUp" and
