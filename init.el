@@ -131,3 +131,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+
+;; Load any local Emacs directives (such as extra packages, and
+;; passwords that should not be stored in version control).
+
+(if (file-exists-p "~/.emacs.d/local.el")
+    (load-library "~/.emacs.d/local.el"))
