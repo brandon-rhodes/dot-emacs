@@ -42,6 +42,14 @@
                   (remove-if 'contains-space-p (nth 3 ad-return-value))
                   ))))
 
+;; Spell-check the whole buffer upon entry (thanks, Ryan McGuire!)
+;; unless it is really huge.
+
+(defadvice flyspell-mode
+  (after advice-flyspell-check-buffer-on-start activate)
+  (if (< (buffer-size) 40000)
+      (flyspell-buffer)))
+
 ;; Pressing Enter should go ahead and indent the new line.
 
 (global-set-key "\C-m" 'newline-and-indent)
