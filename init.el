@@ -25,6 +25,23 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'sgml-mode-hook 'turn-off-auto-fill)
 
+;; Ispell should stop suggesting that it can cure a misspelling by
+;; splitting a word into two quite different words.
+
+(defun contains-space-p (s)
+  "Determine whether a given string contains spaces."
+  (string-match-p " " s))
+
+(defadvice ispell-parse-output (after remove-multi-words activate)
+  "Remove multi-word suggestions from ispell-style output."
+  (if (listp ad-return-value)
+      (setq ad-return-value
+            (list (nth 0 ad-return-value) ;; original word
+                  (nth 1 ad-return-value) ;; offset in file
+                  (remove-if 'contains-space-p (nth 2 ad-return-value))
+                  (remove-if 'contains-space-p (nth 3 ad-return-value))
+                  ))))
+
 ;; Pressing Enter should go ahead and indent the new line.
 
 (global-set-key "\C-m" 'newline-and-indent)
