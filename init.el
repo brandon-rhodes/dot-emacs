@@ -155,6 +155,13 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 
+;; I sometimes write presentations right in an Emacs buffer, with "^L"
+;; separating the slides.  By turning on "page-mode", I can move between
+;; slides while staying in the same buffer with the "PageUp" and
+;; "PageDn" keys.
+
+(autoload 'page-mode "page-mode" nil t)
+
 ;; Load any local Emacs directives (such as extra packages, and
 ;; passwords that should not be stored in version control).
 
