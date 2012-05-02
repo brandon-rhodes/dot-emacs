@@ -211,6 +211,7 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
+ '(column-number-mode t)
  '(fill-column 72)
  '(global-hl-line-mode t)
  '(ido-enable-flex-matching t)
