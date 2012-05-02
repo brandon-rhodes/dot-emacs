@@ -33,3 +33,8 @@ rm -rf $PWD/Pymacs-0.23
 
 # Byte-compile plain Emacs LISP files.
 emacs --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
+
+echo
+echo
+echo SETUP.sh has completed successfully - enjoy!
+echo
