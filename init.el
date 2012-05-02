@@ -202,3 +202,38 @@
 
 (if (file-exists-p "~/.emacs.d/local.el")
     (load-library "~/.emacs.d/local.el"))
+
+;; Variables set through M-x customize-apropos.
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(fill-column 72)
+ '(global-hl-line-mode t)
+ '(ido-enable-flex-matching t)
+ '(ido-enable-last-directory-history nil)
+ '(ido-enable-tramp-completion nil)
+ '(ido-mode (quote both) nil (ido))
+ '(ido-rotate-file-list-default t)
+ '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
+ '(line-number-mode t)
+ '(longlines-show-hard-newlines t)
+ '(make-backup-files nil)
+ '(menu-bar-mode nil)
+ '(mouse-yank-at-point t)
+ '(ropemacs-guess-project t)
+ '(scroll-bar-mode nil)
+ '(scroll-preserve-screen-position t)
+ '(tool-bar-mode nil)
+ '(tooltip-mode nil)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
