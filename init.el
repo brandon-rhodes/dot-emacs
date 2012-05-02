@@ -203,6 +203,16 @@
 (if (file-exists-p "~/.emacs.d/local.el")
     (load-library "~/.emacs.d/local.el"))
 
+;; Load the solarized color theme, if present.
+
+(when (file-accessible-directory-p "~/.emacs.d/emacs-color-theme-solarized")
+  (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
+  (require 'color-theme-solarized)
+  (eval-after-load "color-theme"
+    '(progn
+       (color-theme-initialize)
+       (color-theme-solarized-light))))
+
 ;; Variables set through M-x customize-apropos.
 
 (custom-set-variables
@@ -238,5 +248,5 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  ;;'(default ((t (:background "#005050" :foreground "white" :family "Inconsolata"))))
- '(mode-line ((((class color) (min-colors 88)) (:background "grey75" :foreground "black"))))
+ ';;(mode-line ((((class color) (min-colors 88)) (:background "grey75" :foreground "black"))))
  '(mode-line-highlight ((t nil))))
