@@ -247,6 +247,4 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- ;;'(default ((t (:background "#005050" :foreground "white" :family "Inconsolata"))))
- ';;(mode-line ((((class color) (min-colors 88)) (:background "grey75" :foreground "black"))))
- '(mode-line-highlight ((t nil))))
+ '(quote (mode-line-highlight ((t nil)))))
