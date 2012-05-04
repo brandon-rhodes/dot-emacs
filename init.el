@@ -239,6 +239,8 @@
  '(ropemacs-guess-project t)
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
+ '(show-paren-delay 0)
+ '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
