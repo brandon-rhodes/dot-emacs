@@ -205,7 +205,9 @@
 
 ;; Load the solarized color theme, if present.
 
-(when (file-accessible-directory-p "~/.emacs.d/emacs-color-theme-solarized")
+(when (and
+       default-minibuffer-frame  ; is nil on a plain terminal
+       (file-accessible-directory-p "~/.emacs.d/emacs-color-theme-solarized"))
   (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
   (require 'color-theme-solarized)
   (eval-after-load "color-theme"
