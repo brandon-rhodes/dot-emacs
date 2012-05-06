@@ -243,6 +243,7 @@
  '(scroll-preserve-screen-position t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
+ '(show-trailing-whitespace t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
