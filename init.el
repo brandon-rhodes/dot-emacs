@@ -239,6 +239,7 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(ropemacs-guess-project t)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
  '(show-paren-delay 0)
