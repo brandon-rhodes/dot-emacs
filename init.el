@@ -12,13 +12,12 @@
 
 ;; Flyspell to check my spelling and underline possible mistakes.
 
-(defun turn-on-flyspell ()
-  "Force flyspell-mode on."
-  (interactive) (flyspell-mode 1))
+(add-hook 'message-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'text-mode-hook (lambda () (flyspell-mode)))
 
-(add-hook 'message-mode-hook 'turn-on-flyspell)
-(add-hook 'rst-mode-hook 'turn-on-flyspell)
-(add-hook 'text-mode-hook 'turn-on-flyspell)
+(add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
+(add-hook 'js-mode-hook (lambda () (flyspell-prog-mode)))
 
 ;; Auto-fill for text and SGML modes.
 
