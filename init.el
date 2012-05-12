@@ -237,7 +237,7 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
- '(python-honour-comment-indentation t)
+ '(python-honour-comment-indentation nil)
  '(ropemacs-guess-project t)
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
