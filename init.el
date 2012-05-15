@@ -178,8 +178,8 @@
 
 (autoload 'page-mode "page-mode" nil t)
 
-;; Make M-[ and M-] indent currently highlighted region in and out, like
-;; Command-[ and Command-] do for my friends who use TextMate.
+;; M-i and Shift-M-i indent currently highlighted region in and out,
+;; like Command-[ and Command-] do for my friends who use TextMate.
 
 (defun sustainable-shift-left ()
   "Shift left, leaving the region active."
@@ -193,8 +193,12 @@
   (let (deactivate-mark)
     (call-interactively 'python-shift-right)))
 
-(global-set-key "\M-[" 'sustainable-shift-left)
-(global-set-key "\M-]" 'sustainable-shift-right)
+(defun set-up-sustainable-shifts ()
+  (define-key python-mode-map (kbd "M-I") 'sustainable-shift-left)
+  (define-key python-mode-map (kbd "M-i") 'sustainable-shift-right)
+  (remove-hook 'python-mode-hook 'set-up-tabbing))
+
+(add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
 ;; Load any local Emacs directives (such as extra packages, and
 ;; passwords that should not be stored in version control).
