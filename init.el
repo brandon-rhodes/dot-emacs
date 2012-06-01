@@ -10,6 +10,10 @@
 (global-set-key [C-S-tab] (lambda () (interactive) (other-window -1)))
 (global-set-key [backtab] (lambda () (interactive) (other-window -1)))
 
+;; Other convenient keys.
+
+(global-set-key "\M-?" 'describe-char)
+
 ;; Flyspell to check my spelling and underline possible mistakes.
 
 (add-hook 'message-mode-hook (lambda () (flyspell-mode)))
