@@ -200,7 +200,7 @@
 (defun set-up-sustainable-shifts ()
   (define-key python-mode-map (kbd "M-I") 'sustainable-shift-left)
   (define-key python-mode-map (kbd "M-i") 'sustainable-shift-right)
-  (remove-hook 'python-mode-hook 'set-up-tabbing))
+  (remove-hook 'python-mode-hook 'set-up-sustainable-shifts))
 
 (add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
