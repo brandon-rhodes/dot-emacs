@@ -119,6 +119,16 @@
 
 (add-hook 'js-mode-hook 'one-shot-js-hook)
 
+;; In CSS, also complete on Tab but indent on Ctrl-I.
+
+(defun one-shot-css-hook ()
+  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+  (define-key css-mode-map (kbd "<tab>") 'dabbrev-expand)
+  (define-key css-mode-map (kbd "C-i") 'indent-for-tab-command)
+  (remove-hook 'css-mode-hook 'one-shot-css-hook))
+
+(add-hook 'css-mode-hook 'one-shot-css-hook)
+
 ;; Org mode should activate for files that end in ".org".
 
 (load-library "org")
