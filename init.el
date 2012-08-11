@@ -98,9 +98,9 @@
 
 ;; Typing open-paren or -bracket should auto-insert the closing one.
 
-(require 'autopair)
-(autopair-global-mode)
-(setq autopair-autowrap t)
+;; (require 'autopair)
+;; (autopair-global-mode)
+;; (setq autopair-autowrap t)
 
 ;; Handle triple-quotes in Python; from http://code.google.com/p/autopair/
 
