@@ -88,11 +88,13 @@
 
 (defun set-up-tabbing ()
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key python-mode-map (kbd "<tab>") 'dabbrev-expand)
-  (define-key python-mode-map (kbd "C-i") 'indent-for-tab-command)
-  (remove-hook 'python-mode-hook 'set-up-tabbing))
+  (define-key (current-local-map) (kbd "<tab>") 'dabbrev-expand)
+  (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
+(add-hook 'css-mode-hook 'set-up-tabbing)
+(add-hook 'js-mode-hook 'set-up-tabbing)
 (add-hook 'python-mode-hook 'set-up-tabbing)
+(add-hook 'sh-mode-hook 'set-up-tabbing)
 
 ;; Typing open-paren or -bracket should auto-insert the closing one.
 
@@ -108,26 +110,6 @@
                   (list #'autopair-default-handle-action
                         #'autopair-python-triple-quote-action))
             ))
-
-;; In JavaScript, also complete on Tab but indent on Ctrl-I.
-
-(defun one-shot-js-hook ()
-  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key js-mode-map (kbd "<tab>") 'dabbrev-expand)
-  (define-key js-mode-map (kbd "C-i") 'indent-for-tab-command)
-  (remove-hook 'js-mode-hook 'one-shot-js-hook))
-
-(add-hook 'js-mode-hook 'one-shot-js-hook)
-
-;; In CSS, also complete on Tab but indent on Ctrl-I.
-
-(defun one-shot-css-hook ()
-  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key css-mode-map (kbd "<tab>") 'dabbrev-expand)
-  (define-key css-mode-map (kbd "C-i") 'indent-for-tab-command)
-  (remove-hook 'css-mode-hook 'one-shot-css-hook))
-
-(add-hook 'css-mode-hook 'one-shot-css-hook)
 
 ;; Org mode should activate for files that end in ".org".
 
