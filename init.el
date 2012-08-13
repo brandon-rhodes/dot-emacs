@@ -102,6 +102,18 @@
 ;; (autopair-global-mode)
 ;; (setq autopair-autowrap t)
 
+;; Close-brace should be electric in CSS mode, which the CSS modes
+;; themselves do not support in Emacs 23 or 24.
+
+(defun css-electric-brace ()
+  "Insert a close brace and re-indent."
+  (interactive)
+  (insert "}")
+  (indent-for-tab-command))
+
+(define-key css-mode-map (kbd "}") 'css-electric-brace)
+(add-hook 'css-mode-hook 'set-css-electric-brace)
+
 ;; Handle triple-quotes in Python; from http://code.google.com/p/autopair/
 
 (add-hook 'python-mode-hook
