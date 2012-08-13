@@ -111,8 +111,10 @@
   (insert "}")
   (indent-for-tab-command))
 
-(define-key css-mode-map (kbd "}") 'css-electric-brace)
-(add-hook 'css-mode-hook 'set-css-electric-brace)
+(defun css-setup ()
+  (define-key css-mode-map (kbd "}") 'css-electric-brace))
+
+(add-hook 'css-mode-hook 'css-setup)
 
 ;; Handle triple-quotes in Python; from http://code.google.com/p/autopair/
 
