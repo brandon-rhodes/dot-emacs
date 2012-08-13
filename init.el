@@ -53,6 +53,17 @@
   (if (< (buffer-size) 40000)
       (flyspell-buffer)))
 
+;; Use an alternative dictionary, if available (see ./SETUP-spell.sh).
+;; The "sug-mode" suggested by http://emacswiki.org/emacs/InteractiveSpell
+
+(if (file-exists-p "~/.emacs.d/aspell-huge")
+    (progn
+      (setq ispell-program-name "aspell")
+      (setq ispell-extra-args
+            (list
+             (concat "--master=" (expand-file-name "~/.emacs.d/aspell-huge"))
+             " --sug-mode=ultra"))))
+
 ;; Pressing Enter should go ahead and indent the new line.
 
 (global-set-key "\C-m" 'newline-and-indent)
