@@ -259,6 +259,7 @@
  '(ido-rotate-file-list-default t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(kill-do-not-save-duplicates t)
  '(line-number-mode t)
  '(longlines-show-hard-newlines t)
  '(make-backup-files nil)
