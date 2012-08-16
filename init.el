@@ -103,6 +103,7 @@
   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
 (add-hook 'css-mode-hook 'set-up-tabbing)
+(add-hook 'html-mode-hook 'set-up-tabbing)
 (add-hook 'js-mode-hook 'set-up-tabbing)
 (add-hook 'python-mode-hook 'set-up-tabbing)
 (add-hook 'sh-mode-hook 'set-up-tabbing)
