@@ -177,6 +177,28 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 
+;; When I run "git commit", I always do it through an alias "git ci".
+;; (Which is what "commit" was always called when I used RCS, then CVS,
+;; then Subversion, then Mercurial, so I have quite a bit of muscle
+;; memory invested - and who would use a six-letter subcommand for
+;; something so critical, anyway?)  And my "git ci" is in fact aliased
+;; to "git commit -v" so that the buffer contains a diff of what I am
+;; about to commit, since only by quickly reviewing the diff can I
+;; reliably make sure that I do not, at the last moment of typing the
+;; command, accidentally committing more than I intended.  Anyway, the
+;; diffs were very hard to read, until I got the idea to turn on Emacs
+;; "diff" mode when editing a git "COMMIT_EDITMSG" file (see above), and
+;; now they look wonderful and are very easy to scan.  But it did cause
+;; one final problem: diff mode defines M-q as "quit window", kicking me
+;; out of the commit message every time I press the button to re-format
+;; the paragraph that I am writing about my commit.  Hence the following
+;; fix, which maps M-q back to where it belongs!
+
+(defun fix-meta-q ()
+  (define-key (current-local-map) (kbd "M-q") 'fill-paragraph))
+
+(add-hook 'diff-mode-hook 'fix-meta-q)
+
 ;; Have dired hide irrelevant files by default; this can be toggled
 ;; interactively with M-o.
 
