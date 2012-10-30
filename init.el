@@ -263,6 +263,21 @@
        (color-theme-initialize)
        (color-theme-solarized-light))))
 
+;; Fix the fact that Emacs misinterprets Shift-Up from an xterm.
+;; http://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
+;; I cannot get the above solution to work. A subsequent initialization
+;; setup seems to erase my input-decode-map adjustment, even if I run it
+;; in term-setup-hook! So I bind the offending key itself to the routine
+;; that replaces its definition. I should learn how to also make itself
+;; re-invoke the keystroke, but have spent enough time on this problem
+;; for the evening.
+
+(defun repair-shift-up ()
+  (interactive)
+  (define-key input-decode-map "\e[1;2A" [S-up]))
+
+(global-set-key [select] 'repair-shift-up)
+
 ;; Variables set through M-x customize-apropos.
 
 (custom-set-variables
