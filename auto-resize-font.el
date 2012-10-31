@@ -3,7 +3,7 @@
 
 ;; The largest and smallest acceptible font sizes, in tenths of points.
 
-(setq maximum-font-height 180)
+(setq maximum-font-height 136)
 (setq minimum-font-height 60)
 
 ;; The window change function gets called not only for frame resizing
