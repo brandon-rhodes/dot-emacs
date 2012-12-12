@@ -31,6 +31,8 @@
 ;; Ispell should stop suggesting that it can cure a misspelling by
 ;; splitting a word into two quite different words.
 
+(require 'cl)                       ; for Common List remove-if function
+
 (defun contains-space-p (s)
   "Determine whether a given string contains spaces."
   (string-match-p " " s))
