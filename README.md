@@ -4,12 +4,12 @@ dot-emacs
 My `.emacs.d` directory, with attention paid to Python and JavaScript
 development.
 
-To install it under an account, first check out this directory as
-`~/.emacs.d/` and then run its setup shell script:
+To install it under an account, first check out this directory, move it
+into place as your `~/.emacs.d/` and then run its setup shell script:
 
     $ cd ~
-    $ git clone https://github.com/brandon-rhodes/dot-emacs.git
-    $ mv dot-emacs .emacs.d
+    $ if [ -d .emacs.d ] ;then mv .emacs.d old-emacs.d ;fi
+    $ git clone https://github.com/brandon-rhodes/dot-emacs.git .emacs.d
     $ .emacs.d/SETUP.sh
 
 You can then run Emacs.
