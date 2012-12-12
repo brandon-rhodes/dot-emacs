@@ -16,7 +16,7 @@ USR=$PWD/usr
 DIRS=(Pymacs-0.23)
 rm -rf $USR $DIRS
 
-src/virtualenv.py $USR
+python2 src/virtualenv.py $USR
 source $USR/bin/activate
 
 pip install src/closure_linter-2.3.5.tar.gz
