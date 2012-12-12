@@ -175,7 +175,12 @@
 
 ;; A few file extensions.
 
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . diff-mode))
+(define-derived-mode git-commit-mode diff-mode
+  (setq mode-name "Git-Commit")
+  (auto-fill-mode)
+  (flyspell-mode))
+
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . git-commit-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 
