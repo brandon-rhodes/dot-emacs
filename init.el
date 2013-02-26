@@ -252,12 +252,6 @@
 
 (add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
-;; Load any local Emacs directives (such as extra packages, and
-;; passwords that should not be stored in version control).
-
-(if (file-exists-p "~/.emacs.d/local.el")
-    (load-library "~/.emacs.d/local.el"))
-
 ;; Load the solarized color theme, if present.
 
 (when (and
@@ -284,6 +278,18 @@
   (define-key input-decode-map "\e[1;2A" [S-up]))
 
 (global-set-key [select] 'repair-shift-up)
+
+;; Allow for hand-written calls to customization functions; they must
+;; live in a separate file, since the Customize sub-system sometimes
+;; re-writes the custom-set-* calls here in init.el.
+
+(load-library "~/.emacs.d/customizations.el")
+
+;; Load any local Emacs directives (such as extra packages, and
+;; passwords that should not be stored in version control).
+
+(if (file-exists-p "~/.emacs.d/local.el")
+    (load-library "~/.emacs.d/local.el"))
 
 ;; Variables set through M-x customize-apropos.
 
