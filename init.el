@@ -102,7 +102,7 @@
 
 (defun set-up-tabbing ()
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key (current-local-map) (kbd "<tab>") 'dabbrev-expand)
+  (define-key (current-local-map) (kbd "<tab>") 'dabbrev-completion)
   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
 (add-hook 'css-mode-hook 'set-up-tabbing)
