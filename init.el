@@ -15,10 +15,11 @@
 (global-set-key "\M-?" 'describe-char)
 
 ;; Flyspell to check my spelling and underline possible mistakes.
+;; Thanks to http://stackoverflow.com/questions/8332163/
 
-(add-hook 'message-mode-hook (lambda () (flyspell-mode)))
-(add-hook 'rst-mode-hook (lambda () (flyspell-mode)))
-(add-hook 'text-mode-hook (lambda () (flyspell-mode)))
+(add-hook 'message-mode-hook 'turn-on-flyspell)
+(add-hook 'rst-mode-hook 'turn-on-flyspell)
+(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
 (add-hook 'js-mode-hook (lambda () (flyspell-prog-mode)))
