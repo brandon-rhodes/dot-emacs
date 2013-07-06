@@ -119,7 +119,7 @@
   (make-variable-buffer-local 'dabbrev-case-fold-search)
   (make-variable-buffer-local 'dabbrev-abbrev-char-regexp)
   (setq dabbrev-case-fold-search nil)
-  (setq dabbrev-abbrev-char-regexp "\\w\\|:\\|\\b \\b")
+  (setq dabbrev-abbrev-char-regexp "\\w\\|:\\| \\b")
   (set-up-tabbing))
 
 (add-to-list 'auto-mode-alist '("\\.dat$" . (lambda () (set-up-ledger))))
