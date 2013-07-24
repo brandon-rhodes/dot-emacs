@@ -10,6 +10,14 @@
 (global-set-key [C-S-tab] (lambda () (interactive) (other-window -1)))
 (global-set-key [backtab] (lambda () (interactive) (other-window -1)))
 
+;; I have spent far too much of my life answering "y" to the prompt
+;; "Active processes exist; kill them and exit anyway?"
+
+(add-hook 'shell-mode-hook
+          (lambda ()
+            (process-kill-without-query
+             (get-buffer-process (current-buffer)) nil)))
+
 ;; Other convenient keys.
 
 (global-set-key "\M-?" 'describe-char)
