@@ -18,7 +18,13 @@
             (process-kill-without-query
              (get-buffer-process (current-buffer)) nil)))
 
-;; Other convenient keys.
+;; I have also spent too much of my life selecting the name of the
+;; buffer that I want to kill, depsite the fact that it is always,
+;; without exception, the current buffer.
+
+(global-set-key [(control x) (k)] 'kill-this-buffer)
+
+;; Make it easy to ask about a character.  Useful for obscure Unicode.
 
 (global-set-key "\M-?" 'describe-char)
 
