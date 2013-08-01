@@ -258,18 +258,6 @@
 
 (add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
-;; Load the solarized color theme, if present.
-
-(when (and
-       default-minibuffer-frame  ; is nil on a plain terminal
-       (file-accessible-directory-p "~/.emacs.d/emacs-color-theme-solarized"))
-  (add-to-list 'load-path "~/.emacs.d/emacs-color-theme-solarized")
-  (require 'color-theme-solarized)
-  (eval-after-load "color-theme"
-    '(progn
-       (color-theme-initialize)
-       (color-theme-solarized-light))))
-
 ;; Fix the fact that Emacs misinterprets Shift-Up from an xterm.
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
 ;; I cannot get the above solution to work. A subsequent initialization
