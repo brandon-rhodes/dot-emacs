@@ -83,10 +83,6 @@
              (concat "--master=" (expand-file-name "~/.emacs.d/aspell-huge"))
              " --sug-mode=ultra"))))
 
-;; Pressing Enter should go ahead and indent the new line.
-
-(global-set-key "\C-m" 'newline-and-indent)
-
 ;; Dedicated doctest mode.
 
 (add-to-list 'auto-mode-alist '("\\.doctest$" . doctest-mode))
@@ -134,19 +130,8 @@
 ;; (autopair-global-mode)
 ;; (setq autopair-autowrap t)
 
-;; Close-brace should be electric in CSS mode, which the CSS modes
-;; themselves do not support in Emacs 23 or 24.
-
-(defun css-electric-brace ()
-  "Insert a close brace and re-indent."
-  (interactive)
-  (insert "}")
-  (indent-for-tab-command))
-
-(defun css-setup ()
-  (define-key css-mode-map (kbd "}") 'css-electric-brace))
-
-(add-hook 'css-mode-hook 'css-setup)
+(add-hook 'css-mode-hook 'electric-indent-mode)
+(add-hook 'js-mode-hook 'electric-indent-mode)
 
 ;; Handle triple-quotes in Python; from http://code.google.com/p/autopair/
 
