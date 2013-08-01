@@ -128,12 +128,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.dat$" . (lambda () (set-up-ledger))))
 
-;; Typing open-paren or -bracket should auto-insert the closing one.
-
-;; (require 'autopair)
-;; (autopair-global-mode)
-;; (setq autopair-autowrap t)
-
 ;; Close-brace should be electric in CSS mode, which the CSS modes
 ;; themselves do not support in Emacs 23 or 24.
 
@@ -147,15 +141,6 @@
   (define-key css-mode-map (kbd "}") 'css-electric-brace))
 
 (add-hook 'css-mode-hook 'css-setup)
-
-;; Handle triple-quotes in Python; from http://code.google.com/p/autopair/
-
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq autopair-handle-action-fns
-                  (list #'autopair-default-handle-action
-                        #'autopair-python-triple-quote-action))
-            ))
 
 ;; Org mode should activate for files that end in ".org".
 
