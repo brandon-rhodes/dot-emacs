@@ -3,6 +3,10 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ))
+
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 
