@@ -90,26 +90,6 @@
 (add-to-list 'auto-mode-alist '("\\.doctest$" . doctest-mode))
 (autoload 'doctest-mode "doctest-mode" nil t)
 
-;; Run Pymacs and Ropemacs when we enter Python mode.
-;; We always use the Python that lives in the virtualenv we
-;; built beneath our ".emacs.d" directory.
-
-(setenv "PYMACS_PYTHON" "~/.emacs.d/usr/bin/python")
-
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" nil t)
-(autoload 'pymacs-exec "pymacs" nil t)
-(autoload 'pymacs-load "pymacs" nil t)
-
-(defun set-up-rope ()
-  (require 'pymacs)
-  (pymacs-load "ropemacs" "rope-")
-  (ropemacs-mode)
-  (remove-hook 'python-mode-hook 'set-up-rope))
-
-(add-hook 'python-mode-hook 'set-up-rope)
-
 ;; I want Tab to do variable-name completion, but Ctrl-I - which in
 ;; ASCII also means "Tab" - to indent the current line.  So I have to
 ;; convince Emacs to treat synonymous keystokes as different.
@@ -345,7 +325,6 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(python-honour-comment-indentation nil)
- '(ropemacs-guess-project t)
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
