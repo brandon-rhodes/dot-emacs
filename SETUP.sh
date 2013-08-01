@@ -20,9 +20,14 @@ source $USR/bin/activate
 
 pip install src/closure_linter-2.3.5.tar.gz
 pip install src/pyflakes-0.5.0.tar.gz
+pip install jedi
+pip install epc
+
+# Install third-party Emacs packages.
+emacs24 --script SETUP.el
 
 # Byte-compile plain Emacs LISP files.
-emacs --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
+emacs24 --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
 
 echo
 echo

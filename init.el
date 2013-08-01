@@ -3,10 +3,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ))
-
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 ;; (Temporarily disabled while trying out Jedi, since it uses C-tab
@@ -110,6 +106,14 @@
 (add-hook 'js-mode-hook 'set-up-tabbing)
 (add-hook 'python-mode-hook 'set-up-tabbing)
 (add-hook 'sh-mode-hook 'set-up-tabbing)
+
+;; Jedi completion and pop-up documentation for Python.
+
+(setenv "VIRTUAL_ENV" "$HOME/.emacs.d/usr" t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+(setq jedi:get-in-function-call-delay 200)
 
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
