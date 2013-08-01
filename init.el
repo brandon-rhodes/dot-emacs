@@ -30,6 +30,16 @@
 
 (global-set-key "\M-?" 'describe-char)
 
+;; Jedi completion and pop-up documentation for Python.  This hook needs
+;; to be installed before the Flyspell hook below, so that Jedi wins the
+;; race to define important keys like the C-. key.
+
+(setenv "VIRTUAL_ENV" "$HOME/.emacs.d/usr" t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+(setq jedi:get-in-function-call-delay 200)
+
 ;; Flyspell to check my spelling and underline possible mistakes.
 ;; Thanks to http://stackoverflow.com/questions/8332163/
 
@@ -106,14 +116,6 @@
 (add-hook 'js-mode-hook 'set-up-tabbing)
 (add-hook 'python-mode-hook 'set-up-tabbing)
 (add-hook 'sh-mode-hook 'set-up-tabbing)
-
-;; Jedi completion and pop-up documentation for Python.
-
-(setenv "VIRTUAL_ENV" "$HOME/.emacs.d/usr" t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
-(setq jedi:get-in-function-call-delay 200)
 
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
