@@ -9,10 +9,12 @@
 
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
+;; (Temporarily disabled while trying out Jedi, since it uses C-tab
+;; for completion!)
 
-(global-set-key [C-tab] 'other-window)
-(global-set-key [C-S-tab] (lambda () (interactive) (other-window -1)))
-(global-set-key [backtab] (lambda () (interactive) (other-window -1)))
+;; (global-set-key [C-tab] 'other-window)
+;; (global-set-key [C-S-tab] (lambda () (interactive) (other-window -1)))
+;; (global-set-key [backtab] (lambda () (interactive) (other-window -1)))
 
 ;; I have spent far too much of my life answering "y" to the prompt
 ;; "Active processes exist; kill them and exit anyway?"
