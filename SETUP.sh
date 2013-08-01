@@ -18,8 +18,8 @@ rm -rf $USR
 python2 src/virtualenv.py $USR
 source $USR/bin/activate
 
-pip install src/closure_linter-2.3.5.tar.gz
-pip install src/pyflakes-0.5.0.tar.gz
+pip install src/closure_linter-2.3.11.tar.gz
+pip install pyflakes
 pip install jedi
 pip install epc
 
