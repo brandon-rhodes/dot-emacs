@@ -131,16 +131,17 @@
 ;; Close-brace should be electric in CSS mode, which the CSS modes
 ;; themselves do not support in Emacs 23 or 24.
 
-(defun css-electric-brace ()
+(defun electric-close-brace ()
   "Insert a close brace and re-indent."
   (interactive)
   (insert "}")
   (indent-for-tab-command))
 
-(defun css-setup ()
-  (define-key css-mode-map (kbd "}") 'css-electric-brace))
+(defun setup-electric-close-brace ()
+  (define-key (current-local-map) (kbd "}") 'electric-close-brace))
 
-(add-hook 'css-mode-hook 'css-setup)
+(add-hook 'css-mode-hook 'setup-electric-close-brace)
+(add-hook 'js-mode-hook 'setup-electric-close-brace)
 
 ;; Org mode should activate for files that end in ".org".
 
