@@ -108,19 +108,26 @@
 
 (defun set-up-tabbing ()
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key (current-local-map) (kbd "<tab>") 'jedi:complete)
+  (define-key (current-local-map) (kbd "<tab>") 'dabbrev-completion)
   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
 (add-hook 'css-mode-hook 'set-up-tabbing)
 (add-hook 'html-mode-hook 'set-up-tabbing)
 (add-hook 'js-mode-hook 'set-up-tabbing)
-(add-hook 'python-mode-hook 'set-up-tabbing)
 (add-hook 'sh-mode-hook 'set-up-tabbing)
+
+(defun set-up-tabbing-for-python ()
+  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+  (define-key (current-local-map) (kbd "<tab>") 'jedi:complete)
+  (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
+
+(add-hook 'python-mode-hook 'set-up-tabbing-for-python)
 
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
 
 (defun set-up-ledger ()
+  (interactive)
   (text-mode)
   (make-variable-buffer-local 'dabbrev-case-fold-search)
   (make-variable-buffer-local 'dabbrev-abbrev-char-regexp)
