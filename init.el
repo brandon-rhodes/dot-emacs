@@ -292,6 +292,11 @@
 (if (file-exists-p "~/.emacs.d/local.el")
     (load-library "~/.emacs.d/local.el"))
 
+;; Prevent Emacs from constantly creating and deleting ".#filename"
+;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
+
+(setq create-lockfiles nil)
+
 ;; Variables set through M-x customize-apropos.
 
 (custom-set-variables
