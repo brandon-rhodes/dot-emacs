@@ -162,7 +162,7 @@
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
+                       'flymake-create-temp-copy))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
@@ -170,7 +170,7 @@
 
   (defun flymake-gjslint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
+                       'flymake-create-temp-copy))
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
@@ -184,7 +184,17 @@
                     'flymake-gjslint-init)
               ))
 
-  (add-hook 'find-file-hook 'flymake-find-file-hook))
+  (add-hook 'find-file-hook 'flymake-find-file-hook)
+  )
+
+;; Tell Flymake to use a temporary directory instead of spamming the
+;; current directory with its temporary files, since the current
+;; directory is often inside of my Dropbox or on a remote network
+;; through sshfs.  This new setting is supported because we have
+;; github.com/illusori/emacs-flymake/ in our "site-lisp" directory.
+
+(setq flymake-run-in-place nil)
+(setq temporary-file-directory "/tmp/")
 
 ;; A few file extensions.
 
