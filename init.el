@@ -26,6 +26,11 @@
 
 (global-set-key [(control x) (k)] 'kill-this-buffer)
 
+;; C-z should never iconify Emacs, only suspend it when in a terminal.
+;; I mean, who even iconifies programs any more?  Not me.
+
+(global-set-key [(control z)] 'suspend-emacs)
+
 ;; Make it easy to ask about a character.  Useful for obscure Unicode.
 
 (global-set-key "\M-?" 'describe-char)
