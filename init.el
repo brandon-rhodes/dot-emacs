@@ -201,7 +201,10 @@
 (setq flymake-run-in-place nil)
 (setq temporary-file-directory "/tmp/")
 
-;; A few file extensions.
+;; Colorize the diff that "git commit -v" (which I alias as "git ci")
+;; includes when it asks me for a commit message by turning on Emacs
+;; "diff-mode", and properly display the already-colorized ANSI
+;; festooned diff that "hg ci" includes in the commit-message buffer.
 
 (define-derived-mode git-commit-mode diff-mode
   (setq mode-name "Git-Commit")
@@ -209,6 +212,22 @@
   (flyspell-mode))
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . git-commit-mode))
+
+(define-derived-mode hg-commit-mode text-mode
+  (setq mode-name "Hg-Commit")
+  (auto-fill-mode)
+  (flyspell-mode)
+  (ansi-color-buffer))
+
+(add-to-list 'auto-mode-alist '("msg$" . hg-commit-mode))
+
+(defun ansi-color-buffer ()
+  "Replace all ANSI escape sequences in the current buffer with real colors."
+  (interactive)
+  (ansi-color-apply-on-region (point-min-marker) (point-max-marker)))
+
+;; A few other file extensions.
+
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 
