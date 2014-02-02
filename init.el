@@ -29,7 +29,8 @@
 ;; C-z should never iconify Emacs, only suspend it when in a terminal.
 ;; I mean, who even iconifies programs any more?  Not me.
 
-(global-set-key [(control z)] 'suspend-emacs)
+(if (eq window-system 'x)
+    (global-set-key [(control z)] 'suspend-emacs))
 
 ;; Make it easy to ask about a character.  Useful for obscure Unicode.
 
@@ -329,7 +330,7 @@
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
 
-(setq create-lockfiles nil)
+;;(setq create-lockfiles nil)
 
 ;; Variables set through M-x customize-apropos.
 
