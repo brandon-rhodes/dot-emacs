@@ -40,7 +40,6 @@
 ;; to be installed before the Flyspell hook below, so that Jedi wins the
 ;; race to define important keys like the C-. key.
 
-(setenv "VIRTUAL_ENV" "$HOME/.emacs.d/usr" t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
@@ -172,7 +171,7 @@
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "/home/brandon/.emacs.d/usr/bin/pyflakes" (list local-file))))
+      (list "pyflakes" (list local-file))))
 
   (defun flymake-gjslint-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
