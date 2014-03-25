@@ -19,6 +19,19 @@ run its setup script:
 
 You will then be ready to run Emacs!
 
+Be sure to install the following Python packages so that Emacs can
+successfully edit your code:
+
+    epc jedi pyflakes
+
+These probably cannot usefully be installed system-wide, because when
+editing Python 2 code you will need the Python 2 versions of these tools
+to run, but when editing Python 3 you will need them running under
+Python 3 or they will think that your Python 3 contructs are syntax
+errors.  So when you create a virtualenv for a particular project that
+uses that project's correct Python version, you will want to install
+those three packages before launching Emacs.
+
 The `SETUP.sh` creates a Python virtual environment down inside of the
 directory and install several programs that give Emacs some IDE super
 powers when editing Python code.  To get a good survey of the way my
