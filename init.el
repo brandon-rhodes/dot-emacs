@@ -172,6 +172,12 @@
 (load-library "org")
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
+;; Org mode should display totals in hours, not days-and-hours.
+;; http://stackoverflow.com/questions/17929979/
+
+(setq org-time-clocksum-format
+      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
 ;; Set up Flymake to use PyFlakes.
 
 (when (load "flymake" t)
