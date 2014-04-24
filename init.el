@@ -45,6 +45,16 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:get-in-function-call-delay 200)
 
+;; I am beginning to conclude that Guido is simply not going to fix this
+;; miserable dunder-main situation any time soon.  Good thing Emacs did
+;; not pre-define the Control-underscrore key sequence!
+
+(defun insert-dunder-main ()
+  (interactive)
+  (insert "if __name__ == '__main__':\n    "))
+
+(global-set-key [(control _)] 'insert-dunder-main)
+
 ;; Flyspell to check my spelling and underline possible mistakes.
 ;; Thanks to http://stackoverflow.com/questions/8332163/
 
