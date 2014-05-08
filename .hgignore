@@ -1,8 +1,0 @@
-^auto-save-list/
-^site-lisp/local\.el$
-^site-lisp/pymacs\.el$
-^site-lisp/.*\.elc$
-^src/tmp/
-^usr/
-^aspell-huge$
-^local.el$
