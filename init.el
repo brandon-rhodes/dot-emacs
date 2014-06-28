@@ -40,10 +40,16 @@
 ;; to be installed before the Flyspell hook below, so that Jedi wins the
 ;; race to define important keys like the C-. key.
 
+(package-initialize)
+
+(require 'auto-complete-config)
+(ac-config-default)
+
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)
+(setq jedi:setup-keys t)  ; so Jedi wins the C-. and C-, keys
 (setq jedi:complete-on-dot t)
 (setq jedi:get-in-function-call-delay 200)
+(setq jedi:tooltip-method nil)
 
 ;; I am beginning to conclude that Guido is simply not going to fix this
 ;; miserable dunder-main situation any time soon.  Good thing Emacs did
