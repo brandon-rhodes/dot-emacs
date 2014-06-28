@@ -57,7 +57,7 @@
 
 (defun insert-dunder-main ()
   (interactive)
-  (insert "if __name__ == '__main__':\n    "))
+  (insert "import argparse\nif __name__ == '__main__':\n    "))
 
 (global-set-key [(control _)] 'insert-dunder-main)
 
