@@ -252,6 +252,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . text-mode))
 
 ;; When I run "git commit", I always do it through an alias "git ci".
 ;; (Which is what "commit" was always called when I used RCS, then CVS,
