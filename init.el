@@ -3,6 +3,11 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+(add-to-list 'load-path "~/.emacs.d/multiple-cursors.el")
+(require 'multiple-cursors)
+(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
+
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 ;; (Temporarily disabled while trying out Jedi, since it uses C-tab
