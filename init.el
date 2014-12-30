@@ -3,6 +3,8 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+;; Experiment with multiple cursors.
+
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors.el")
 (require 'multiple-cursors)
 (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
