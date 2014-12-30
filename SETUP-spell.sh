@@ -17,11 +17,13 @@ then
 fi
 
 POOL="http://http.us.debian.org/debian/pool"
-wget "$POOL/main/s/scowl/wamerican-huge_6-3_all.deb"
+wget -c "$POOL/main/s/scowl/wamerican-huge_6-3_all.deb"
 
 ar x wamerican-huge_6-3_all.deb data.tar.gz
 tar xzf data.tar.gz --strip-components=4 \
     ./usr/share/dict/american-english-huge
+
+sed -i '/^actually$/d' american-english-huge
 
 aspell --encoding=utf-8 --lang=en create master ~/.emacs.d/aspell-huge \
     < american-english-huge
