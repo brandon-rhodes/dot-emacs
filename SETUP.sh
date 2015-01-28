@@ -15,7 +15,7 @@ USR=$PWD/usr
 
 rm -rf $USR
 
-python2 src/virtualenv.py $USR
+python2.7 src/virtualenv.py $USR
 source $USR/bin/activate
 
 pip install src/closure_linter-2.3.11.tar.gz
@@ -24,10 +24,17 @@ pip install jedi
 pip install epc
 
 # Install third-party Emacs packages.
-emacs24 --script SETUP.el
+if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
+then
+    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+else
+    EMACS=emacs24
+fi
+
+$EMACS --script SETUP.el
 
 # Byte-compile plain Emacs LISP files.
-emacs24 --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
+$EMACS --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
 
 echo
 echo
