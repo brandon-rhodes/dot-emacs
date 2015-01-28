@@ -3,6 +3,17 @@
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+;; Essential Mac OS X keybindings, put here at the top so that they
+;; get installed even if something later in this file fails.  My
+;; wrists would not survive my career if I had to twist my fingers
+;; away from home row for every Ctrl or Meta, so I put them at my
+;; thumbs instead.  Thumbs being orthoganal to the home-row fingers.
+
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'control)
+  (setq mac-right-command-modifier 'meta)
+  )
+
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 ;; (Temporarily disabled while trying out Jedi, since it uses C-tab
