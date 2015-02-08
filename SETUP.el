@@ -8,3 +8,4 @@
 (package-refresh-contents)
 (package-install 'jedi)
 (package-install 'multiple-cursors)
+(package-install 'org)
