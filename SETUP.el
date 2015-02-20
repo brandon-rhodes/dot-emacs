@@ -6,6 +6,7 @@
         ))
 (package-initialize)
 (package-refresh-contents)
+(package-install 'coffee-mode)
 (package-install 'jedi)
 (package-install 'multiple-cursors)
 (package-install 'org)
