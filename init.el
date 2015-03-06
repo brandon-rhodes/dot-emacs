@@ -62,6 +62,19 @@
 (setq jedi:get-in-function-call-delay 200)
 (setq jedi:tooltip-method nil)
 
+(define-key jedi-mode-map (kbd "<C-tab>") nil)  ; keep global definition
+
+;; Jedi is wonderful for finding a definition, but what about the
+;; opposite: finding everywhere that something is mentioned?  Why the
+;; C-> binding?  Because it feels like C-M-. when you type it.
+
+(require 'thingatpt)
+(defun ack-current-word ()
+  (interactive)
+  (ag-project-regexp (concat "\\b" (thing-at-point 'symbol) "\\b"))
+  (other-window 1))
+(global-set-key (kbd "M-a") 'ack-current-word)
+
 ;; Multiple cursors.
 
 (require 'multiple-cursors)
