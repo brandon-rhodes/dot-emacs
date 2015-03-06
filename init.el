@@ -73,6 +73,11 @@
   (other-window 1))
 (global-set-key (kbd "M-a") 'ack-current-word)
 
+;; Never auto-split a frame into a left and right window.
+
+(setq split-width-threshold nil)
+(setq split-height-threshold 0)
+
 ;; Multiple cursors.
 
 (require 'multiple-cursors)
