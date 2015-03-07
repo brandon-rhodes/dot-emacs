@@ -54,13 +54,15 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
-(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (jedi:setup)
+            (define-key jedi-mode-map (kbd "<C-tab>") nil)  ;; let global win
+            ))
 (setq jedi:setup-keys t)  ; so Jedi wins the C-. and C-, keys
 (setq jedi:complete-on-dot t)
 (setq jedi:get-in-function-call-delay 200)
 (setq jedi:tooltip-method nil)
-
-(define-key jedi-mode-map (kbd "<C-tab>") nil)  ; keep global definition
 
 ;; Jedi is wonderful for finding a definition, but what about the
 ;; opposite: finding everywhere that something is mentioned?  Why the
