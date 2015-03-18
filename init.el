@@ -429,7 +429,7 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(python-honour-comment-indentation nil)
- '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(safe-local-variable-values (quote ((jedi:server-args "--sys-path" "/home/brhodes/src/server/metaserver") (encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
  '(show-paren-delay 0)
