@@ -71,7 +71,10 @@
 (require 'thingatpt)
 (defun ack-current-word ()
   (interactive)
-  (ag-project-regexp (concat "\\b" (thing-at-point 'symbol) "\\b"))
+  (let ((text (if (use-region-p)
+                  (buffer-substring (region-beginning) (region-end))
+                (thing-at-point 'symbol))))
+    (ag-project-regexp (concat "\\b" text "\\b")))
   (other-window 1))
 (global-set-key (kbd "M-a") 'ack-current-word)
 
