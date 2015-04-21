@@ -261,6 +261,13 @@
 (setq flymake-run-in-place nil)
 (setq temporary-file-directory "/tmp/")
 
+;; Magit
+
+(require 'magit)
+(global-set-key (kbd "M-s") 'magit-status)
+(global-set-key (kbd "C-x v g") 'magit-blame-mode)
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;; Colorize the diff that "git commit -v" (which I alias as "git ci")
 ;; includes when it asks me for a commit message by turning on Emacs
 ;; "diff-mode", and properly display the already-colorized ANSI

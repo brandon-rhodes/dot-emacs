@@ -9,5 +9,6 @@
 (package-install 'ag)
 (package-install 'coffee-mode)
 (package-install 'jedi)
+(package-install 'magit)
 (package-install 'multiple-cursors)
 (package-install 'org)
