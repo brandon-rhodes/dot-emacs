@@ -342,7 +342,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-saved-items 2000)
+(setq recentf-max-saved-items 20000)
 (global-set-key (kbd "C-x C-r") 'ido-recentf-open)
 (defun ido-recentf-open ()
   "Use `ido-completing-read' to \\[find-file] a recent file"
