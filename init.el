@@ -455,4 +455,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
+ '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
