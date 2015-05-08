@@ -61,8 +61,7 @@
             ))
 (setq jedi:setup-keys t)  ; so Jedi wins the C-. and C-, keys
 (setq jedi:complete-on-dot t)
-(setq jedi:get-in-function-call-delay 200)
-(setq jedi:tooltip-method nil)
+(setq jedi:get-in-function-call-delay 360000)
 
 ;; Jedi is wonderful for finding a definition, but what about the
 ;; opposite: finding everywhere that something is mentioned?  Why the
