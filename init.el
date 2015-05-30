@@ -68,14 +68,17 @@
 ;; C-> binding?  Because it feels like C-M-. when you type it.
 
 (require 'thingatpt)
-(defun ack-current-word ()
+
+(defun ag-current-word ()
   (interactive)
   (let ((text (if (use-region-p)
                   (buffer-substring (region-beginning) (region-end))
                 (thing-at-point 'symbol))))
     (ag-project-regexp (concat "\\b" text "\\b")))
   (other-window 1))
-(global-set-key (kbd "M-a") 'ack-current-word)
+
+(global-set-key (kbd "M-a") 'ag-current-word)
+(global-set-key (kbd "M-C-a") 'ag-project)
 
 ;; Never auto-split a frame into a left and right window.
 
