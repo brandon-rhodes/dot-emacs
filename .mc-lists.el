@@ -4,6 +4,11 @@
 (setq mc/cmds-to-run-for-all
       '(
         delete-horizontal-space
+        org-beginning-of-line
+        org-delete-char
+        org-end-of-line
+        org-kill-line
+        org-self-insert-command
         ))
 
 (setq mc/cmds-to-run-once
