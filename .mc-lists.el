@@ -4,13 +4,17 @@
 (setq mc/cmds-to-run-for-all
       '(
         delete-horizontal-space
+        indent-for-tab-command
+        kill-region
         org-beginning-of-line
         org-delete-char
         org-end-of-line
         org-kill-line
         org-self-insert-command
+        sh-assignment
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        ido-switch-buffer
         ))
