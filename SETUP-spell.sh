@@ -25,7 +25,16 @@ tar xzf data.tar.gz --strip-components=4 \
 
 sed -i '/^actually$/d' american-english-huge
 
-aspell --encoding=utf-8 --lang=en create master ~/.emacs.d/aspell-huge \
+rm -f ~/.emacs.d/aspell-huge
+
+# The --local-data-dir option is necessary because of:
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=772415
+
+aspell \
+    --local-data-dir=/usr/lib/aspell \
+    --encoding=utf-8 \
+    --lang=en \
+    create master ~/.emacs.d/aspell-huge \
     < american-english-huge
 
 rm american-english-huge

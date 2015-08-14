@@ -151,6 +151,9 @@
       (setq ispell-program-name "aspell")
       (setq ispell-extra-args
             (list
+             ;; The --local-data-dir option is necessary because of:
+             ;; https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=772415
+             "--local-data-dir=/usr/lib/aspell"
              (concat "--master=" (expand-file-name "~/.emacs.d/aspell-huge"))
              " --sug-mode=ultra"))))
 
