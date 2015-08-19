@@ -272,6 +272,7 @@
 (global-set-key (kbd "M-s") 'magit-status)
 (global-set-key (kbd "C-x v g") 'magit-blame-mode)
 (setq magit-last-seen-setup-instructions "1.4.0")
+(add-hook 'magit-mode-hook 'turn-on-visual-line-mode) ; wrap long commit msgs
 
 ;; Colorize the diff that "git commit -v" (which I alias as "git ci")
 ;; includes when it asks me for a commit message by turning on Emacs
