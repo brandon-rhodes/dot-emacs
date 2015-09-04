@@ -413,6 +413,10 @@
 (if (file-exists-p "~/.emacs.d/local.el")
     (load-library "~/.emacs.d/local.el"))
 
+;; It may be obsolete, but it provides a combination of features I need.
+
+(load-library "longlines.el")
+
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
 
