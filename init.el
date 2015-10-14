@@ -346,7 +346,7 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 (put 'dired-find-alternate-file 'disabled nil)
 
-;; Per www.masteringemacs.org/article/find-files-faster-recent-files-package
+;; Make it easy to jump between files inside a project.
 
 (global-set-key (kbd "C-x C-r") 'find-file-in-repository)
 
