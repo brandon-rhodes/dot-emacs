@@ -349,16 +349,7 @@
 
 ;; Per www.masteringemacs.org/article/find-files-faster-recent-files-package
 
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-saved-items 20000)
-(global-set-key (kbd "C-x C-r") 'ido-recentf-open)
-(defun ido-recentf-open ()
-  "Use `ido-completing-read' to \\[find-file] a recent file"
-  (interactive)
-  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
-      (message "Opening file...")
-    (message "Aborting")))
+(global-set-key (kbd "C-x C-r") 'find-file-in-repository)
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
