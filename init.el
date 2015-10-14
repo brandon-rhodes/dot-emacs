@@ -63,6 +63,22 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:get-in-function-call-delay 360000)
 
+;; Quickly jump up or down to the previous or next use of the name
+;; sitting under point.
+
+(defun search-forward-symbol-at-point ()
+  (interactive)
+  (end-of-thing 'symbol)
+  (search-forward-regexp (concat "\\b" (thing-at-point 'symbol) "\\b")))
+
+(defun search-backward-symbol-at-point ()
+  (interactive)
+  (beginning-of-thing 'symbol)
+  (search-backward-regexp (concat "\\b" (thing-at-point 'symbol) "\\b")))
+
+(global-set-key [(meta r)] 'search-backward-symbol-at-point)
+(global-set-key [(meta s)] 'search-forward-symbol-at-point)
+
 ;; Jedi is wonderful for finding a definition, but what about the
 ;; opposite: finding everywhere that something is mentioned?
 
