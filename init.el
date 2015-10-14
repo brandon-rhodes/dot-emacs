@@ -64,8 +64,7 @@
 (setq jedi:get-in-function-call-delay 360000)
 
 ;; Jedi is wonderful for finding a definition, but what about the
-;; opposite: finding everywhere that something is mentioned?  Why the
-;; C-> binding?  Because it feels like C-M-. when you type it.
+;; opposite: finding everywhere that something is mentioned?
 
 (require 'thingatpt)
 
