@@ -364,6 +364,7 @@
 
 ;; Make it easy to jump between files inside a project.
 
+(load-library "find-file-in-repository")
 (global-set-key (kbd "C-x C-r") 'find-file-in-repository)
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
