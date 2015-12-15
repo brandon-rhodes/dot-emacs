@@ -5,6 +5,7 @@ session.*
 site-lisp/local.el
 site-lisp/*.elc
 src/*.pyc
+src/virtualenv-*
 usr/
 aspell-huge
 local.el
