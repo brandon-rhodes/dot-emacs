@@ -69,12 +69,12 @@
 (defun search-forward-symbol-at-point ()
   (interactive)
   (end-of-thing 'symbol)
-  (search-forward-regexp (concat "\\b" (thing-at-point 'symbol) "\\b")))
+  (search-forward-regexp (concat "\\_<" (thing-at-point 'symbol) "\\_>")))
 
 (defun search-backward-symbol-at-point ()
   (interactive)
   (beginning-of-thing 'symbol)
-  (search-backward-regexp (concat "\\b" (thing-at-point 'symbol) "\\b")))
+  (search-backward-regexp (concat "\\_<" (thing-at-point 'symbol) "\\_>")))
 
 (global-set-key [(meta r)] 'search-backward-symbol-at-point)
 (global-set-key [(meta s)] 'search-forward-symbol-at-point)
@@ -287,7 +287,7 @@
 ;; Magit
 
 (require 'magit)
-(global-set-key (kbd "M-s") 'magit-status)
+;(global-set-key (kbd "M-s") 'magit-status)
 (global-set-key (kbd "C-x v g") 'magit-blame)
 (setq magit-last-seen-setup-instructions "1.4.0")
 (add-hook 'magit-mode-hook 'turn-on-visual-line-mode) ; wrap long commit msgs
