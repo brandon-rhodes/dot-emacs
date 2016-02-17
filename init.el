@@ -297,13 +297,6 @@
 ;; "diff-mode", and properly display the already-colorized ANSI
 ;; festooned diff that "hg ci" includes in the commit-message buffer.
 
-(define-derived-mode git-commit-mode diff-mode
-  (setq mode-name "Git-Commit")
-  (auto-fill-mode)
-  (flyspell-mode))
-
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . git-commit-mode))
-
 (define-derived-mode hg-commit-mode text-mode
   (setq mode-name "Hg-Commit")
   (auto-fill-mode)
