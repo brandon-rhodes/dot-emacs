@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         delete-horizontal-space
+        handle-switch-frame
         indent-for-tab-command
         kill-region
         org-beginning-of-line
@@ -11,6 +12,7 @@
         org-end-of-line
         org-kill-line
         org-self-insert-command
+        sgml-slash
         sh-assignment
         ))
 
