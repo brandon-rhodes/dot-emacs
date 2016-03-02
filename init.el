@@ -357,8 +357,13 @@
 
 ;; Make it easy to jump between files inside a project.
 
-(load-library "find-file-in-repository")
-(global-set-key (kbd "C-x C-r") 'find-file-in-repository)
+(defun fzf-repository ()
+  "Run the fzf file selection tool in the current repository."
+  (interactive)
+  (fzf-directory (vc-git-root default-directory)))
+
+(autoload 'vc-git-root "vc-git")
+(global-set-key (kbd "C-x C-r") 'fzf-repository)
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between

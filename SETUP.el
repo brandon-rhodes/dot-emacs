@@ -8,7 +8,7 @@
 (package-refresh-contents)
 (package-install 'ag)
 (package-install 'coffee-mode)
-(package-install 'find-file-in-repository)
+(package-install 'fzf)
 (package-install 'jedi)
 (package-install 'magit)
 (package-install 'multiple-cursors)
