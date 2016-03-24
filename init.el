@@ -69,12 +69,14 @@
 (defun search-forward-symbol-at-point ()
   (interactive)
   (end-of-thing 'symbol)
-  (search-forward-regexp (concat "\\_<" (thing-at-point 'symbol) "\\_>")))
+  (let ((case-fold-search nil))
+    (re-search-forward (concat "\\_<" (thing-at-point 'symbol) "\\_>"))))
 
 (defun search-backward-symbol-at-point ()
   (interactive)
   (beginning-of-thing 'symbol)
-  (search-backward-regexp (concat "\\_<" (thing-at-point 'symbol) "\\_>")))
+  (let ((case-fold-search nil))
+    (re-search-backward (concat "\\_<" (thing-at-point 'symbol) "\\_>"))))
 
 (global-set-key [(meta r)] 'search-backward-symbol-at-point)
 (global-set-key [(meta s)] 'search-forward-symbol-at-point)
