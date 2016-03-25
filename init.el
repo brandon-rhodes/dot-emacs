@@ -121,6 +121,17 @@
 
 (global-set-key [(control _)] 'insert-dunder-main)
 
+;; When I press enter in rst-mode, the *previous* line gets wrongly
+;; re-indented.  This was supposed to have been fixed, says the docs, by
+;; the setting of electric-indent-inhibit in rst.el, but the problem is
+;; now happening for me on Emacs 24.5.1 so:
+
+(defun set-up-rst-mode ()
+  (make-local-variable 'electric-indent-inhibit)
+  (setq electric-indent-inhibit t))
+
+(add-hook 'rst-mode-hook 'set-up-rst-mode)
+
 ;; Flyspell to check my spelling and underline possible mistakes.
 ;; Thanks to http://stackoverflow.com/questions/8332163/
 
