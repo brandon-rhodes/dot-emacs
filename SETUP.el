@@ -9,6 +9,7 @@
 (package-install 'ag)
 (package-install 'coffee-mode)
 (package-install 'fzf)
+(package-install 'json-mode)
 (package-install 'jedi)
 (package-install 'magit)
 (package-install 'multiple-cursors)

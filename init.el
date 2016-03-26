@@ -142,6 +142,13 @@
 (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
 (add-hook 'js-mode-hook (lambda () (flyspell-prog-mode)))
 
+;; Only 2 space indents for JSON.  It is just data, after all.
+
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
+
 ;; Auto-fill for text and SGML modes.
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
