@@ -1,5 +1,5 @@
-;; Emacs configuration for Brandon Rhodes, who does lots of Python and
-;; also some JavaScript when it has to run in the browser.
+;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
+;; also some JavaScript for things that have to run in the browser.
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
@@ -7,12 +7,17 @@
 ;; get installed even if something later in this file fails.  My
 ;; wrists would not survive my career if I had to twist my fingers
 ;; away from home row for every Ctrl or Meta, so I put them at my
-;; thumbs instead.  Thumbs being orthoganal to the home-row fingers.
+;; thumbs instead.  Thumbs are orthoganal to the home-row fingers.
 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'control)
   (setq mac-right-command-modifier 'meta)
   )
+
+;; Third-party major mode for browsing the kill ring.
+
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
 
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
