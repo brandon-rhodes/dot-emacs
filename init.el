@@ -14,11 +14,6 @@
   (setq mac-right-command-modifier 'meta)
   )
 
-;; Third-party major mode for browsing the kill ring.
-
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
-
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 
@@ -50,11 +45,18 @@
 
 (global-set-key "\M-?" 'describe-char)
 
+;; Get ready for (require...) calls to third-party libraries.
+
+(package-initialize)
+
+;; Third-party major mode for browsing the kill ring.
+
+(require 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
 ;; Jedi completion and pop-up documentation for Python.  This hook needs
 ;; to be installed before the Flyspell hook below, so that Jedi wins the
 ;; race to define important keys like the C-. key.
-
-(package-initialize)
 
 (require 'auto-complete-config)
 (ac-config-default)
