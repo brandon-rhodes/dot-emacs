@@ -107,6 +107,9 @@
 (eval-after-load 'coffee-mode
   '(define-key coffee-mode-map (kbd "M-C-a") 'ag-project))
 
+(eval-after-load 'js-mode
+  '(define-key js-mode-map (kbd "M-C-a") 'ag-project))
+
 ;; Never auto-split a frame into a left and right window.
 
 (setq split-width-threshold nil)
