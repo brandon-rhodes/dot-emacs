@@ -98,7 +98,7 @@
   (let ((text (if (use-region-p)
                   (buffer-substring (region-beginning) (region-end))
                 (thing-at-point 'symbol))))
-    (ag-project-regexp (concat "\\b" text "\\b")))
+    (ag-project-regexp (concat "(?-i)\\b" text "\\b")))
   (other-window 1))
 
 (global-set-key (kbd "M-a") 'ag-current-word)
