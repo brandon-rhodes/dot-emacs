@@ -275,6 +275,21 @@
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
+;; Org mode reports should not use \emsp as their indent symbol.
+;; http://emacs.stackexchange.com/questions/9528/
+
+(defun my-org-clocktable-indent-string (level)
+  (if (= level 1)
+      ""
+    (let ((str ". "))
+      (while (> level 2)
+        (setq level (1- level)
+              str (concat str ". ")))
+      (concat str "» "))))
+
+(advice-add 'org-clocktable-indent-string
+            :override #'my-org-clocktable-indent-string)
+
 ;; Set up Flymake to use PyFlakes.
 
 (when (load "flymake" t)
