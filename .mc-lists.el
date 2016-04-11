@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        coffee-dedent-line-backspace
+        comment-dwim
         delete-horizontal-space
         handle-switch-frame
         indent-for-tab-command
@@ -12,6 +14,7 @@
         org-end-of-line
         org-kill-line
         org-self-insert-command
+        python-indent-shift-right
         sgml-slash
         sh-assignment
         ))
