@@ -102,7 +102,7 @@
   (other-window 1))
 
 (global-set-key (kbd "M-a") 'ag-current-word)
-(global-set-key (kbd "M-C-a") 'ag-project)
+(global-set-key (kbd "M-C-a") 'ag-project-regexp)
 
 (eval-after-load 'coffee-mode
   '(define-key coffee-mode-map (kbd "M-C-a") 'ag-project))
