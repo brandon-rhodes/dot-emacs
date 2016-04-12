@@ -49,6 +49,14 @@
 
 (package-initialize)
 
+;; "M-x date", which adds a simple header for diary-style text files.
+
+(defun date ()
+  (interactive)
+  (insert (concat "======== "
+                  (format-time-string "%Y %B %d %A")
+                  " ========")))
+
 ;; Third-party major mode for browsing the kill ring.
 
 (require 'browse-kill-ring)
