@@ -511,7 +511,7 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(python-honour-comment-indentation nil)
- '(safe-local-variable-values (quote ((jedi:server-args "--sys-path" "/home/brhodes/src/server/metaserver") (encoding . utf-8))))
+ '(safe-local-variable-values (encoding . utf-8))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
  '(show-paren-delay 0)
@@ -528,3 +528,11 @@
  '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
+
+;; Allow myself to give Jedi extra per-directory arguments.
+;; This is to allow ".dir-locals.el" files like:
+;;
+;; ((python-mode . ((jedi:server-args "--sys-path" "some/extra/directory"
+;;                   ))))
+
+(put 'jedi:server-args 'safe-local-variable (lambda (value) t))
