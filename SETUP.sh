@@ -18,6 +18,8 @@ rm -rf $USR
 python2.7 src/virtualenv.py $USR
 source $USR/bin/activate
 
+pip install --upgrade pip
+
 pip install src/closure_linter-2.3.11.tar.gz
 pip install pyflakes
 pip install jedi
