@@ -415,6 +415,7 @@
   (interactive)
   (fzf-directory (vc-git-root default-directory)))
 
+(setenv "FZF_DEFAULT_COMMAND" "ag -g ''")
 (autoload 'vc-git-root "vc-git")
 (global-set-key (kbd "C-x C-r") 'fzf-repository)
 
