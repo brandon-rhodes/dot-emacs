@@ -298,6 +298,14 @@
 (advice-add 'org-clocktable-indent-string
             :override #'my-org-clocktable-indent-string)
 
+;; Custom keywords.
+
+(setq org-todo-keywords
+       '((sequence "TODO" "|" "DONE" "WONT")))
+
+(setq org-todo-keyword-faces
+      '(("WONT" . "orange")))
+
 ;; Set up Flymake to use PyFlakes.
 
 (when (load "flymake" t)
