@@ -243,6 +243,19 @@
 
 (add-hook 'python-mode-hook 'set-up-tabbing-for-python)
 
+;; Use Python mode for Bazel .bzl files.
+
+(defun bzl-mode ()
+  (python-mode)
+  ;; (setq-local python-indent 2)
+  ;; (setq-local indent-tabs-mode nil)
+  ;; (setq-local tab-width 2)
+  ;; (setq-local py-indent-offset 2)
+  )
+
+(add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.bzl\\'" . bzl-mode))
+
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
 
