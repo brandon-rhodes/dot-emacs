@@ -62,6 +62,11 @@
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
+;; Third-party mode for bracketed paste.
+
+(require 'bracketed-paste)
+(bracketed-paste-enable)
+
 ;; Jedi completion and pop-up documentation for Python.  This hook needs
 ;; to be installed before the Flyspell hook below, so that Jedi wins the
 ;; race to define important keys like the C-. key.
