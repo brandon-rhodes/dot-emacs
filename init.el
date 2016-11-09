@@ -517,7 +517,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ag-arguments (quote ("--numbers" "--noheading" "--column" "--")))
  '(auto-save-default nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
