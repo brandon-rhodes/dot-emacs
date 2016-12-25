@@ -569,6 +569,7 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(python-honour-comment-indentation nil)
+ '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (encoding . utf-8))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
