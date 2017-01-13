@@ -445,37 +445,7 @@
 (autoload 'vc-git-root "vc-git")
 (global-set-key (kbd "C-x C-r") 'fzf-repository)
 
-;; Fix a bug in fzf.  This can be removed when a new version of fzf
-;; comes out that sets the *fzf* buffer's directory every time instead
-;; of relying on its earlier value.
-
 (load-library "fzf.el")
-
-(defun fzf/start (directory)
-  (require 'term)
-  (window-configuration-to-register :fzf-windows)
-  (advice-add 'term-handle-exit :after #'fzf/after-term-handle-exit)
-  (let ((buf (get-buffer-create "*fzf*"))
-        (window-height (if fzf/position-bottom (- fzf/window-height) fzf/window-height)))
-    (with-current-buffer buf
-      (setq default-directory directory))
-    (split-window-vertically window-height)
-    (when fzf/position-bottom (other-window 1))
-    (if fzf/args
-        (apply 'make-term "fzf" fzf/executable nil (split-string fzf/args " "))
-      (make-term "fzf" fzf/executable))
-    (switch-to-buffer buf)
-    (linum-mode 0)
-    (set-window-margins nil 1)
-
-    ;; disable various settings known to cause artifacts, see #1 for more details
-    (setq-local scroll-margin 0)
-    (setq-local scroll-conservatively 0)
-    (setq-local term-suppress-hard-newline t) ;for paths wider than the window
-    (face-remap-add-relative 'mode-line '(:box nil))
-
-    (term-char-mode)
-    (setq mode-line-format (format "   FZF  %s" directory))))
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
