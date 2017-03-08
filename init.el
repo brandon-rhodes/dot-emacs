@@ -163,7 +163,12 @@
 (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
-(add-hook 'js-mode-hook (lambda () (flyspell-prog-mode)))
+(add-hook 'js-mode-hook
+          (lambda ()
+            (when (string-match-p "^  [A-Za-z]" (buffer-string))
+              (make-variable-buffer-local 'js-indent-level)
+              (set-variable 'js-indent-level 2))
+            (flyspell-prog-mode)))
 
 ;; Only 2 space indents for JSON.  It is just data, after all.
 
