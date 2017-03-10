@@ -55,7 +55,7 @@
   (interactive)
   (insert (concat "======== "
                   (format-time-string "%Y %B %d %A")
-                  " ========")))
+                  " ========\n\n")))
 
 ;; Third-party major mode for browsing the kill ring.
 
