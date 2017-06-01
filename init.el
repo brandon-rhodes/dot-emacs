@@ -510,7 +510,7 @@
 
 ;; It may be obsolete, but it provides a combination of features I need.
 
-(load-library "longlines.el")
+(load-library "longlines")
 
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
