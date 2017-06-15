@@ -526,7 +526,7 @@
  ;; If there is more than one, they won't work right.
  '(ag-arguments
    (quote
-    ("--line-number" "--smart-case" "--nogroup" "--column" "--stats" "--width" "240" "--")))
+    ("--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
