@@ -106,12 +106,37 @@
 
 (require 'thingatpt)
 
+(defun pcre-quote (string)
+  (let* ((s string)
+         (s (replace-regexp-in-string "(" "\\(" s 'fixedcase 'literal))
+         (s (replace-regexp-in-string ")" "\\)" s 'fixedcase 'literal)))
+    s))
+
+;; (pcre-quote "(a)")"\\(a\\)"
+
+(defun pcre-word-delimit (string)
+  (let* ((s string)
+         (s (if (string-match-p "^[A-Za-z]" s)
+                (concat "\\b" s)
+              s))
+         (s (if (string-match-p "[A-Za-z]$" s)
+                (concat s "\\b")
+              s)))
+    s))
+
+;; (pcre-word-delimit "a")"\\ba\\b"
+;; (pcre-word-delimit ".a")".a\\b"
+;; (pcre-word-delimit "a.")"\\ba."
+;; (pcre-word-delimit ".a.")".a."
+
 (defun ag-current-word ()
   (interactive)
-  (let ((text (if (use-region-p)
-                  (buffer-substring (region-beginning) (region-end))
-                (thing-at-point 'symbol))))
-    (ag-project-regexp (concat "(?-i)\\b" text "\\b")))
+  (let* ((text (if (use-region-p)
+                   (buffer-substring (region-beginning) (region-end))
+                 (thing-at-point 'symbol)))
+         (text (pcre-quote text))
+         (text (pcre-word-delimit text)))
+    (ag-project-regexp text))
   (other-window 1))
 
 (global-set-key (kbd "M-a") 'ag-current-word)
