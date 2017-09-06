@@ -542,6 +542,11 @@
 
 ;;(setq create-lockfiles nil)
 
+;; Support Go.
+
+(autoload 'go-mode "go-mode" "Supports the Go language." t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+
 ;; Variables set through M-x customize-apropos.
 
 (custom-set-variables
