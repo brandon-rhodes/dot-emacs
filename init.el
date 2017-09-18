@@ -14,6 +14,15 @@
   (setq mac-right-command-modifier 'meta)
   )
 
+;; Emacs had started hanging every time I started it, and I found this
+;; recommendation at http://spacemacs.org/doc/FAQ#orgheadline14 - it
+;; stops tramp mode (why does tramp mode, which I never use, get to run
+;; at startup?) from invoking SSH on an unknown hostname that my ISP
+;; apparently intercepts.
+
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 
