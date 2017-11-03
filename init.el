@@ -211,11 +211,6 @@
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
 
-;; Auto-fill for text and SGML modes.
-
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'sgml-mode-hook 'turn-off-auto-fill)
-
 ;; Ispell should stop suggesting that it can cure a misspelling by
 ;; splitting a word into two quite different words.
 
