@@ -3,6 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-brace
+        c-electric-delete-forward
+        c-electric-lt-gt
+        c-electric-paren
+        c-electric-semi&comma
+        c-indent-line-or-region
         coffee-dedent-line-backspace
         comment-dwim
         delete-horizontal-space
