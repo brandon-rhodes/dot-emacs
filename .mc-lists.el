@@ -20,6 +20,7 @@
         org-end-of-line
         org-kill-line
         org-self-insert-command
+        picture-self-insert
         python-indent-shift-right
         sgml-slash
         sh-assignment
