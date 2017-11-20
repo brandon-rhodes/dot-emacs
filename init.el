@@ -315,6 +315,7 @@
 
 (add-to-list 'auto-mode-alist '("BUILD\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.bzl\\'" . bzl-mode))
+(add-to-list 'auto-mode-alist '("\\.pyst\\'" . python-mode))
 
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
