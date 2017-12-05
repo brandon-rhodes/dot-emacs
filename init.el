@@ -563,6 +563,11 @@
 
 (load-library "longlines")
 
+;; Smart quotes.
+
+(load-library "smart-quotes")
+(add-hook 'text-mode-hook 'smart-quotes-mode)
+
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
 
