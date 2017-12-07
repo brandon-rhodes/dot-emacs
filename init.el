@@ -585,9 +585,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ag-arguments
-   (quote
-    ("--smart-case" "--stats" "--width" "240")))
+ '(ag-arguments (quote ("--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
@@ -623,9 +621,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(escape-glyph ((t (:foreground "#d9c072"))))
  '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
+
+;; The escape-gylph color (above) was designed to make longlines mode
+;; easier for me to read by making the visible newline characters blend
+;; into the background instead of standing visually in the way of the
+;; text.  It was produced by chroma.js acting on Solarized colors:
+;; > chroma.mix('#b58900', '#fdf6e3').hex()
+;; < "#d9c072"
 
 ;; Allow myself to give Jedi extra per-directory arguments.
 ;; This is to allow ".dir-locals.el" files like:
