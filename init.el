@@ -496,7 +496,7 @@
 (defun fzf-repository ()
   "Run the fzf file selection tool in the current repository."
   (interactive)
-  (fzf-directory (vc-git-root default-directory)))
+  (fzf/start (vc-git-root default-directory)))
 
 (setenv "FZF_DEFAULT_COMMAND" "ag -g ''")
 (autoload 'vc-git-root "vc-git")
