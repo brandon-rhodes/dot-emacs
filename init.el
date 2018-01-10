@@ -582,7 +582,7 @@
 ;; Bind "recompile" to F5 and jump to the first error.
 
 (global-set-key (kbd "<f5>") 'recompile)
-(setq compilation-auto-jump-to-first-error t)
+;;(setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 ; TODO: maybe make this auto-detect the project root?
 (add-to-list 'compilation-search-path "/home/brhodes/livegrep")
