@@ -29,6 +29,9 @@ pip install epc
 if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
 then
     EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+elif [ -x /usr/bin/emacs25 ]
+then
+    EMACS=emacs25
 else
     EMACS=emacs24
 fi
