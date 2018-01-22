@@ -17,9 +17,9 @@ then
 fi
 
 POOL="http://http.us.debian.org/debian/pool"
-wget -c "$POOL/main/s/scowl/wamerican-huge_6-3_all.deb"
+wget -c "$POOL/main/s/scowl/wamerican-huge_7.1-1_all.deb"
 
-ar x wamerican-huge_6-3_all.deb data.tar.gz
+ar x wamerican-huge_7.1-1_all.deb data.tar.gz
 tar xzf data.tar.gz --strip-components=4 \
     ./usr/share/dict/american-english-huge
 
@@ -39,4 +39,4 @@ aspell \
 
 rm american-english-huge
 rm data.tar.gz
-rm wamerican-huge_6-3_all.deb
+rm wamerican-huge_7.1-1_all.deb
