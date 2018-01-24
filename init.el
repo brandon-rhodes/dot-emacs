@@ -568,6 +568,7 @@
 
 (load-library "smart-quotes")
 (add-hook 'text-mode-hook 'smart-quotes-mode)
+(add-hook 'html-mode-hook 'turn-off-smart-quotes)
 
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
