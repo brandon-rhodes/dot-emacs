@@ -490,6 +490,7 @@
               dired-texinfo-unclean-extensions))
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 (put 'dired-find-alternate-file 'disabled nil)
+(setq dired-auto-revert-buffer t)
 
 ;; Make it easy to jump between files inside a project.
 
