@@ -580,6 +580,7 @@
 
 (autoload 'go-mode "go-mode" "Supports the Go language." t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-hook 'before-save-hook #'gofmt-before-save)
 
 ;; Bind "recompile" to F5 and jump to the first error.
 
