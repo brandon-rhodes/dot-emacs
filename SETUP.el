@@ -17,3 +17,4 @@
 (package-install 'magit)
 (package-install 'multiple-cursors)
 (package-install 'org)
+(package-install 'typescript-mode)

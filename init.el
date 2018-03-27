@@ -555,6 +555,10 @@
 
 (load-library "~/.emacs.d/customizations.el")
 
+;; Turn on TypeScript mode for .tsx files.
+
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
 ;; Load any local Emacs directives (such as extra packages, and
 ;; passwords that should not be stored in version control).
 
