@@ -24,6 +24,7 @@
         python-indent-shift-right
         sgml-slash
         sh-assignment
+        smart-quotes-insert-single
         ))
 
 (setq mc/cmds-to-run-once

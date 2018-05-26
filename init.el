@@ -575,6 +575,32 @@
 (add-hook 'text-mode-hook 'smart-quotes-mode)
 (add-hook 'html-mode-hook 'turn-off-smart-quotes)
 
+;; Except that I so often need to insert straight quotes, so TODO
+
+(defun smart-quotes-insert-single (&optional arg)
+  "Insert U+2018 LEFT SINGLE QUOTATION MARK if point is preceded
+by `smart-quotes-left-context'; U+2019 RIGHT SINGLE QUOTATION MARK
+otherwise.  If point is preceded by a single left or right quote,
+insert a straight quote instead."
+  (interactive "P")
+  (insert-char
+   (or (if (or (= (preceding-char) #x2018)
+               (= (preceding-char) #x2019))
+           (progn (delete-char -1) #x0027))
+       (if (looking-back smart-quotes-left-context) #x2018 #x2019))))
+
+(defun smart-quotes-insert-double (&optional arg)
+  "Insert U+201C LEFT DOUBLE QUOTATION MARK if point is preceded
+by `smart-quotes-left-context'; U+201D RIGHT DOUBLE QUOTATION
+MARK otherwise.  If point is preceded by a double left or right quote,
+insert straight double quotes instead."
+  (interactive "P")
+  (insert-char
+   (or (if (or (= (preceding-char) #x201C)
+               (= (preceding-char) #x201D))
+           (progn (delete-char -1) #x0022))
+       (if (looking-back smart-quotes-left-context) #x201C #x201D))))
+
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
 
