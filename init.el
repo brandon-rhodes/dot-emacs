@@ -612,7 +612,9 @@ insert straight double quotes instead."
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-hook 'before-save-hook #'gofmt-before-save)
 
-;; Bind "recompile" to F5 and jump to the first error.
+;; Bind "recompile" to F5 and jump to the first error.  If compilation
+;; is producing paths relative to a directory, also set this locally:
+;; (add-to-list 'compilation-search-path "/home/brhodes/livegrep")
 
 (global-set-key (kbd "<f5>") 'recompile)
 ;;(setq compilation-auto-jump-to-first-error t)
