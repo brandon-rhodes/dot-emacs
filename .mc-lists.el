@@ -21,6 +21,7 @@
         org-kill-line
         org-self-insert-command
         picture-self-insert
+        org-yank
         python-indent-shift-right
         sgml-slash
         sh-assignment
