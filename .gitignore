@@ -1,5 +1,6 @@
 ac-comphist.dat
 auto-save-list/
+/bookmarks
 elpa/
 session.*
 site-lisp/local.el
