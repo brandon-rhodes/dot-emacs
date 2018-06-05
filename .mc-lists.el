@@ -15,6 +15,7 @@
         handle-switch-frame
         indent-for-tab-command
         kill-region
+        mouse-yank-primary
         org-beginning-of-line
         org-delete-char
         org-end-of-line
