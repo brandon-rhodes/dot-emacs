@@ -213,17 +213,19 @@
 ;; Flyspell to check my spelling and underline possible mistakes.
 ;; Thanks to http://stackoverflow.com/questions/8332163/
 
-(add-hook 'message-mode-hook 'turn-on-flyspell)
-(add-hook 'rst-mode-hook 'turn-on-flyspell)
-(add-hook 'text-mode-hook 'turn-on-flyspell)
+(if (executable-find "aspell")
+    (progn
+      (add-hook 'message-mode-hook 'turn-on-flyspell)
+      (add-hook 'rst-mode-hook 'turn-on-flyspell)
+      (add-hook 'text-mode-hook 'turn-on-flyspell)
 
-(add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
-(add-hook 'js-mode-hook
-          (lambda ()
-            (when (string-match-p "^  [A-Za-z]" (buffer-string))
-              (make-variable-buffer-local 'js-indent-level)
-              (set-variable 'js-indent-level 2))
-            (flyspell-prog-mode)))
+      (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
+      (add-hook 'js-mode-hook
+                (lambda ()
+                  (when (string-match-p "^  [A-Za-z]" (buffer-string))
+                    (make-variable-buffer-local 'js-indent-level)
+                    (set-variable 'js-indent-level 2))
+                  (flyspell-prog-mode)))))
 
 ;; Only 2 space indents for JSON.  It is just data, after all.
 
@@ -274,7 +276,8 @@
 ;; Use an alternative dictionary, if available (see ./SETUP-spell.sh).
 ;; The "sug-mode" suggested by http://emacswiki.org/emacs/InteractiveSpell
 
-(if (file-exists-p "~/.emacs.d/aspell-huge")
+(if (and (executable-find "aspell")
+         (file-exists-p "~/.emacs.d/aspell-huge"))
     (progn
       (setq ispell-program-name "aspell")
       (setq ispell-extra-args
@@ -448,7 +451,8 @@
 (define-derived-mode hg-commit-mode text-mode
   (setq mode-name "Hg-Commit")
   (auto-fill-mode)
-  (flyspell-mode)
+  (if (executable-find "aspell")
+      (flyspell-mode))
   (ansi-color-buffer))
 
 (add-to-list 'auto-mode-alist '("msg$" . hg-commit-mode))
