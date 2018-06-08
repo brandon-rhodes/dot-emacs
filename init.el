@@ -423,7 +423,8 @@
                     'flymake-gjslint-init)
               ))
 
-  (add-hook 'find-file-hook 'flymake-find-file-hook)
+  (if (executable-find "pyflakes")
+      (add-hook 'find-file-hook 'flymake-find-file-hook))
   )
 
 ;; Tell Flymake to use a temporary directory instead of spamming the
