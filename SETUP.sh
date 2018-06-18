@@ -4,6 +4,16 @@
 # Exit immediately if a command fails.
 set -e
 
+# Emacs 24 can no longer install Magit from melpa, but Ubuntu supplies it!
+source /etc/lsb-release
+if [ "$DISTRIB_RELEASE" = "16.04" ]
+then
+    if ! dpkg -s elpa-magit
+    then
+        sudo apt install -y elpa-magit
+    fi
+fi
+
 # Change directory to the directory containing this script.
 cd "$(dirname ${BASH_SOURCE[0]})"
 

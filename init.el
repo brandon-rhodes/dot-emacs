@@ -438,7 +438,7 @@
 
 ;; Magit
 
-(if (>= emacs-major-version 25)
+(if (not (string= system-name "brhodes-dbx"))
     (progn
       (require 'magit)
       (global-set-key (kbd "C-x g") 'magit-status)
