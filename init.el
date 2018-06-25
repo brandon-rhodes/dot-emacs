@@ -178,6 +178,22 @@
 (eval-after-load 'js-mode
   '(define-key js-mode-map (kbd "M-C-a") 'ag-project))
 
+;; I like jumping automatically to compilation errors (see the stanza
+;; later in this file that mentions "recompile"), but I don't like
+;; jumping to whatever happens to be the first search result when "ag"
+;; uses compilation mode to present search results.  So in that case
+;; let's turn the setting off.
+
+(add-hook 'ag-mode-hook
+          (lambda ()
+            ;; (jedi:setup)
+            ;; (define-key jedi-mode-map (kbd "<C-tab>") nil)  ;; let global win
+            (make-local-variable 'compilation-auto-jump-to-first-error)
+            (setq compilation-auto-jump-to-first-error nil)
+            ))
+
+(require 'compile)
+
 ;; Never auto-split a frame into a left and right window.
 
 (setq split-width-threshold nil)
@@ -637,7 +653,7 @@ insert straight double quotes instead."
 ;; (add-to-list 'compilation-search-path "/home/brhodes/livegrep")
 
 (global-set-key (kbd "<f5>") 'recompile)
-;;(setq compilation-auto-jump-to-first-error t)
+(setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 
 ;; Variables set through M-x customize-apropos.
