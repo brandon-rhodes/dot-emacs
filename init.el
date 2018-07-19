@@ -719,3 +719,10 @@ insert straight double quotes instead."
 ;;                   ))))
 
 (put 'jedi:server-args 'safe-local-variable (lambda (value) t))
+
+;; When selecting a file from dired, I'm usually there to just read, so
+;; "view" mode is far more convenient (it's like less(1): the spacebar
+;; pages down instead of adding a space to the file, et cetera).  I can
+;; press "e" to start editing if I really mean to modify the file.
+
+(define-key dired-mode-map (kbd "RET") 'dired-view-file)
