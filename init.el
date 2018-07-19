@@ -683,6 +683,7 @@ insert straight double quotes instead."
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
+ '(org-clock-mode-line-total (quote current))
  '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
