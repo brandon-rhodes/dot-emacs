@@ -13,7 +13,7 @@
 (package-install 'git-timemachine)
 (package-install 'go-mode)
 (package-install 'json-mode)
-(package-install 'jedi)
+(package-install 'lsp-mode)
 (if (>= emacs-major-version 25)
     (package-install 'magit))
 (package-install 'multiple-cursors)

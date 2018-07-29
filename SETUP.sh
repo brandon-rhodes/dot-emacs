@@ -28,10 +28,11 @@ rm -rf $USR
 python2.7 src/virtualenv.py $USR
 source $USR/bin/activate
 
-pip install --upgrade pip
+pip install --upgrade pip setuptools
 
 pip install src/closure_linter-2.3.11.tar.gz
 pip install pyflakes
+pip install python-language-server
 pip install jedi
 pip install epc
 

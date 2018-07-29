@@ -52,7 +52,7 @@
 
 ;; Make it easy to ask about a character.  Useful for obscure Unicode.
 
-(global-set-key "\M-?" 'describe-char)
+;;(global-set-key "\C-?" 'describe-char)
 
 ;; Get ready for (require...) calls to third-party libraries.
 
@@ -76,21 +76,27 @@
 (require 'bracketed-paste)
 (bracketed-paste-enable)
 
-;; Jedi completion and pop-up documentation for Python.  This hook needs
-;; to be installed before the Flyspell hook below, so that Jedi wins the
-;; race to define important keys like the C-. key.
+;; Language Server support, so I can jump-to-definition in languages
+;; beyond just Python.
 
-(require 'auto-complete-config)
-(ac-config-default)
+(require 'lsp-mode)
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (jedi:setup)
-            (define-key jedi-mode-map (kbd "<C-tab>") nil)  ;; let global win
-            ))
-(setq jedi:setup-keys t)  ; so Jedi wins the C-. and C-, keys
-(setq jedi:complete-on-dot t)
-(setq jedi:get-in-function-call-delay 360000)
+(lsp-define-stdio-client
+ lsp-python
+ "python"
+ (lambda () default-directory)
+ '("/home/brandon/.emacs.d/usr/bin/pyls"))
+
+(add-hook 'python-mode-hook #'lsp-python-enable)
+
+(lsp-define-stdio-client
+ lsp-go
+ "go"
+ (lambda () default-directory)
+ ;; go get -u github.com/sourcegraph/go-langserver
+ '("~/go/bin/go-langserver"))
+
+(add-hook 'go-mode-hook #'lsp-go-enable)
 
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
@@ -131,8 +137,7 @@
 (global-set-key [(meta r)] 'search-backward-symbol-at-point)
 (global-set-key [(meta s)] 'search-forward-symbol-at-point)
 
-;; Jedi is wonderful for finding a definition, but what about the
-;; opposite: finding everywhere that something is mentioned?
+;; Search with "ag".
 
 (require 'thingatpt)
 
@@ -186,8 +191,6 @@
 
 (add-hook 'ag-mode-hook
           (lambda ()
-            ;; (jedi:setup)
-            ;; (define-key jedi-mode-map (kbd "<C-tab>") nil)  ;; let global win
             (make-local-variable 'compilation-auto-jump-to-first-error)
             (setq compilation-auto-jump-to-first-error nil)
             ))
@@ -235,7 +238,7 @@
       (add-hook 'rst-mode-hook 'turn-on-flyspell)
       (add-hook 'text-mode-hook 'turn-on-flyspell)
 
-      (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
+      ;; (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
       (add-hook 'js-mode-hook
                 (lambda ()
                   (when (string-match-p "^  [A-Za-z]" (buffer-string))
@@ -329,7 +332,6 @@
 
 (defun set-up-tabbing-for-python ()
   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key (current-local-map) (kbd "<tab>") 'jedi:complete)
   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
 (add-hook 'python-mode-hook 'set-up-tabbing-for-python)
@@ -663,7 +665,9 @@ insert straight double quotes instead."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ag-arguments (quote ("--hidden" "--smart-case" "--stats" "--width" "240")))
+ '(ag-arguments
+   (quote
+    ("--hidden" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
@@ -684,6 +688,9 @@ insert straight double quotes instead."
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(org-clock-mode-line-total (quote current))
+ '(package-selected-packages
+   (quote
+    (lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
  '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
@@ -711,14 +718,6 @@ insert straight double quotes instead."
 ;; text.  It was produced by chroma.js acting on Solarized colors:
 ;; > chroma.mix('#b58900', '#fdf6e3').hex()
 ;; < "#d9c072"
-
-;; Allow myself to give Jedi extra per-directory arguments.
-;; This is to allow ".dir-locals.el" files like:
-;;
-;; ((python-mode . ((jedi:server-args "--sys-path" "some/extra/directory"
-;;                   ))))
-
-(put 'jedi:server-args 'safe-local-variable (lambda (value) t))
 
 ;; When selecting a file from dired, I'm usually there to just read, so
 ;; "view" mode is far more convenient (it's like less(1): the spacebar
