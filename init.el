@@ -85,7 +85,7 @@
  lsp-python
  "python"
  (lambda () default-directory)
- '("/home/brandon/.emacs.d/usr/bin/pyls"))
+ (list (expand-file-name "~/.emacs.d/usr/bin/pyls")))
 
 (add-hook 'python-mode-hook #'lsp-python-enable)
 
@@ -431,7 +431,7 @@
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-      (list "/home/brandon/.emacs.d/usr/bin/gjslint"
+      (list (expand-file-name "~/.emacs.d/usr/bin/gjslint")
             (list "--nojsdoc" "--unix_mode" local-file))))
 
   (setq flymake-allowed-file-name-masks
