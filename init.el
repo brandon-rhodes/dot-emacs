@@ -79,24 +79,27 @@
 ;; Language Server support, so I can jump-to-definition in languages
 ;; beyond just Python.
 
-(require 'lsp-mode)
+(if (>= emacs-major-version 25)
+    (progn
+      (require 'lsp-mode)
 
-(lsp-define-stdio-client
- lsp-python
- "python"
- (lambda () default-directory)
- (list (expand-file-name "~/.emacs.d/usr/bin/pyls")))
+      (lsp-define-stdio-client
+       lsp-python
+       "python"
+       (lambda () default-directory)
+       (list (expand-file-name "~/.emacs.d/usr/bin/pyls")))
 
-(add-hook 'python-mode-hook #'lsp-python-enable)
+      (add-hook 'python-mode-hook #'lsp-python-enable)
 
-(lsp-define-stdio-client
- lsp-go
- "go"
- (lambda () default-directory)
- ;; go get -u github.com/sourcegraph/go-langserver
- '("~/go/bin/go-langserver"))
+      (lsp-define-stdio-client
+       lsp-go
+       "go"
+       (lambda () default-directory)
+       ;; go get -u github.com/sourcegraph/go-langserver
+       '("~/go/bin/go-langserver"))
 
-(add-hook 'go-mode-hook #'lsp-go-enable)
+      (add-hook 'go-mode-hook #'lsp-go-enable)
+      ))
 
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
