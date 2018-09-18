@@ -728,3 +728,8 @@ insert straight double quotes instead."
 ;; press "e" to start editing if I really mean to modify the file.
 
 (define-key dired-mode-map (kbd "RET") 'dired-view-file)
+
+;; Set the executable bit automatically.  This is going to save me SO
+;; MUCH TIME!
+
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
