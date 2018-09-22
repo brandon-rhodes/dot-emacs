@@ -227,6 +227,8 @@
 ;; now happening for me on Emacs 24.5.1 so:
 
 (defun set-up-rst-mode ()
+  (make-local-variable 'indent-line-function)
+  (setq indent-line-function 'indent-relative)
   (make-local-variable 'electric-indent-inhibit)
   (setq electric-indent-inhibit t))
 
