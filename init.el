@@ -674,6 +674,7 @@ insert straight double quotes instead."
    (quote
     ("--hidden" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
+ '(blink-cursor-mode nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(display-time-mode t)
