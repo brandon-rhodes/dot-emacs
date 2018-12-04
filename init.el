@@ -461,7 +461,7 @@
 
 ;; Magit
 
-(if (not (string= system-name "brhodes-dbx"))
+(if (not (string-prefix-p "brhodes-dbx." system-name))
     (progn
       (require 'magit)
       (global-set-key (kbd "C-x g") 'magit-status)
