@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        View-scroll-page-forward
         c-electric-brace
         c-electric-delete-forward
         c-electric-lt-gt
@@ -21,8 +22,8 @@
         org-end-of-line
         org-kill-line
         org-self-insert-command
-        picture-self-insert
         org-yank
+        picture-self-insert
         python-indent-shift-right
         sgml-slash
         sh-assignment
@@ -32,4 +33,5 @@
 (setq mc/cmds-to-run-once
       '(
         ido-switch-buffer
+        point-to-register
         ))
