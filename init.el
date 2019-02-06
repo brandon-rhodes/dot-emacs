@@ -107,12 +107,10 @@
 (defun alphanum-bounds-of-alphanum-at-point ()
   "Return the start and end points of an alphanum at the current point.
    The result is a paired list of character positions for an alphanum
-   located at the current point in the current buffer.  An alphanum is any
-   decimal digit 0 through 9 with an optional starting minus symbol
-   \(\"-\")."
+   located at the current point in the current buffer."
   (save-excursion
-    (skip-chars-backward "A-Za-z_")
-    (if (looking-at "[A-Za-z_]+")
+    (skip-chars-backward "A-Za-z0-9_")
+    (if (looking-at "[A-Za-z0-9_]+")
         (cons (point) (match-end 0)) ; bounds of alphanum-1
       nil))) ; no alphanum at point
 
@@ -123,18 +121,18 @@
   (interactive)
   (end-of-thing 'alphanum)
   (let ((case-fold-search nil))
-    (re-search-forward (concat "\\(^\\|[^A-Za-z_]\\)"
+    (re-search-forward (concat "\\(^\\|[^A-Za-z0-9_]\\)"
                                (thing-at-point 'alphanum)
-                               "\\($\\|[^A-Za-z_]\\)"))
-    (backward-char)))
+                               "\\($\\|[^A-Za-z0-9_]\\)"))
+    ))
 
 (defun search-backward-symbol-at-point ()
   (interactive)
   (beginning-of-thing 'alphanum)
   (let ((case-fold-search nil))
-    (re-search-backward (concat "\\(^\\|[^A-Za-z_]\\)"
+    (re-search-backward (concat "\\(^\\|[^A-Za-z0-9_]\\)"
                                 (thing-at-point 'alphanum)
-                                "\\($\\|[^A-Za-z_]\\)"))
+                                "\\($\\|[^A-Za-z0-9_]\\)"))
     (forward-char)))
 
 (global-set-key [(meta r)] 'search-backward-symbol-at-point)
