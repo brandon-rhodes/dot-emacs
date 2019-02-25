@@ -675,7 +675,7 @@ insert straight double quotes instead."
  '(blink-cursor-mode nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
- '(display-time-mode t)
+ ;;'(display-time-mode t)
  '(fill-column 72)
  '(global-hl-line-mode t)
  '(ido-enable-flex-matching t)
