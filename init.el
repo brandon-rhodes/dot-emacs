@@ -124,6 +124,7 @@
     (re-search-forward (concat "\\(^\\|[^A-Za-z0-9_]\\)"
                                (thing-at-point 'alphanum)
                                "\\($\\|[^A-Za-z0-9_]\\)"))
+    (backward-char)
     ))
 
 (defun search-backward-symbol-at-point ()
