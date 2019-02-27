@@ -13,6 +13,7 @@
         coffee-dedent-line-backspace
         comment-dwim
         delete-horizontal-space
+        eval-last-sexp
         handle-switch-frame
         indent-for-tab-command
         kill-region
