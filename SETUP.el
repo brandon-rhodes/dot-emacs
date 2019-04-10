@@ -7,6 +7,7 @@
 (package-initialize)
 (package-refresh-contents)
 (package-install 'ag)
+(package-install 'blacken)
 (package-install 'browse-kill-ring)
 (package-install 'coffee-mode)
 (package-install 'fzf)

@@ -25,16 +25,20 @@ USR=$PWD/usr
 
 rm -rf $USR
 
-python2.7 src/virtualenv.py $USR
+~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
 source $USR/bin/activate
 
 pip install --upgrade pip setuptools
 
 pip install src/closure_linter-2.3.11.tar.gz
+pip install black
+pip install epc
+pip install jedi
 pip install pyflakes
 pip install python-language-server
-pip install jedi
-pip install epc
+
+# python3. src/virtualenv.py $USR
+# source $USR/bin/activate
 
 # Install third-party Emacs packages.
 if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]

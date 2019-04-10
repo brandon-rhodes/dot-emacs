@@ -673,6 +673,8 @@ insert straight double quotes instead."
    (quote
     ("--hidden" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
+ '(blacken-fast-unsafe t)
+ '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
@@ -730,9 +732,13 @@ insert straight double quotes instead."
 ;; pages down instead of adding a space to the file, et cetera).  I can
 ;; press "e" to start editing if I really mean to modify the file.
 
-(define-key dired-mode-map (kbd "RET") 'dired-view-file)
+;;(define-key dired-mode-map (kbd "RET") 'dired-view-file)
 
 ;; Set the executable bit automatically.  This is going to save me SO
 ;; MUCH TIME!
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+(setq js-indent-level 4)
+
+(load-library "blacken")
