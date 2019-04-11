@@ -23,19 +23,20 @@ if [ ! -f local.el ]; then touch local.el ;fi
 # Unpack and install everything inside virtualenv named "~/.emacs/usr".
 USR=$PWD/usr
 
-rm -rf $USR
+rm -rf elpa $USR
 
 ~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
 source $USR/bin/activate
 
 pip install --upgrade pip setuptools
 
-pip install src/closure_linter-2.3.11.tar.gz
-pip install black
-pip install epc
-pip install jedi
-pip install pyflakes
-pip install python-language-server
+pip install -r /dev/stdin <<'END'
+black
+jedi
+pyflakes
+python-language-server[pyflakes]
+src/closure_linter-2.3.11.tar.gz
+END
 
 # python3. src/virtualenv.py $USR
 # source $USR/bin/activate

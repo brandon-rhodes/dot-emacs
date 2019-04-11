@@ -81,24 +81,11 @@
 
 (if (>= emacs-major-version 25)
     (progn
-      (require 'lsp-mode)
-
-      (lsp-define-stdio-client
-       lsp-python
-       "python"
-       (lambda () default-directory)
-       (list (expand-file-name "~/.emacs.d/usr/bin/pyls")))
-
-      (add-hook 'python-mode-hook #'lsp-python-enable)
-
-      (lsp-define-stdio-client
-       lsp-go
-       "go"
-       (lambda () default-directory)
-       ;; go get -u github.com/sourcegraph/go-langserver
-       '("~/go/bin/go-langserver"))
-
-      (add-hook 'go-mode-hook #'lsp-go-enable)
+      (require 'lsp)
+      (require 'lsp-ui)
+      (require 'flycheck)
+      (require 'projectile)
+      (add-hook 'lsp-mode-hook 'lsp-ui-mode)
       ))
 
 ;; Quickly jump up or down to the previous or next use of the name
@@ -212,7 +199,7 @@
 
 ;; I am beginning to conclude that Guido is simply not going to fix this
 ;; miserable dunder-main situation any time soon.  Good thing Emacs did
-;; not pre-define the Control-underscrore key sequence!
+;; not pre-define the Control-underscore key sequence!
 
 (defun insert-dunder-main ()
   (interactive)
@@ -418,46 +405,6 @@
 (setq org-todo-keyword-faces
       '(("WONT" . "orange")))
 
-;; Set up Flymake to use PyFlakes.
-
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-copy))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-
-  (defun flymake-gjslint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-copy))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list (expand-file-name "~/.emacs.d/usr/bin/gjslint")
-            (list "--nojsdoc" "--unix_mode" local-file))))
-
-  (setq flymake-allowed-file-name-masks
-        (list (list (concat (expand-file-name "~") "/.*\\.py$")
-                    'flymake-pyflakes-init)
-              (list (concat (expand-file-name "~") "/.*\\.js$")
-                    'flymake-gjslint-init)
-              ))
-
-  (if (executable-find "pyflakes")
-      (add-hook 'find-file-hook 'flymake-find-file-hook))
-  )
-
-;; Tell Flymake to use a temporary directory instead of spamming the
-;; current directory with its temporary files, since the current
-;; directory is often inside of my Dropbox or on a remote network
-;; through sshfs.  This new setting is supported because we have
-;; github.com/illusori/emacs-flymake/ in our "site-lisp" directory.
-
-(setq flymake-run-in-place nil)
-(setq temporary-file-directory "/tmp/")
-
 ;; Magit
 
 (if (not (string-prefix-p "brhodes-dbx." system-name))
@@ -617,7 +564,7 @@
 (add-hook 'text-mode-hook 'smart-quotes-mode)
 (add-hook 'html-mode-hook 'turn-off-smart-quotes)
 
-;; Except that I so often need to insert straight quotes, so TODO
+;; Except that I so often need to insert straight quotes, so:
 
 (defun smart-quotes-insert-single (&optional arg)
   "Insert U+2018 LEFT SINGLE QUOTATION MARK if point is preceded
@@ -691,6 +638,10 @@ insert straight double quotes instead."
  '(kill-do-not-save-duplicates t)
  '(line-number-mode t)
  '(longlines-show-hard-newlines t)
+ '(lsp-auto-guess-root t)
+ '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
+ '(lsp-prefer-flymake nil)
+ '(lsp-ui-flycheck-enable t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
