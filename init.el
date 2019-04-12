@@ -610,6 +610,15 @@ insert straight double quotes instead."
 (setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 
+;; Make it easy for me to edit projects that use Black.
+
+(load-library "blacken")
+(defun black (&optional arg)
+  "Turn on blacken-mode in all Python buffers"
+  (interactive "P")
+  (add-hook 'python-mode-hook 'blacken-mode)
+  )
+
 ;; Variables set through M-x customize-apropos.
 
 (custom-set-variables
@@ -692,5 +701,3 @@ insert straight double quotes instead."
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (setq js-indent-level 4)
-
-(load-library "blacken")
