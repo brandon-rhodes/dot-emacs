@@ -651,6 +651,7 @@ insert straight double quotes instead."
  '(lsp-auto-guess-root t)
  '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
  '(lsp-prefer-flymake nil)
+ '(lsp-ui-doc-delay 99999)
  '(lsp-ui-flycheck-enable t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
