@@ -630,6 +630,7 @@ insert straight double quotes instead."
    (quote
     ("--hidden" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
+ '(blacken-executable "~/.emacs.d/usr/bin/black")
  '(blacken-fast-unsafe t)
  '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
