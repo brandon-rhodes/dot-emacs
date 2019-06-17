@@ -1,3 +1,69 @@
+;; Variables set through M-x customize-apropos.  I keep them here at
+;; the top of the file, so that if there are problems later in the
+;; code, I at least get to enjoy these settings while I fix things.
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ag-arguments
+   (quote
+    ("--hidden" "--smart-case" "--stats" "--width" "240")))
+ '(auto-save-default nil)
+ '(blacken-executable "~/.emacs.d/usr/bin/black")
+ '(blacken-fast-unsafe t)
+ '(blacken-skip-string-normalization t)
+ '(blink-cursor-mode nil)
+ '(coffee-tab-width 2)
+ '(column-number-mode t)
+ ;;'(display-time-mode t)
+ '(fill-column 72)
+ '(global-hl-line-mode t)
+ '(ido-enable-flex-matching t)
+ '(ido-enable-last-directory-history nil)
+ '(ido-enable-tramp-completion nil)
+ '(ido-mode (quote both) nil (ido))
+ '(ido-rotate-file-list-default t)
+ '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
+ '(kill-do-not-save-duplicates t)
+ '(line-number-mode t)
+ '(longlines-show-hard-newlines t)
+ '(lsp-auto-guess-root t)
+ '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
+ '(lsp-prefer-flymake nil)
+ '(lsp-ui-doc-delay 99999)
+ '(lsp-ui-flycheck-enable t)
+ '(make-backup-files nil)
+ '(menu-bar-mode nil)
+ '(mouse-yank-at-point t)
+ '(org-clock-mode-line-total (quote current))
+ '(package-selected-packages
+   (quote
+    (lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
+ '(python-honour-comment-indentation nil)
+ '(recenter-positions (quote (middle)))
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(scroll-bar-mode nil)
+ '(scroll-preserve-screen-position t)
+ '(show-paren-delay 0)
+ '(show-paren-mode t)
+ '(show-trailing-whitespace t)
+ '(tool-bar-mode nil)
+ '(tooltip-mode nil)
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(use-file-dialog nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(escape-glyph ((t (:foreground "#d9c072"))))
+ '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
+ '(magit-item-highlight ((t nil)))
+ '(quote (mode-line-highlight ((t nil)))))
+
 ;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
 ;; also some JavaScript for things that have to run in the browser.
 
@@ -618,70 +684,6 @@ insert straight double quotes instead."
   (interactive "P")
   (add-hook 'python-mode-hook 'blacken-mode)
   )
-
-;; Variables set through M-x customize-apropos.
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ag-arguments
-   (quote
-    ("--hidden" "--smart-case" "--stats" "--width" "240")))
- '(auto-save-default nil)
- '(blacken-executable "~/.emacs.d/usr/bin/black")
- '(blacken-fast-unsafe t)
- '(blacken-skip-string-normalization t)
- '(blink-cursor-mode nil)
- '(coffee-tab-width 2)
- '(column-number-mode t)
- ;;'(display-time-mode t)
- '(fill-column 72)
- '(global-hl-line-mode t)
- '(ido-enable-flex-matching t)
- '(ido-enable-last-directory-history nil)
- '(ido-enable-tramp-completion nil)
- '(ido-mode (quote both) nil (ido))
- '(ido-rotate-file-list-default t)
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(kill-do-not-save-duplicates t)
- '(line-number-mode t)
- '(longlines-show-hard-newlines t)
- '(lsp-auto-guess-root t)
- '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
- '(lsp-prefer-flymake nil)
- '(lsp-ui-doc-delay 99999)
- '(lsp-ui-flycheck-enable t)
- '(make-backup-files nil)
- '(menu-bar-mode nil)
- '(mouse-yank-at-point t)
- '(org-clock-mode-line-total (quote current))
- '(package-selected-packages
-   (quote
-    (lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
- '(python-honour-comment-indentation nil)
- '(recenter-positions (quote (middle)))
- '(safe-local-variable-values (quote ((encoding . utf-8))))
- '(scroll-bar-mode nil)
- '(scroll-preserve-screen-position t)
- '(show-paren-delay 0)
- '(show-paren-mode t)
- '(show-trailing-whitespace t)
- '(tool-bar-mode nil)
- '(tooltip-mode nil)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
- '(use-file-dialog nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(escape-glyph ((t (:foreground "#d9c072"))))
- '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
- '(magit-item-highlight ((t nil)))
- '(quote (mode-line-highlight ((t nil)))))
 
 ;; The escape-gylph color (above) was designed to make longlines mode
 ;; easier for me to read by making the visible newline characters blend
