@@ -2,7 +2,7 @@
 # ~/.emacs.d/SETUP.sh script
 
 # Exit immediately if a command fails.
-set -e
+set -ex
 
 # Emacs 24 can no longer install Magit from melpa, but Ubuntu supplies it!
 source /etc/lsb-release
@@ -25,6 +25,10 @@ USR=$PWD/usr
 
 rm -rf elpa $USR
 
+if [ ! -d ~/.pyenv/versions/3.6.8/bin ]
+then
+    ~/.pyenv/bin/pyenv install 3.6.8
+fi
 ~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
 source $USR/bin/activate
 
