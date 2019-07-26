@@ -49,6 +49,9 @@ then
 elif [ -x /usr/bin/emacs26 ]
 then
     EMACS=emacs26
+elif [ -x /usr/bin/emacs-gtk ]
+then
+    EMACS=emacs-gtk
 elif [ -x /usr/bin/emacs25 ]
 then
     EMACS=emacs25
