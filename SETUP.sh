@@ -62,7 +62,7 @@ fi
 $EMACS --script SETUP.el
 
 # Byte-compile plain Emacs LISP files.
-find ~/.emacs.d/site-lisp -name '*.elc' | xargs rm
+find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm
 $EMACS --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
 
 echo
