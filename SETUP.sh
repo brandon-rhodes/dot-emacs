@@ -25,10 +25,7 @@ USR=$PWD/usr
 
 rm -rf elpa $USR
 
-if [ ! -d ~/.pyenv/versions/3.6.8/bin ]
-then
-    ~/.pyenv/bin/pyenv install 3.6.8
-fi
+~/.pyenv/bin/pyenv install --skip-existing 3.6.8
 ~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
 source $USR/bin/activate
 
