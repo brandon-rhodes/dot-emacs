@@ -17,7 +17,6 @@
  '(blink-cursor-mode nil)
  '(coffee-tab-width 2)
  '(column-number-mode t)
- ;;'(display-time-mode t)
  '(fill-column 72)
  '(global-hl-line-mode t)
  '(ido-enable-flex-matching t)
@@ -32,7 +31,9 @@
  '(longlines-show-hard-newlines t)
  '(lsp-auto-guess-root t)
  '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
+ '(lsp-enable-snippet nil)
  '(lsp-prefer-flymake nil)
+ '(lsp-pyls-server-command (quote ("~/.emacs.d/usr/bin/pyls")))
  '(lsp-ui-doc-delay 99999)
  '(lsp-ui-flycheck-enable t)
  '(make-backup-files nil)
@@ -152,7 +153,7 @@
       (require 'flycheck)
       (require 'projectile)
       (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-      (add-hook 'python-mode-hook 'lsp)
+      ;; (add-hook 'python-mode-hook 'lsp)
       ))
 
 ;; Quickly jump up or down to the previous or next use of the name
