@@ -56,7 +56,7 @@ elif [ -x /usr/bin/emacs25 ]
 then
     EMACS=emacs25
 else
-    EMACS=emacs24
+    EMACS=emacs
 fi
 
 $EMACS --script SETUP.el
