@@ -18,6 +18,7 @@
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(fill-column 72)
+ '(global-git-commit-mode nil)
  '(global-hl-line-mode t)
  '(ido-enable-flex-matching t)
  '(ido-enable-last-directory-history nil)
