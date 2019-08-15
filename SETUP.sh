@@ -39,9 +39,6 @@ python-language-server[pyflakes]
 src/closure_linter-2.3.11.tar.gz
 END
 
-# python3. src/virtualenv.py $USR
-# source $USR/bin/activate
-
 # Install third-party Emacs packages.
 if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
 then
