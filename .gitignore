@@ -1,6 +1,8 @@
+/.lsp-session-v1
+/bookmarks
+/transient
 ac-comphist.dat
 auto-save-list/
-/bookmarks
 elpa/
 session.*
 site-lisp/local.el
