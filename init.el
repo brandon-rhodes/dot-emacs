@@ -18,7 +18,6 @@
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(fill-column 72)
- '(global-git-commit-mode nil)
  '(global-hl-line-mode t)
  '(ido-enable-flex-matching t)
  '(ido-enable-last-directory-history nil)
@@ -707,3 +706,5 @@ insert straight double quotes instead."
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (setq js-indent-level 4)
+
+(setq git-commit-filename-regexp "regex-that-never-matches-anything")
