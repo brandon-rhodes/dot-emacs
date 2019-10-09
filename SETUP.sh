@@ -1,6 +1,13 @@
 #!/bin/bash
 # ~/.emacs.d/SETUP.sh script
 
+make_it_more_obvious_we_failed() {
+    echo
+    echo ERROR: Setup failed
+    echo
+}
+trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
+
 # Exit immediately if a command fails.
 set -ex
 
