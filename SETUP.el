@@ -1,4 +1,4 @@
-;; Install Jedi
+;; Install third-party packages
 
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
