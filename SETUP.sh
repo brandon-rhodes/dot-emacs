@@ -2,9 +2,14 @@
 # ~/.emacs.d/SETUP.sh script
 
 make_it_more_obvious_we_failed() {
-    echo
-    echo ERROR: Setup failed
-    echo
+    rv=$?
+    if [ "$rv" != "0" ]
+    then
+        echo
+        echo ERROR: Setup failed
+        echo
+    fi
+    exit $rv
 }
 trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
 
@@ -40,11 +45,11 @@ pip install --upgrade pip setuptools
 
 pip install -r /dev/stdin <<'END'
 black
-jedi
 pyflakes
 python-language-server[pyflakes]
-src/closure_linter-2.3.11.tar.gz
 END
+
+# src/closure_linter-2.3.11.tar.gz
 
 # Install third-party Emacs packages.
 if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
@@ -63,7 +68,16 @@ else
     EMACS=emacs
 fi
 
-$EMACS --script SETUP.el
+$EMACS --script init/phase1.el
+
+# Force update of elpa key.
+FINGERPRINT=066DAFCB81E42C40
+if ! gpg --homedir ~/.emacs.d/elpa/gnupg --list-keys $FINGERPRINT
+then
+    gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys $FINGERPRINT
+fi
+
+$EMACS --script init/phase2.el
 
 # Byte-compile plain Emacs LISP files.
 find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm

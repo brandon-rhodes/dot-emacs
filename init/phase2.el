@@ -1,11 +1,10 @@
-;; Install third-party packages
+;; Start by re-invoking phase 1, in case it failed the first time (see
+;; the comment there).
 
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")
-        ))
-(package-initialize)
-(package-refresh-contents)
+(load-file "init/phase1.el")
+
+;; Then proceed to install everything.
+
 (package-install 'ag)
 (package-install 'blacken)
 (package-install 'browse-kill-ring)
