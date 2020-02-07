@@ -42,7 +42,7 @@
  '(org-clock-mode-line-total (quote current))
  '(package-selected-packages
    (quote
-    (lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
+    (git-link importmagic lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
  '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))

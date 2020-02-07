@@ -10,6 +10,7 @@
 (package-install 'browse-kill-ring)
 (package-install 'coffee-mode)
 (package-install 'fzf)
+(package-install 'git-link)
 (package-install 'git-timemachine)
 (package-install 'go-mode)
 (package-install 'json-mode)
