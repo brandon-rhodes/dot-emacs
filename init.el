@@ -677,6 +677,16 @@ insert straight double quotes instead."
 (setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
 
+;; Hide the build buffer again immediately if it succeeds.
+
+(add-hook 'compilation-finish-functions
+          (lambda (buf str)
+            (if (not (string-match-p ".*exited abnormally.*" str))
+                (progn
+                  (delete-windows-on
+                   (get-buffer-create "*compilation*"))
+                  (message "Success")))))
+
 ;; Make it easy for me to edit projects that use Black.
 
 (load-library "blacken")
