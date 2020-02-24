@@ -74,12 +74,24 @@
 ;; get installed even if something later in this file fails.  My
 ;; wrists would not survive my career if I had to twist my fingers
 ;; away from home row for every Ctrl or Meta, so I put them at my
-;; thumbs instead.  Thumbs are orthoganal to the home-row fingers.
+;; thumbs instead.  Thumbs are orthogonal to the home-row fingers.
 
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'control)
   (setq mac-right-command-modifier 'meta)
   )
+
+;; An experiment: it rarely seems like I want fundamental mode.
+;; Instead, I'm always typing a quote character, and it comes out
+;; straight instead of curly, and I have to manually switch into text
+;; mode.  So let's make text mode the default for un-extensioned files
+;; and see how annoying the result is.
+;;
+;; This follows the original practice of Unix, where all files not
+;; marked executable were text files (directories were identified by
+;; starting with capital letters).
+
+(setq-default major-mode 'text-mode)
 
 ;; Emacs had started hanging every time I started it, and I found this
 ;; recommendation at http://spacemacs.org/doc/FAQ#orgheadline14 - it
