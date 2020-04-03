@@ -167,7 +167,7 @@
       (require 'flycheck)
       (require 'projectile)
       (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-      ;; (add-hook 'python-mode-hook 'lsp)
+      (add-hook 'python-mode-hook 'lsp)
       ))
 
 ;; Quickly jump up or down to the previous or next use of the name
