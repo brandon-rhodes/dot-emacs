@@ -302,6 +302,23 @@
 
 (add-hook 'rst-mode-hook 'set-up-rst-mode)
 
+;; Recognize Unicode curly apostrophe during spell checks, instead of
+;; assuming it breaks contractions into two separate words.
+
+(setq ispell-local-dictionary-alist
+      '(("english" "[[:alpha:]]" "[^[:alpha:]]" "['’]" t ("-d" "en") nil utf-8)
+        ))
+
+(setq ispell-dictionary "english")
+
+;; I'm not sure why the following didn't work for recognizing curly
+;; single quotes in ispell; the change it makes never seems to show up
+;; in the alist?  Leaving it here as a mystery so that I don't forget
+;; the syntax:
+
+;; (setf (alist-get "english" ispell-dictionary-alist nil nil 'equal)
+;;       '("[[:alpha:]]" "[^[:alpha:]]" "'’" t ("-d" "en") nil utf-8))
+
 ;; Flyspell to check my spelling and underline possible mistakes.
 ;; Thanks to http://stackoverflow.com/questions/8332163/
 
