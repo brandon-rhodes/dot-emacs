@@ -9,10 +9,12 @@
 (package-install 'blacken)
 (package-install 'browse-kill-ring)
 (package-install 'coffee-mode)
+;;(package-install 'counsel)
 (package-install 'fzf)
 (package-install 'git-link)
 (package-install 'git-timemachine)
 (package-install 'go-mode)
+(package-install 'ivy)
 (package-install 'json-mode)
 (if (>= emacs-major-version 25)
     (progn

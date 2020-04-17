@@ -20,11 +20,6 @@
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
  '(global-hl-line-mode t)
- '(ido-enable-flex-matching t)
- '(ido-enable-last-directory-history nil)
- '(ido-enable-tramp-completion nil)
- '(ido-mode (quote both) nil (ido))
- '(ido-rotate-file-list-default t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(kill-do-not-save-duplicates t)
@@ -749,3 +744,8 @@ insert straight double quotes instead."
 (setq js-indent-level 4)
 
 (setq git-commit-filename-regexp "regex-that-never-matches-anything")
+
+;; Use "ivy" completion instead of ido-mode: simpler, more readable,
+;; predictable, and resembles "fzf" which is one of my favorite tools.
+
+(ivy-mode 1)
