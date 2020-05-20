@@ -293,7 +293,12 @@
   (make-local-variable 'indent-line-function)
   (setq indent-line-function 'indent-relative)
   (make-local-variable 'electric-indent-inhibit)
-  (setq electric-indent-inhibit t))
+  (setq electric-indent-inhibit t)
+
+  ;; And, while I am here, prevent its overwriting my ag bindings.
+  (local-set-key (kbd "M-a") 'ag-current-word)
+  (local-set-key (kbd "M-C-a") 'ag-project-regexp)
+  )
 
 (add-hook 'rst-mode-hook 'set-up-rst-mode)
 
