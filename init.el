@@ -755,6 +755,9 @@ insert straight double quotes instead."
 
 (ivy-mode 1)
 
+(setq ivy-re-builders-alist
+      '((t . ivy--regex-fuzzy)))
+
 ;; With much thanks to: https://www.emacswiki.org/emacs/RenumberList
 
 (defun renumber-list (start end &optional num)
