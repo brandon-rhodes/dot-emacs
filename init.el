@@ -45,6 +45,7 @@
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
+ '(search-default-mode (quote char-fold-to-regexp))
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
