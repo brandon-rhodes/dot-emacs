@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(ag-arguments
    (quote
-    ("--hidden" "--smart-case" "--stats" "--width" "240")))
+    ("--hidden" "--ignore" ".git" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
  '(blacken-executable "~/.emacs.d/usr/bin/black")
  '(blacken-fast-unsafe t)

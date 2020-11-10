@@ -15,6 +15,7 @@
         coffee-dedent-line-backspace
         comment-dwim
         delete-horizontal-space
+        electric-newline-and-maybe-indent
         eval-last-sexp
         handle-switch-frame
         indent-for-tab-command
