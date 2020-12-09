@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(ag-arguments
    (quote
-    ("--hidden" "--ignore" ".git" "--smart-case" "--stats" "--width" "240")))
+    ("--hidden" "--ignore" ".git" "--ignore" ".tox" "--smart-case" "--stats" "--width" "240")))
  '(auto-save-default nil)
  '(blacken-executable "~/.emacs.d/usr/bin/black")
  '(blacken-fast-unsafe t)
@@ -588,7 +588,7 @@
   (interactive)
   (fzf/start (vc-git-root default-directory)))
 
-(setenv "FZF_DEFAULT_COMMAND" "find . -not \\( -name .git -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
+(setenv "FZF_DEFAULT_COMMAND" "find . -not \\( \\( -name .git -o -name .tox \\) -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
 (autoload 'vc-git-root "vc-git")
 (global-set-key (kbd "C-x C-r") 'fzf-repository)
 
