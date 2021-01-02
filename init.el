@@ -773,19 +773,3 @@ insert straight double quotes instead."
           (while (re-search-forward "^[0-9]+" end t)
             (replace-match (number-to-string num))
             (setq num (1+ num))))))
-
-;; Disable GNU-specific "appending kills" behavior, that unhappily makes
-;; C-y yank back more than the text just killed.  When debugging advice
-;; like this, these maneuvers are helpful:
-;;   (advice-remove 'backward-kill-word #'interrupt-appending-kills)
-;;   (advice--p (advice--symbol-function 'backward-kill-word))
-
-(defun interrupt-appending-kills (x)
-  (setq this-command 'keyboard-quit)
-  x)
-
-(advice-add 'backward-kill-word :filter-return #'interrupt-appending-kills)
-;;(advice-add 'kill-line :filter-return #'interrupt-appending-kills)
-(advice-add 'kill-sentence :filter-return #'interrupt-appending-kills)
-;;(advice-add 'kill-whole-line :filter-return #'interrupt-appending-kills)
-(advice-add 'kill-word :filter-return #'interrupt-appending-kills)
