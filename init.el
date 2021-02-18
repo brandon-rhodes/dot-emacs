@@ -777,3 +777,8 @@ insert straight double quotes instead."
           (while (re-search-forward "^[0-9]+" end t)
             (replace-match (number-to-string num))
             (setq num (1+ num))))))
+
+;; Make it easy to delete all trailing whitespace.  Based on M-\ key,
+;; which is already by default bound to delete-horizontal-space.
+
+(global-set-key (kbd "C-M-\\") 'delete-trailing-whitespace)
