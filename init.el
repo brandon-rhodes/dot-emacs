@@ -20,6 +20,9 @@
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
  '(global-hl-line-mode t)
+ '(image-file-name-extensions
+   (quote
+    ("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm")))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(kill-do-not-save-duplicates t)
@@ -31,6 +34,7 @@
  '(lsp-enable-snippet nil)
  '(lsp-prefer-flymake nil)
  '(lsp-pyls-server-command (quote ("~/.emacs.d/usr/bin/pyls")))
+ '(lsp-signature-doc-lines 1)
  '(lsp-ui-doc-delay 99999)
  '(lsp-ui-flycheck-enable t)
  '(make-backup-files nil)
@@ -592,7 +596,7 @@
   (interactive)
   (fzf/start (vc-git-root default-directory)))
 
-(setenv "FZF_DEFAULT_COMMAND" "find . -not \\( \\( -name .git -o -name .tox \\) -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
+(setenv "FZF_DEFAULT_COMMAND" "find . -not \\( \\( -name .git -o -name .tox -o -name '*.pyc' \\) -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
 (autoload 'vc-git-root "vc-git")
 (global-set-key (kbd "C-x C-r") 'fzf-repository)
 
