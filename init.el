@@ -32,6 +32,7 @@
  '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
  '(lsp-eldoc-enable-hover nil)
  '(lsp-enable-snippet nil)
+ '(lsp-headerline-breadcrumb-enable nil)
  '(lsp-prefer-flymake nil)
  '(lsp-pyls-server-command (quote ("~/.emacs.d/usr/bin/pyls")))
  '(lsp-signature-doc-lines 1)
