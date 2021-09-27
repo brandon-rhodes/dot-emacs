@@ -800,3 +800,8 @@ insert straight double quotes instead."
 
 (remove-hook 'org-cycle-hook
              #'org-optimize-window-after-visibility-change)
+
+;; Auto-detect C identation per-file (useful when working maintanence
+;; work in the fairly heterogeneous XEphem and PyEphem code bases).
+
+(dtrt-indent-global-mode)

@@ -9,6 +9,7 @@
 (package-install 'blacken)
 (package-install 'browse-kill-ring)
 ;;(package-install 'counsel)
+(package-install 'dtrt-indent)
 (package-install 'fzf)
 (package-install 'git-link)
 (package-install 'go-mode)
