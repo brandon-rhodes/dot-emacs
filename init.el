@@ -41,6 +41,7 @@
  '(lsp-headerline-breadcrumb-enable nil)
  '(lsp-prefer-flymake nil)
  '(lsp-pyls-server-command (quote ("~/.emacs.d/usr/bin/pyls")))
+ '(lsp-pylsp-server-command (quote ("~/.emacs.d/usr/bin/pylsp")))
  '(lsp-signature-doc-lines 1)
  '(lsp-ui-doc-delay 99999)
  '(lsp-ui-flycheck-enable t)

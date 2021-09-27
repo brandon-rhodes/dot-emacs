@@ -46,7 +46,7 @@ pip install --upgrade pip setuptools
 pip install -r /dev/stdin <<'END'
 black
 pyflakes
-python-language-server[pyflakes]
+python-lsp-server[all]
 END
 
 # src/closure_linter-2.3.11.tar.gz
