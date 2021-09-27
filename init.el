@@ -15,6 +15,13 @@
  '(blacken-fast-unsafe t)
  '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
+ '(c-default-style
+   (quote
+    ((c-mode . "k&r")
+     (c++-mode . "k&r")
+     (java-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu"))))
  '(column-number-mode t)
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
