@@ -15,7 +15,6 @@
  '(blacken-fast-unsafe t)
  '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
- '(coffee-tab-width 2)
  '(column-number-mode t)
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
@@ -45,7 +44,7 @@
  '(org-duration-format (quote h:mm))
  '(package-selected-packages
    (quote
-    (git-link importmagic lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
+    (git-link importmagic lsp-mode multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
  '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
@@ -249,9 +248,6 @@
 
 (global-set-key (kbd "M-a") 'ag-current-word)
 (global-set-key (kbd "M-C-a") 'ag-project-regexp)
-
-(eval-after-load 'coffee-mode
-  '(define-key coffee-mode-map (kbd "M-C-a") 'ag-project))
 
 (eval-after-load 'js-mode
   '(define-key js-mode-map (kbd "M-C-a") 'ag-project))
