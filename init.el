@@ -48,6 +48,7 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
+ '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total (quote current))
  '(org-duration-format (quote h:mm))
  '(package-selected-packages
