@@ -42,6 +42,7 @@
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
  '(org-clock-mode-line-total (quote current))
+ '(org-duration-format (quote h:mm))
  '(package-selected-packages
    (quote
     (git-link importmagic lsp-mode multiple-cursors magit json-mode go-mode git-timemachine fzf edit-server coffee-mode browse-kill-ring ag)))
