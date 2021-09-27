@@ -1,7 +1,7 @@
 ;; Start by re-invoking phase 1, in case it failed the first time (see
 ;; the comment there).
 
-(load-file "init/phase1.el")
+(load-file "setup/phase1.el")
 
 ;; Then proceed to install everything.
 

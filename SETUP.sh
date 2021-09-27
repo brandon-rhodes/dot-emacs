@@ -68,7 +68,7 @@ else
     EMACS=emacs
 fi
 
-$EMACS --script init/phase1.el
+$EMACS --script setup/phase1.el
 
 # Force update of elpa key.
 FINGERPRINT=066DAFCB81E42C40
@@ -77,7 +77,7 @@ then
     gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys $FINGERPRINT
 fi
 
-$EMACS --script init/phase2.el
+$EMACS --script setup/phase2.el
 
 # Byte-compile plain Emacs LISP files.
 find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm
