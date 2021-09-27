@@ -596,7 +596,9 @@
 (defun fzf-repository ()
   "Run the fzf file selection tool in the current repository."
   (interactive)
-  (fzf/start (vc-git-root default-directory)))
+  ;; This once took only a single argument, but in more recent versions
+  ;; of fzf, it takes two.
+  (fzf/start (vc-git-root default-directory) #'fzf/action-find-file))
 
 (setenv "FZF_DEFAULT_COMMAND" "find . -not \\( \\( -name .git -o -name .tox -o -name '*.pyc' \\) -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
 (autoload 'vc-git-root "vc-git")
