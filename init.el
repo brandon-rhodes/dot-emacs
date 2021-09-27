@@ -788,3 +788,10 @@ insert straight double quotes instead."
 ;; which is already by default bound to delete-horizontal-space.
 
 (global-set-key (kbd "C-M-\\") 'delete-trailing-whitespace)
+
+;; Prevent Emacs from scrolling the buffer in Org Mode when I press Tab
+;; to cycle an item between hidden and visible.
+;; https://emacs.stackexchange.com/questions/31276/
+
+(remove-hook 'org-cycle-hook
+             #'org-optimize-window-after-visibility-change)
