@@ -245,21 +245,28 @@
 ;; (pcre-word-delimit "a.")"\\ba."
 ;; (pcre-word-delimit ".a.")".a."
 
-(defun ag-current-word ()
-  (interactive)
-  (let* ((text (if (use-region-p)
-                   (buffer-substring (region-beginning) (region-end))
-                 (thing-at-point 'symbol)))
-         (text (pcre-quote text))
-         (text (pcre-word-delimit text)))
-    (ag-project-regexp text))
+;; My own hand-tuned "ag" behavior: if the region is active, search for
+;; the text in the region; otherwise search for the symbol at point;
+;; otherwise prompt the user for a regular expression.  In the first two
+;; cases, if the pattern begins or ends with a letter than "\b" is
+;; prefixed or suffixed to constrain the results.
+
+(defun ag-word (word)
+  (ag-project-regexp (pcre-word-delimit (pcre-quote word)))
   (other-window 1))
 
-(global-set-key (kbd "M-a") 'ag-current-word)
-(global-set-key (kbd "M-C-a") 'ag-project-regexp)
+(defun ag-current-word ()
+  (interactive)
+  (if (use-region-p)
+      (ag-word (buffer-substring (region-beginning) (region-end)))
+    (let ((word (thing-at-point 'symbol)))
+      (if word
+          (ag-word word)
+        (progn
+          (call-interactively 'ag-project-regexp)
+          (other-window 1))))))
 
-(eval-after-load 'js-mode
-  '(define-key js-mode-map (kbd "M-C-a") 'ag-project))
+(global-set-key (kbd "M-a") 'ag-current-word)
 
 ;; I like jumping automatically to compilation errors (see the stanza
 ;; later in this file that mentions "recompile"), but I don't like
