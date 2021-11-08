@@ -814,3 +814,19 @@ insert straight double quotes instead."
 ;; work in the fairly heterogeneous XEphem and PyEphem code bases).
 
 (dtrt-indent-global-mode)
+
+;; Inline evaluation of math expressions, without my having to fill my
+;; text files with the Emacs Lisp math syntax, of which I tire (and
+;; which is also less powerful math-wise than the "units" tool).
+
+(defun evaluate-region-using-units (start end)
+  "Evaluate the region as a 'units' expression and insert the result."
+  (interactive "r")
+  (let* ((region (buffer-substring start end))
+         (command (concat "units -t '" region "'"))
+         (output-plus-newline (shell-command-to-string command))
+         (output (substring output-plus-newline 0 -1)))
+    (if (< (point) end) (exchange-point-and-mark))
+    (insert " = " output)))
+
+(global-set-key (kbd "C-=") 'evaluate-region-using-units)

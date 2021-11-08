@@ -17,6 +17,7 @@
         delete-horizontal-space
         electric-newline-and-maybe-indent
         eval-last-sexp
+        evaluate-region-using-units
         handle-switch-frame
         indent-for-tab-command
         kill-region
@@ -37,6 +38,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        ag-current-word
         c-electric-slash
         ido-switch-buffer
         point-to-register
