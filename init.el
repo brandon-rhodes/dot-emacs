@@ -823,6 +823,8 @@ insert straight double quotes instead."
   "Evaluate the region as a 'units' expression and insert the result."
   (interactive "r")
   (let* ((region (buffer-substring start end))
+         ;; Allow thousands commas in input, without "units" throwing an error.
+         (region (replace-regexp-in-string "," "" region))
          (command (concat "units -t '" region "'"))
          (output-plus-newline (shell-command-to-string command))
          (output (substring output-plus-newline 0 -1)))
