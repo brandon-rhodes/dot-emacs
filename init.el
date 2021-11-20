@@ -160,6 +160,8 @@
 ;; Good old-fashioned Jedi mode, because the Python Language Server
 ;; (LSP) kept taking away my CPU.
 
+(setenv "VIRTUAL_ENV" "")  ; Otherwise it errors out inside of virtualenvs?
+
 (require 'flycheck)
 (setq jedi:complete-on-dot t)
 (setq jedi:environment-virtualenv
