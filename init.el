@@ -26,6 +26,7 @@
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
  '(global-hl-line-mode t)
+ '(help-at-pt-display-when-idle t nil (help-at-pt))
  '(image-file-name-extensions
    (quote
     ("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm")))
@@ -34,17 +35,6 @@
  '(kill-do-not-save-duplicates t)
  '(line-number-mode t)
  '(longlines-show-hard-newlines t)
- '(lsp-auto-guess-root t)
- '(lsp-clients-python-command (quote ("~/.emacs.d/usr/bin/pyls")))
- '(lsp-eldoc-enable-hover nil)
- '(lsp-enable-snippet nil)
- '(lsp-headerline-breadcrumb-enable nil)
- '(lsp-prefer-flymake nil)
- '(lsp-pyls-server-command (quote ("~/.emacs.d/usr/bin/pyls")))
- '(lsp-pylsp-server-command (quote ("~/.emacs.d/usr/bin/pylsp")))
- '(lsp-signature-doc-lines 1)
- '(lsp-ui-doc-delay 99999)
- '(lsp-ui-flycheck-enable t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mouse-yank-at-point t)
@@ -53,7 +43,7 @@
  '(org-duration-format (quote h:mm))
  '(package-selected-packages
    (quote
-    (git-link importmagic lsp-mode multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
+    (git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
  '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
@@ -167,18 +157,15 @@
 (require 'bracketed-paste)
 (bracketed-paste-enable)
 
-;; Language Server support, so I can jump-to-definition in languages
-;; beyond just Python.
+;; Good old-fashioned Jedi mode, because the Python Language Server
+;; (LSP) kept taking away my CPU.
 
-(if (>= emacs-major-version 25)
-    (progn
-      (require 'lsp)
-      (require 'lsp-ui)
-      (require 'flycheck)
-      (require 'projectile)
-      (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-      (add-hook 'python-mode-hook 'lsp)
-      ))
+(require 'flycheck)
+(setq jedi:complete-on-dot t)
+(setq jedi:environment-virtualenv
+      '("/home/brandon/local/src/virtualenv/virtualenv.py"))
+(setq jedi:use-shortcuts t)
+(add-hook 'python-mode-hook 'jedi:setup)
 
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
@@ -526,6 +513,41 @@
 
 (setq org-todo-keyword-faces
       '(("WONT" . "orange")))
+
+;; Set up Flymake to use PyFlakes.
+
+(when (load "flymake" t)
+  (defun flymake-pyflakes-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-copy))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list "pyflakes" (list local-file))))
+
+  (defun flymake-gjslint-init ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-copy))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      (list (expand-file-name "~/.emacs.d/usr/bin/gjslint")
+            (list "--nojsdoc" "--unix_mode" local-file))))
+
+  (setq flymake-allowed-file-name-masks
+        (list (list (concat (expand-file-name "~") "/.*\\.py$")
+                    'flymake-pyflakes-init)
+              (list (concat (expand-file-name "~") "/.*\\.js$")
+                    'flymake-gjslint-init)
+              ))
+
+  (if (executable-find "pyflakes")
+      (add-hook 'find-file-hook 'flymake-find-file-hook))
+  )
+
+;; (custom-set-variables
+;;  '(help-at-pt-timer-delay 0.9)
+;;  '(help-at-pt-display-when-idle '(flymake-overlay)))
 
 ;; Magit
 
