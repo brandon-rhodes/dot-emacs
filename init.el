@@ -37,6 +37,10 @@
  '(longlines-show-hard-newlines t)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
+ '(mode-line-format
+   (quote
+    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
+     "  " mode-name mode-line-misc-info mode-line-end-spaces)))
  '(mouse-yank-at-point t)
  '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total (quote current))
