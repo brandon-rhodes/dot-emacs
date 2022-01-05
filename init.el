@@ -552,6 +552,17 @@
       (add-hook 'find-file-hook 'flymake-find-file-hook))
   )
 
+;; Tell Flymake to use a temporary directory instead of spamming the
+;; current directory with its temporary files, since they might launch
+;; an inotify-triggered build or test.  This new setting is supported
+;; because site-lisp/flymake.el is the third-party version from
+;; github.com/illusori/emacs-flymake.
+
+(setq create-lockfiles nil)
+
+(setq flymake-run-in-place nil)
+(setq temporary-file-directory "/tmp/")
+
 ;; (custom-set-variables
 ;;  '(help-at-pt-timer-delay 0.9)
 ;;  '(help-at-pt-display-when-idle '(flymake-overlay)))
