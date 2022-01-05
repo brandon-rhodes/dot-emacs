@@ -569,14 +569,13 @@
 
 ;; Magit
 
-(if (not (string-prefix-p "brhodes-dbx." system-name))
-    (progn
-      (require 'magit)
-      (global-set-key (kbd "C-x g") 'magit-status)
-      (global-set-key (kbd "C-x v g") 'magit-blame)
-      (setq magit-last-seen-setup-instructions "1.4.0")
-      (add-hook 'magit-mode-hook 'turn-on-visual-line-mode) ; wrap long commit msgs
-      ))
+(defun my-magit-blame ()
+  "Load magit and run its magnificent blame command."
+  (interactive)
+  (require 'magit) ;; only load magit in sessions where I use it
+  (magit-blame))
+
+(global-set-key (kbd "C-x v g") 'magit-blame)
 
 ;; Colorize the diff that "git commit -v" (which I alias as "git ci")
 ;; includes when it asks me for a commit message by turning on Emacs
