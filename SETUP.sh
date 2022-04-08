@@ -41,7 +41,7 @@ rm -rf elpa $USR
 ~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
 source $USR/bin/activate
 
-pip install --upgrade pip setuptools
+pip install --upgrade 'pip<22' setuptools
 
 pip install -r /dev/stdin <<'END'
 black
