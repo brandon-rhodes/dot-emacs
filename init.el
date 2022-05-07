@@ -659,6 +659,11 @@
 (put 'dired-find-alternate-file 'disabled nil)
 (setq dired-auto-revert-buffer t)
 
+;; Another dired-x feature: how to jump into dired at the current file,
+;; which makes it easy to move or rename it.
+
+(global-set-key (kbd "C-x d") 'dired-jump)
+
 ;; Make it easy to jump between files inside a project.
 
 (defun fzf-repository ()
@@ -839,6 +844,11 @@ insert straight double quotes instead."
 (setq ivy-re-builders-alist
       '((t . ivy--regex-fuzzy)))
 
+;; (setq read-file-name-function
+;;   (lambda (&rest args)
+;;     (let ((completing-read-function #'completing-read-default))
+;;       (apply #'read-file-name-default args))))
+
 ;; With much thanks to: https://www.emacswiki.org/emacs/RenumberList
 
 (defun renumber-list (start end &optional num)
@@ -881,6 +891,8 @@ insert straight double quotes instead."
   (let* ((region (buffer-substring start end))
          ;; Allow thousands commas in input, without "units" throwing an error.
          (region (replace-regexp-in-string "," "" region))
+         ;; Allow dollar signs (usually copy and pasted from financials).
+         (region (replace-regexp-in-string "\\$" "" region))
          (command (concat "units -t '" region "'"))
          (output-plus-newline (shell-command-to-string command))
          (output (substring output-plus-newline 0 -1)))

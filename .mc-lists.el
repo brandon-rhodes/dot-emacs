@@ -27,12 +27,14 @@
         org-end-of-line
         org-fill-paragraph
         org-kill-line
+        org-open-line
         org-self-insert-command
         org-yank
         picture-self-insert
         python-indent-shift-right
         sgml-slash
         sh-assignment
+        smart-quotes-insert-double
         smart-quotes-insert-single
         ))
 
@@ -40,6 +42,7 @@
       '(
         ag-current-word
         c-electric-slash
+        fzf-repository
         ido-switch-buffer
         point-to-register
         ))
