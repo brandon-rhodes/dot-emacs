@@ -1,3 +1,17 @@
+;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
+;; also some JavaScript for things that have to run in the browser.
+
+;; Tell "load-library" where we put Emacs lisp files.
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+;; Start this config file with the color scheme, so that whatever else
+;; happens, Emacs looks fabulous.  Unless we are in an xterm, in which
+;; case, accept its colors without complaint.
+
+(when (display-graphic-p)
+  (load-library "everforest-hard-dark-theme"))
+
 ;; After a recent update of my Ubuntu laptop, the flymake-log function
 ;; in ~/.emacs.d/site-lisp/flymake.el is somehow being ignored in favor
 ;; of the defmacro of the same name that lives inside of:
@@ -88,11 +102,6 @@
  '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
-
-;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
-;; also some JavaScript for things that have to run in the browser.
-
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 ;; Essential Mac OS X keybindings, put here at the top so that they
 ;; get installed even if something later in this file fails.  My
