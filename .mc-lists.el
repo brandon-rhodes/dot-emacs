@@ -42,6 +42,7 @@
       '(
         ag-current-word
         c-electric-slash
+        count-words-region
         fzf-repository
         ido-switch-buffer
         point-to-register
