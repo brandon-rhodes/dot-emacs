@@ -505,9 +505,10 @@
 (load-library "org")
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-;; Stop org-mode from taking over the crucial C-tab key.
+;; Stop org-mode from taking over a few crucial keys.
 
 (define-key org-mode-map [C-tab] 'other-window)
+(define-key org-mode-map (kbd "M-a") 'ag-current-word)
 
 ;; Org mode should display totals in hours, not days-and-hours.
 ;; http://stackoverflow.com/questions/17929979/
