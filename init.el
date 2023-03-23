@@ -901,3 +901,23 @@ insert straight double quotes instead."
     (insert " = " output)))
 
 (global-set-key (kbd "C-=") 'evaluate-region-using-units)
+
+;; I noticed while writing my PyTexas talk that I do this a lot, so
+;; let's make it an Emacs macro.
+
+(defun comment-line-and-duplicate ()
+  "Comment out the current line and duplicate it on the next line."
+  (interactive)
+  (beginning-of-line)
+  (let ((b (point)))
+    (end-of-line)
+    (copy-region-as-kill b (point)))
+  (back-to-indentation)
+  (insert "#")
+  (end-of-line)
+  (insert "\n")
+  (yank)
+  (current-kill 1)
+  (back-to-indentation))
+
+(global-set-key (kbd "M-#") 'comment-line-and-duplicate)
