@@ -62,6 +62,7 @@
  '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total (quote current))
  '(org-duration-format (quote h:mm))
+ '(org-startup-truncated nil)
  '(package-selected-packages
    (quote
     (git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
