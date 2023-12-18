@@ -43,7 +43,8 @@
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
  '(global-hl-line-mode t)
- '(help-at-pt-display-when-idle t nil (help-at-pt))
+ '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
+ '(help-at-pt-timer-delay 9999)
  '(image-file-name-extensions
    (quote
     ("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm")))
@@ -56,8 +57,7 @@
  '(menu-bar-mode nil)
  '(mode-line-format
    (quote
-    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position
-     "  " mode-name mode-line-misc-info mode-line-end-spaces)))
+    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name mode-line-misc-info mode-line-end-spaces)))
  '(mouse-yank-at-point t)
  '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total (quote current))
@@ -189,6 +189,7 @@
 (setq jedi:complete-on-dot t)
 (setq jedi:environment-virtualenv
       '("/home/brandon/local/src/virtualenv/virtualenv.py"))
+(setq jedi:get-in-function-call-delay 360000)
 (setq jedi:use-shortcuts t)
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -582,9 +583,7 @@
 (setq flymake-run-in-place nil)
 (setq temporary-file-directory "/tmp/")
 
-;; (custom-set-variables
-;;  '(help-at-pt-timer-delay 0.9)
-;;  '(help-at-pt-display-when-idle '(flymake-overlay)))
+
 
 ;; Magit
 
@@ -895,7 +894,7 @@ insert straight double quotes instead."
          (region (replace-regexp-in-string "," "" region))
          ;; Allow dollar signs (usually copy and pasted from financials).
          (region (replace-regexp-in-string "\\$" "" region))
-         (command (concat "units -t '" region "'"))
+         (command (concat "units -t '(" region ")'"))
          (output-plus-newline (shell-command-to-string command))
          (output (substring output-plus-newline 0 -1)))
     (if (< (point) end) (exchange-point-and-mark))
@@ -922,3 +921,8 @@ insert straight double quotes instead."
   (back-to-indentation))
 
 (global-set-key (kbd "M-#") 'comment-line-and-duplicate)
+
+;; https://emacs.stackexchange.com/questions/54979/
+
+(define-key global-map (kbd "C-x k")
+  (lambda () (interactive) (kill-buffer (current-buffer))))
