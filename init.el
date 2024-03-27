@@ -13,7 +13,7 @@
 ;; the function—or even why the macro is being loaded at all—let's at
 ;; least silence the error by giving the unknown function a definition:
 
-(defun flymake--log-1 (&rest args))
+;; (defun flymake--log-1 (&rest args))
 
 ;; Variables set through M-x customize-apropos.  I keep them here at
 ;; the top of the file, so that if there are problems later in the
@@ -93,7 +93,9 @@
 ;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
 ;; also some JavaScript for things that have to run in the browser.
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+(add-to-list 'load-path "~/.emacs.d/third-party/dtrt-indent")
 
 ;; Essential Mac OS X keybindings, put here at the top so that they
 ;; get installed even if something later in this file fails.  My
@@ -160,7 +162,7 @@
 
 ;; Get ready for (require...) calls to third-party libraries.
 
-(package-initialize)
+;; (package-initialize)
 
 ;; "M-x date", which adds a simple header for diary-style text files.
 
@@ -172,20 +174,20 @@
 
 ;; Third-party major mode for browsing the kill ring.
 
-(require 'browse-kill-ring)
-(browse-kill-ring-default-keybindings)
+;; (require 'browse-kill-ring)
+;; (browse-kill-ring-default-keybindings)
 
 ;; Third-party mode for bracketed paste.
 
-(require 'bracketed-paste)
-(bracketed-paste-enable)
+;; (require 'bracketed-paste)
+;; (bracketed-paste-enable)
 
 ;; Good old-fashioned Jedi mode, because the Python Language Server
 ;; (LSP) kept taking away my CPU.
 
 (setenv "VIRTUAL_ENV" "")  ; Otherwise it errors out inside of virtualenvs?
 
-(require 'flycheck)
+;; (require 'flycheck)
 (setq jedi:complete-on-dot t)
 (setq jedi:environment-virtualenv
       '("/home/brandon/local/src/virtualenv/virtualenv.py"))
@@ -302,9 +304,9 @@
 
 ;; Multiple cursors.
 
-(require 'multiple-cursors)
-(global-set-key (kbd "M-n") 'mc/mark-next-like-this)
-(global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
+;; (require 'multiple-cursors)
+;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
+;; (global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
 
 ;; I am beginning to conclude that Guido is simply not going to fix this
 ;; miserable dunder-main situation any time soon.  Good thing Emacs did
@@ -678,7 +680,7 @@
 (autoload 'vc-git-root "vc-git")
 (global-set-key (kbd "C-x C-r") 'fzf-repository)
 
-(load-library "fzf.el")
+;; (load-library "fzf.el")
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
@@ -746,9 +748,9 @@
 
 ;; Smart quotes.
 
-(load-library "smart-quotes")
-(add-hook 'text-mode-hook 'smart-quotes-mode)
-(add-hook 'html-mode-hook 'turn-off-smart-quotes)
+;; (load-library "smart-quotes")
+;; (add-hook 'text-mode-hook 'smart-quotes-mode)
+;; (add-hook 'html-mode-hook 'turn-off-smart-quotes)
 
 ;; Except that I so often need to insert straight quotes, so:
 
@@ -807,7 +809,7 @@ insert straight double quotes instead."
 
 ;; Make it easy for me to edit projects that use Black.
 
-(load-library "blacken")
+;; (load-library "blacken")
 (defun black (&optional arg)
   "Turn on blacken-mode in all Python buffers"
   (interactive "P")
@@ -840,7 +842,7 @@ insert straight double quotes instead."
 ;; Use "ivy" completion instead of ido-mode: simpler, more readable,
 ;; predictable, and resembles "fzf" which is one of my favorite tools.
 
-(ivy-mode 1)
+;; (ivy-mode 1)
 
 (setq ivy-re-builders-alist
       '((t . ivy--regex-fuzzy)))
@@ -880,6 +882,7 @@ insert straight double quotes instead."
 ;; Auto-detect C identation per-file (useful when working maintanence
 ;; work in the fairly heterogeneous XEphem and PyEphem code bases).
 
+(load-library "dtrt-indent")
 (dtrt-indent-global-mode)
 
 ;; Inline evaluation of math expressions, without my having to fill my

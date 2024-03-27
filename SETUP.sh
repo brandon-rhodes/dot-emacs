@@ -16,6 +16,23 @@ trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
 # Exit immediately if a command fails.
 set -ex
 
+mkdir -p third-party
+
+if [ ! -d third-party/dtrt-indent ]
+then
+    url=https://github.com/jscheid/dtrt-indent
+    git clone \
+        --depth 1 \
+        --branch 1.17 \
+        $url \
+        third-party/dtrt-indent
+    # e45fa76
+fi
+
+exit
+
+
+
 # Emacs 24 can no longer install Magit from melpa, but Ubuntu supplies it!
 source /etc/lsb-release
 if [ "$DISTRIB_RELEASE" = "16.04" ]
