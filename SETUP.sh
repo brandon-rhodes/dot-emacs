@@ -18,6 +18,22 @@ set -ex
 
 mkdir -p third-party
 
+for i in "https://github.com/minad/consult 1.4"
+do
+    set -- $i
+    url=$1
+    version=$2
+    d=$(basename $url)
+    if [ ! -d third-party/$d ]
+    then
+        git clone \
+            --depth 1 \
+            --branch $version \
+            $url \
+            third-party/$d
+    fi
+done
+
 if [ ! -d third-party/dtrt-indent ]
 then
     url=https://github.com/jscheid/dtrt-indent
@@ -28,6 +44,28 @@ then
         third-party/dtrt-indent
     # e45fa76
 fi
+
+if [ ! -d third-party/vertico ]
+then
+    url=https://github.com/minad/vertico
+    git clone \
+        --depth 1 \
+        --branch 1.7 \
+        $url \
+        third-party/vertico
+fi
+
+if [ ! -d third-party/compat ]
+then
+    url=https://github.com/emacs-compat/compat
+    git clone \
+        --depth 1 \
+        --branch 29.1.4.5 \
+        $url \
+        third-party/compat
+fi
+
+#https://github.com/emacs-compat/compat
 
 exit
 
