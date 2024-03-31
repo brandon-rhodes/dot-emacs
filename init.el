@@ -136,8 +136,8 @@
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
 
 (global-set-key [C-tab] 'other-window)
-(global-set-key [C-S-tab] (lambda () (interactive) (other-window -1)))
-(global-set-key [backtab] (lambda () (interactive) (other-window -1)))
+(global-set-key [(control iso-lefttab)]  ; not C-S-tab or C-backtab?
+                (lambda () (interactive) (other-window -1)))
 
 ;; I have spent far too much of my life answering "y" to the prompt
 ;; "Active processes exist; kill them and exit anyway?"
@@ -157,10 +157,6 @@
 
 ;;(global-set-key "\C-?" 'describe-char)
 
-;; Get ready for (require...) calls to third-party libraries.
-
-;; (package-initialize)
-
 ;; "M-x date", which adds a simple header for diary-style text files.
 
 (defun date ()
@@ -168,11 +164,6 @@
   (insert (concat "======== "
                   (format-time-string "%Y %B %d %A")
                   " ========\n\n")))
-
-;; Third-party major mode for browsing the kill ring.
-
-;; (require 'browse-kill-ring)
-;; (browse-kill-ring-default-keybindings)
 
 ;; Third-party mode for bracketed paste.
 
@@ -304,16 +295,6 @@
 ;; (require 'multiple-cursors)
 ;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
-
-;; I am beginning to conclude that Guido is simply not going to fix this
-;; miserable dunder-main situation any time soon.  Good thing Emacs did
-;; not pre-define the Control-underscore key sequence!
-
-(defun insert-dunder-main ()
-  (interactive)
-  (insert "import argparse\nif __name__ == '__main__':\n    "))
-
-(global-set-key [(control _)] 'insert-dunder-main)
 
 ;; When I press enter in rst-mode, the *previous* line gets wrongly
 ;; re-indented.  This was supposed to have been fixed, says the docs, by
@@ -486,31 +467,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.dat$" . (lambda () (set-up-ledger))))
 
-;; Close-brace should be electric in CSS mode, which the CSS modes
-;; themselves do not support in Emacs 23 or 24.
-
-(defun electric-close-brace ()
-  "Insert a close brace and re-indent."
-  (interactive)
-  (insert "}")
-  (indent-for-tab-command))
-
-(defun setup-electric-close-brace ()
-  (define-key (current-local-map) (kbd "}") 'electric-close-brace))
-
-(add-hook 'css-mode-hook 'setup-electric-close-brace)
-(add-hook 'js-mode-hook 'setup-electric-close-brace)
-
-;; Org mode should activate for files that end in ".org".
-
-(load-library "org")
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-
-;; Stop org-mode from taking over a few crucial keys.
-
-(define-key org-mode-map [C-tab] 'other-window)
-(define-key org-mode-map (kbd "M-a") 'ag-current-word)
-
 ;; Org mode should display totals in hours, not days-and-hours.
 ;; http://stackoverflow.com/questions/17929979/
 
@@ -581,8 +537,6 @@
 
 (setq flymake-run-in-place nil)
 (setq temporary-file-directory "/tmp/")
-
-
 
 ;; Magit
 
@@ -743,13 +697,7 @@
 
 (load-library "longlines")
 
-;; Smart quotes.
-
-;; (load-library "smart-quotes")
-;; (add-hook 'text-mode-hook 'smart-quotes-mode)
-;; (add-hook 'html-mode-hook 'turn-off-smart-quotes)
-
-;; Except that I so often need to insert straight quotes, so:
+;; My own smart-quotes approach.
 
 (defun smart-quotes-insert-single (&optional arg)
   "Insert U+2018 LEFT SINGLE QUOTATION MARK if point is preceded
@@ -780,10 +728,8 @@ insert straight double quotes instead."
 
 ;;(setq create-lockfiles nil)
 
-;; Support Go.
+;; Format Go on each save.
 
-(autoload 'go-mode "go-mode" "Supports the Go language." t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 (add-hook 'before-save-hook #'gofmt-before-save)
 
 ;; Bind "recompile" to F5 and jump to the first error.  If compilation
@@ -835,19 +781,6 @@ insert straight double quotes instead."
 (setq js-indent-level 4)
 
 (setq git-commit-filename-regexp "regex-that-never-matches-anything")
-
-;; Use "ivy" completion instead of ido-mode: simpler, more readable,
-;; predictable, and resembles "fzf" which is one of my favorite tools.
-
-;; (ivy-mode 1)
-
-(setq ivy-re-builders-alist
-      '((t . ivy--regex-fuzzy)))
-
-;; (setq read-file-name-function
-;;   (lambda (&rest args)
-;;     (let ((completing-read-function #'completing-read-default))
-;;       (apply #'read-file-name-default args))))
 
 ;; With much thanks to: https://www.emacswiki.org/emacs/RenumberList
 
