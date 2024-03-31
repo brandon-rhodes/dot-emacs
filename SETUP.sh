@@ -18,7 +18,9 @@ set -ex
 
 mkdir -p third-party
 
-for i in "https://github.com/minad/consult 1.4"
+for i in \
+    "https://github.com/minad/consult 1.4" \
+    "https://github.com/bling/fzf.el master"
 do
     set -- $i
     url=$1

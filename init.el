@@ -94,10 +94,8 @@
 
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-(add-to-list 'load-path "~/.emacs.d/third-party/compat")
-(add-to-list 'load-path "~/.emacs.d/third-party/consult")
-(add-to-list 'load-path "~/.emacs.d/third-party/dtrt-indent")
-(add-to-list 'load-path "~/.emacs.d/third-party/vertico")
+(dolist (p (file-expand-wildcards "~/.emacs.d/third-party/*"))
+  (add-to-list 'load-path p))
 
 ;; Essential Mac OS X keybindings, put here at the top so that they
 ;; get installed even if something later in this file fails.  My
@@ -619,18 +617,8 @@
 
 ;; Make it easy to jump between files inside a project.
 
-(defun fzf-repository ()
-  "Run the fzf file selection tool in the current repository."
-  (interactive)
-  ;; This once took only a single argument, but in more recent versions
-  ;; of fzf, it takes two.
-  (fzf/start (vc-git-root default-directory) #'fzf/action-find-file))
-
-(setenv "FZF_DEFAULT_COMMAND" "find . -not \\( \\( -name .git -o -name .tox -o -name '*.pyc' \\) -prune \\) -not \\( -name .ipynb_checkpoints -prune \\)")
-(autoload 'vc-git-root "vc-git")
-(global-set-key (kbd "C-x C-r") 'fzf-repository)
-
-;; (load-library "fzf.el")
+(load-library "fzf.el")
+(global-set-key (kbd "C-x C-r") 'fzf-git-files)
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
