@@ -147,12 +147,6 @@
             (process-kill-without-query
              (get-buffer-process (current-buffer)) nil)))
 
-;; I have also spent too much of my life selecting the name of the
-;; buffer that I want to kill, depsite the fact that it is always,
-;; without exception, the current buffer.
-
-(global-set-key [(control x) (k)] 'kill-this-buffer)
-
 ;; C-z should never iconify Emacs, only suspend it when in a terminal.
 ;; I mean, who even iconifies programs any more?  Not me.
 
