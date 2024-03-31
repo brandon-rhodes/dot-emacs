@@ -1,3 +1,6 @@
+;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
+;; also some JavaScript for things that have to run in the browser.
+
 ;; After a recent update of my Ubuntu laptop, the flymake-log function
 ;; in ~/.emacs.d/site-lisp/flymake.el is somehow being ignored in favor
 ;; of the defmacro of the same name that lives inside of:
@@ -42,9 +45,9 @@
  '(column-number-mode t)
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
- '(global-hl-line-mode t)
- '(help-at-pt-display-when-idle (quote (flymake-overlay)) nil (help-at-pt))
- '(help-at-pt-timer-delay 9999)
+;; '(global-hl-line-mode t)
+ '(help-at-pt-display-when-idle t)
+ '(help-at-pt-timer-delay 0) ;;9999)
  '(image-file-name-extensions
    (quote
     ("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm")))
@@ -66,10 +69,9 @@
  '(package-selected-packages
    (quote
     (git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
- '(python-honour-comment-indentation nil)
  '(recenter-positions (quote (middle)))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
- '(scroll-bar-mode nil)
+;; '(scroll-bar-mode nil)
  '(scroll-preserve-screen-position t)
  '(search-default-mode (quote char-fold-to-regexp))
  '(show-paren-delay 0)
@@ -89,9 +91,6 @@
  '(highlight ((((class color) (min-colors 88)) :background "#eee8d5") (t :background "white")))
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
-
-;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
-;; also some JavaScript for things that have to run in the browser.
 
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
@@ -218,8 +217,8 @@
                                 "\\($\\|[^A-Za-z0-9_]\\)"))
     (forward-char)))
 
-;; (global-set-key [(meta r)] 'search-backward-symbol-at-point)
-;; (global-set-key [(meta s)] 'search-forward-symbol-at-point)
+;; (global-set-key ["M-p"] 'search-backward-symbol-at-point)
+;; (global-set-key ["M-n"] 'search-forward-symbol-at-point)
 
 ;; Search with "ag".
 
@@ -269,7 +268,7 @@
           (call-interactively 'ag-project-regexp)
           (other-window 1))))))
 
-(global-set-key (kbd "M-a") 'ag-current-word)
+;; (global-set-key (kbd "M-a") 'ag-current-word)
 
 ;; I like jumping automatically to compilation errors (see the stanza
 ;; later in this file that mentions "recompile"), but I don't like
@@ -660,7 +659,7 @@
   (define-key python-mode-map (kbd "M-i") 'sustainable-shift-right)
   (remove-hook 'python-mode-hook 'set-up-sustainable-shifts))
 
-(add-hook 'python-mode-hook 'set-up-sustainable-shifts)
+;; (add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
 ;; Fix the fact that Emacs misinterprets Shift-Up from an xterm.
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
@@ -871,9 +870,8 @@ insert straight double quotes instead."
 
 (setq read-extended-command-predicate #'command-completion-default-include-p)
 
-;; Adapted from the example configuration for Consult
+;; Adapted from the example configuration from the Consult README.
 
-;; Example configuration for Consult
 (use-package consult
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
@@ -992,3 +990,5 @@ insert straight double quotes instead."
   ;;;; 5. No project support
   ;; (setq consult-project-function nil)
 )
+
+(setq lazy-highlight-cleanup nil)
