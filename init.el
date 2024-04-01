@@ -167,6 +167,12 @@
 ;; (require 'bracketed-paste)
 ;; (bracketed-paste-enable)
 
+;; Python
+
+(add-hook 'python-mode-hook
+  (lambda ()
+    (setq outline-regexp " *\\(class\\|def\\) ")))
+
 ;; Good old-fashioned Jedi mode, because the Python Language Server
 ;; (LSP) kept taking away my CPU.
 
