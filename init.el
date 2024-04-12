@@ -839,6 +839,14 @@ insert straight double quotes instead."
 (define-key global-map (kbd "C-x k")
   (lambda () (interactive) (kill-buffer (current-buffer))))
 
+;; Experiment with the built-in completion techniques before trying
+;; something external like "orderless".
+
+(setq completion-styles '(basic substring partial-completion flex)
+      read-file-name-completion-ignore-case t
+      read-buffer-completion-ignore-case t
+      completion-ignore-case t)
+
 ;; See the Vertico README.
 
 (load-library "vertico")
@@ -923,10 +931,6 @@ insert straight double quotes instead."
   ;; Optionally tweak the register preview window.
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
-
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
 
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
