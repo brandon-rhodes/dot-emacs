@@ -176,15 +176,16 @@
 ;; Good old-fashioned Jedi mode, because the Python Language Server
 ;; (LSP) kept taking away my CPU.
 
-(setenv "VIRTUAL_ENV" "")  ; Otherwise it errors out inside of virtualenvs?
+(add-hook 'python-mode-hook 'eglot-ensure)
+(add-to-list 'exec-path "~/.emacs.d/.venv/bin")
 
 ;; (require 'flycheck)
-(setq jedi:complete-on-dot t)
-(setq jedi:environment-virtualenv
-      '("/home/brandon/local/src/virtualenv/virtualenv.py"))
-(setq jedi:get-in-function-call-delay 360000)
-(setq jedi:use-shortcuts t)
-(add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
+;; (setq jedi:environment-virtualenv
+;;       '("/home/brandon/local/src/virtualenv/virtualenv.py"))
+;; (setq jedi:get-in-function-call-delay 360000)
+;; (setq jedi:use-shortcuts t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
 
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
