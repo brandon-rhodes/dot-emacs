@@ -16,6 +16,9 @@ trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
 # Exit immediately if a command fails.
 set -ex
 
+# Change directory to the directory containing this script.
+cd "$(dirname ${BASH_SOURCE[0]})"
+
 mkdir -p third-party
 
 for i in \
@@ -68,6 +71,13 @@ then
 fi
 
 #https://github.com/emacs-compat/compat
+
+if [ ! -f .venv/bin/activate ]
+then
+    uv venv
+fi
+source .venv/bin/activate
+uv pip install python-lsp-server==1.11.0
 
 exit
 
