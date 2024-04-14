@@ -676,7 +676,9 @@
 
 (load-library "longlines")
 
-;; My own smart-quotes approach.
+;; My own smart-quotes approach, based on Gareth Rees `smart-quotes.el`.
+
+(setq smart-quotes-left-context "^\\|\\s-\\|\\s(\\|[‘“]")
 
 (defun smart-quotes-insert-single (&optional arg)
   "Insert U+2018 LEFT SINGLE QUOTATION MARK if point is preceded
@@ -701,6 +703,11 @@ insert straight double quotes instead."
                (= (preceding-char) #x201D))
            (progn (delete-char -1) #x0022))
        (if (looking-back smart-quotes-left-context) #x201C #x201D))))
+
+(with-eval-after-load 'text-mode
+  (define-key text-mode-map "'" 'smart-quotes-insert-single)
+  (define-key text-mode-map "\"" 'smart-quotes-insert-double)
+  )
 
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
