@@ -28,29 +28,25 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ag-arguments
-   (quote
-    ("--hidden" "--ignore" ".git" "--ignore" ".tox" "--smart-case" "--stats" "--width" "240")))
+   '("--hidden" "--ignore" ".git" "--ignore" ".tox" "--smart-case" "--stats" "--width" "240"))
  '(auto-save-default nil)
  '(blacken-executable "~/.emacs.d/usr/bin/black")
  '(blacken-fast-unsafe t)
  '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
  '(c-default-style
-   (quote
-    ((c-mode . "k&r")
+   '((c-mode . "k&r")
      (c++-mode . "k&r")
      (java-mode . "java")
      (awk-mode . "awk")
-     (other . "gnu"))))
+     (other . "gnu")))
  '(column-number-mode t)
  '(eldoc-echo-area-use-multiline-p nil)
  '(fill-column 72)
-;; '(global-hl-line-mode t)
- '(help-at-pt-display-when-idle t)
- '(help-at-pt-timer-delay 0) ;;9999)
+ '(help-at-pt-display-when-idle t nil (help-at-pt))
+ '(help-at-pt-timer-delay 0)
  '(image-file-name-extensions
-   (quote
-    ("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm")))
+   '("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm"))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(kill-do-not-save-duplicates t)
@@ -59,27 +55,24 @@
  '(make-backup-files nil)
  '(menu-bar-mode nil)
  '(mode-line-format
-   (quote
-    ("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name mode-line-misc-info mode-line-end-spaces)))
+   '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-frame-identification mode-line-buffer-identification "   " mode-line-position "  " mode-name mode-line-misc-info mode-line-end-spaces))
  '(mouse-yank-at-point t)
  '(org-clock-into-drawer nil)
- '(org-clock-mode-line-total (quote current))
- '(org-duration-format (quote h:mm))
+ '(org-clock-mode-line-total 'current)
+ '(org-duration-format 'h:mm)
  '(org-startup-truncated nil)
  '(package-selected-packages
-   (quote
-    (git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag)))
- '(recenter-positions (quote (middle)))
- '(safe-local-variable-values (quote ((encoding . utf-8))))
-;; '(scroll-bar-mode nil)
+   '(git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag))
+ '(recenter-positions '(middle))
+ '(safe-local-variable-values '((encoding . utf-8)))
  '(scroll-preserve-screen-position t)
- '(search-default-mode (quote char-fold-to-regexp))
+ '(search-default-mode 'char-fold-to-regexp)
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tool-bar-mode nil)
  '(tooltip-mode nil)
- '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(use-file-dialog nil)
  '(vc-handled-backends nil))
 (custom-set-faces
