@@ -167,8 +167,8 @@
   (lambda ()
     (setq outline-regexp " *\\(class\\|def\\) ")))
 
-;; Good old-fashioned Jedi mode, because the Python Language Server
-;; (LSP) kept taking away my CPU.
+;; The "Eglot" language server library is now built-in to Emacs 29, so
+;; let's try out "pylsp" from "python-lsp-server" (see SETUP.sh).
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 (add-to-list 'exec-path "~/.emacs.d/.venv/bin")
