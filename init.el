@@ -1,23 +1,6 @@
 ;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
 ;; also some JavaScript for things that have to run in the browser.
 
-;; After a recent update of my Ubuntu laptop, the flymake-log function
-;; in ~/.emacs.d/site-lisp/flymake.el is somehow being ignored in favor
-;; of the defmacro of the same name that lives inside of:
-;;
-;; /usr/share/emacs/26.3/lisp/progmodes/flymake.el.gz
-;;
-;; Which produces a show-stopping error each time I try to open a
-;; source code file that flymake would normally check:
-;;
-;; "Symbol’s function definition is void: flymake--log-1"
-;;
-;; As I can't work out why the flymake-log macro is being preferred to
-;; the function—or even why the macro is being loaded at all—let's at
-;; least silence the error by giving the unknown function a definition:
-
-;; (defun flymake--log-1 (&rest args))
-
 ;; Variables set through M-x customize-apropos.  I keep them here at
 ;; the top of the file, so that if there are problems later in the
 ;; code, I at least get to enjoy these settings while I fix things.
@@ -478,48 +461,6 @@
 
 (setq org-todo-keyword-faces
       '(("WONT" . "orange")))
-
-;; Set up Flymake to use PyFlakes.
-
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-copy))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "pyflakes" (list local-file))))
-
-  (defun flymake-gjslint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-copy))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list (expand-file-name "~/.emacs.d/usr/bin/gjslint")
-            (list "--nojsdoc" "--unix_mode" local-file))))
-
-  (setq flymake-allowed-file-name-masks
-        (list (list (concat (expand-file-name "~") "/.*\\.py$")
-                    'flymake-pyflakes-init)
-              (list (concat (expand-file-name "~") "/.*\\.js$")
-                    'flymake-gjslint-init)
-              ))
-
-  (if (executable-find "pyflakes")
-      (add-hook 'find-file-hook 'flymake-find-file-hook))
-  )
-
-;; Tell Flymake to use a temporary directory instead of spamming the
-;; current directory with its temporary files, since they might launch
-;; an inotify-triggered build or test.  This new setting is supported
-;; because site-lisp/flymake.el is the third-party version from
-;; github.com/illusori/emacs-flymake.
-
-(setq create-lockfiles nil)
-
-(setq flymake-run-in-place nil)
-(setq temporary-file-directory "/tmp/")
 
 ;; Magit
 
