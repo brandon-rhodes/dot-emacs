@@ -77,6 +77,9 @@ then
     uv venv venv
 fi
 source venv/bin/activate
+
+# This takes Emacs startup time from 1.1s to 1.5s on a Python file.
+
 uv pip install python-lsp-server==1.11.0 $(cat <<EOF
   docstring-to-markdown==0.15
   importlib-metadata==7.1.0
@@ -86,7 +89,15 @@ uv pip install python-lsp-server==1.11.0 $(cat <<EOF
   python-lsp-jsonrpc==1.1.2
   ujson==5.9.0
   zipp==3.18.1
-EOF)
+EOF
+)
+
+# This adds <0.1s.
+
+uv pip install python-lsp-isort==0.1 isort==5.13.2
+
+# This takes startup time from 1.6s to >2.2s.  Gads.  Can that be improved?
+
 uv pip install ruff==0.4.1
 uv pip install python-lsp-ruff==2.2.0 $(cat <<EOF
   attrs==23.2.0
@@ -95,7 +106,8 @@ uv pip install python-lsp-ruff==2.2.0 $(cat <<EOF
   lsprotocol==2023.0.1
   tomli==2.0.1
   typing-extensions==4.11.0
-EOF)
+EOF
+)
 
 exit
 
