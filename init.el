@@ -139,11 +139,6 @@
                   (format-time-string "%Y %B %d %A")
                   " ========\n\n")))
 
-;; Third-party mode for bracketed paste.
-
-;; (require 'bracketed-paste)
-;; (bracketed-paste-enable)
-
 ;; Python
 
 (add-hook 'python-mode-hook
