@@ -77,7 +77,6 @@ then
     uv venv venv
 fi
 source venv/bin/activate
-uv pip install pyflakes==3.2.0
 uv pip install python-lsp-server==1.11.0 $(cat <<EOF
   docstring-to-markdown==0.15
   importlib-metadata==7.1.0
@@ -89,6 +88,14 @@ uv pip install python-lsp-server==1.11.0 $(cat <<EOF
   zipp==3.18.1
 EOF)
 uv pip install ruff==0.4.1
+uv pip install python-lsp-ruff==2.2.0 $(cat <<EOF
+  attrs==23.2.0
+  cattrs==23.2.3
+  exceptiongroup==1.2.1
+  lsprotocol==2023.0.1
+  tomli==2.0.1
+  typing-extensions==4.11.0
+EOF)
 
 exit
 
