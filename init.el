@@ -638,7 +638,10 @@ insert straight double quotes instead."
 
 ;; Format Go on each save.
 
-(add-hook 'before-save-hook #'gofmt-before-save)
+;; TODO: for the moment I no longer install "go-mode".  The next time I
+;; need to develop in Go, I should try go-ts-mode, and figure out how to
+;; get go-fmt hooked back up somehow as a save hook.
+;;(add-hook 'before-save-hook #'gofmt-before-save)
 
 ;; Bind "recompile" to F5 and jump to the first error.  If compilation
 ;; is producing paths relative to a directory, also set this locally:
