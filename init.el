@@ -171,7 +171,7 @@
 ;; let's try out "pylsp" from "python-lsp-server" (see SETUP.sh).
 
 (add-hook 'python-mode-hook 'eglot-ensure)
-(add-to-list 'exec-path "~/.emacs.d/.venv/bin")
+(add-to-list 'exec-path "~/.emacs.d/venv/bin")
 
 ;; (require 'flycheck)
 ;; (setq jedi:complete-on-dot t)

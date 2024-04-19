@@ -74,9 +74,9 @@ fi
 
 if [ ! -f .venv/bin/activate ]
 then
-    uv venv
+    uv venv venv
 fi
-source .venv/bin/activate
+source venv/bin/activate
 uv pip install python-lsp-server==1.11.0
 
 exit
