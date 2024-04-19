@@ -151,14 +151,6 @@
 (add-hook 'python-mode-hook 'eglot-ensure)
 (add-to-list 'exec-path "~/.emacs.d/venv/bin")
 
-;; (require 'flycheck)
-;; (setq jedi:complete-on-dot t)
-;; (setq jedi:environment-virtualenv
-;;       '("/home/brandon/local/src/virtualenv/virtualenv.py"))
-;; (setq jedi:get-in-function-call-delay 360000)
-;; (setq jedi:use-shortcuts t)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
 
