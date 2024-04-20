@@ -28,6 +28,7 @@
  '(fill-column 72)
  '(help-at-pt-display-when-idle t nil (help-at-pt))
  '(help-at-pt-timer-delay 0)
+ '(help-window-select t)
  '(image-file-name-extensions
    '("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm"))
  '(indent-tabs-mode nil)
