@@ -184,44 +184,6 @@
 
 (advice-add 'eldoc-display-in-buffer :after #'bcr-switch-to-eldoc-window)
 
-;; Quickly jump up or down to the previous or next use of the name
-;; sitting under point.
-
-(defun alphanum-bounds-of-alphanum-at-point ()
-  "Return the start and end points of an alphanum at the current point.
-   The result is a paired list of character positions for an alphanum
-   located at the current point in the current buffer."
-  (save-excursion
-    (skip-chars-backward "A-Za-z0-9_")
-    (if (looking-at "[A-Za-z0-9_]+")
-        (cons (point) (match-end 0)) ; bounds of alphanum-1
-      nil))) ; no alphanum at point
-
-(put 'alphanum 'bounds-of-thing-at-point
-     'alphanum-bounds-of-alphanum-at-point)
-
-(defun search-forward-symbol-at-point ()
-  (interactive)
-  (end-of-thing 'alphanum)
-  (let ((case-fold-search nil))
-    (re-search-forward (concat "\\(^\\|[^A-Za-z0-9_]\\)"
-                               (thing-at-point 'alphanum)
-                               "\\($\\|[^A-Za-z0-9_]\\)"))
-    (backward-char)
-    ))
-
-(defun search-backward-symbol-at-point ()
-  (interactive)
-  (beginning-of-thing 'alphanum)
-  (let ((case-fold-search nil))
-    (re-search-backward (concat "\\(^\\|[^A-Za-z0-9_]\\)"
-                                (thing-at-point 'alphanum)
-                                "\\($\\|[^A-Za-z0-9_]\\)"))
-    (forward-char)))
-
-;; (global-set-key ["M-p"] 'search-backward-symbol-at-point)
-;; (global-set-key ["M-n"] 'search-forward-symbol-at-point)
-
 ;; Search with "ag".
 
 (require 'thingatpt)

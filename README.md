@@ -38,8 +38,10 @@ as I’m getting used to `eglot-mode`, which I have not used before:
     middle mouse   Brings up actions associated with the current line.
     eglot-rename   Seems to rename all instances of a symbol. Worth binding?
     C-h .          Show documentation for symbol under point! (eldoc)
+    C-s C-w        Start interactive search for the word at point.
     M-.            I’ve used this for years, to jump to definition.
     M-?            But this is new to me: show where something is referenced!
+    M-s g M-n      Run consult-grep on the symbol at point.
 
 Questions: why does clicking on a line with a ruff complaint not show
 suggestions for fixing it?
