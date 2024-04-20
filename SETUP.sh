@@ -147,8 +147,6 @@ jedi
 pyflakes
 END
 
-# src/closure_linter-2.3.11.tar.gz
-
 # Install third-party Emacs packages.
 if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
 then
