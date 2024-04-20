@@ -381,25 +381,23 @@
 (add-to-list 'auto-mode-alist '("\\.doctest$" . doctest-mode))
 (autoload 'doctest-mode "doctest-mode" nil t)
 
-;; I want Tab to do variable-name completion, but Ctrl-I - which in
-;; ASCII also means "Tab" - to indent the current line.  So I have to
-;; convince Emacs to treat synonymous keystokes as different.
+;; Make the Tab key do something separate from C-i, which I want to keep
+;; at its default definition of "indent".
 
-(defun set-up-tabbing ()
-  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key (current-local-map) (kbd "<tab>") 'dabbrev-completion)
-  (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
+;; (defun set-up-tabbing ()
+;;   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
+;;   (define-key (current-local-map) (kbd "<tab>") 'dabbrev-completion)
+;;   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
 
-(add-hook 'css-mode-hook 'set-up-tabbing)
-(add-hook 'html-mode-hook 'set-up-tabbing)
-(add-hook 'js-mode-hook 'set-up-tabbing)
-(add-hook 'sh-mode-hook 'set-up-tabbing)
+;; (add-hook 'css-mode-hook 'set-up-tabbing)
+;; (add-hook 'html-mode-hook 'set-up-tabbing)
+;; (add-hook 'js-mode-hook 'set-up-tabbing)
+;; (add-hook 'sh-mode-hook 'set-up-tabbing)
 
-(defun set-up-tabbing-for-python ()
-  (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
-  (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
+(defun set-up-tab-for-python ()
+  (define-key (current-local-map) [tab] 'completion-at-point))
 
-(add-hook 'python-mode-hook 'set-up-tabbing-for-python)
+(add-hook 'python-mode-hook 'set-up-tab-for-python)
 
 ;; Assume that .dat files belong to Ledger and support tab completion
 ;; for account names, that can contain internal spaces and colons.
