@@ -954,3 +954,7 @@ insert straight double quotes instead."
 ;; Don't create `~/.emacs.d/auto-save-list/`.
 
 (setq auto-save-list-file-prefix nil)
+
+;; Uncomment this line to receive a traceback on error:
+
+;;(setq debug-on-error t)
