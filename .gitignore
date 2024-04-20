@@ -1,15 +1,7 @@
-/.python-environments/
-/bookmarks
 /third-party
 /transient
 ac-comphist.dat
-auto-save-list/
-elpa/
-session.*
-site-lisp/local.el
-site-lisp/*.elc
-src/*.pyc
-src/virtualenv-*
-usr/
 aspell-huge
+elpa/
 local.el
+site-lisp/*.elc
