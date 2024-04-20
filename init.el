@@ -1,9 +1,9 @@
-;; Emacs configuration for Brandon Rhodes, who does lots of Python, and
-;; also some JavaScript for things that have to run in the browser.
+;; Emacs configuration for Brandon Rhodes, who does lots of Python.
 
-;; Variables set through M-x customize-apropos.  I keep them here at
-;; the top of the file, so that if there are problems later in the
-;; code, I at least get to enjoy these settings while I fix things.
+;; Let's start with all the variables set through M-x customize-apropos.
+;; I keep them here at the top of the file so that if a later error
+;; prevents the rest of this file from being loaded, I at least get to
+;; enjoy these settings while I fix things.
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -127,10 +127,6 @@
 
 (if (eq window-system 'x)
     (global-set-key [(control z)] 'suspend-emacs))
-
-;; Make it easy to ask about a character.  Useful for obscure Unicode.
-
-;;(global-set-key "\C-?" 'describe-char)
 
 ;; "M-x date", which adds a simple header for diary-style text files.
 
