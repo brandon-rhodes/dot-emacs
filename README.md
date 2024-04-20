@@ -1,5 +1,4 @@
-dot-emacs
-=========
+# dot-emacs
 
 This repository contains my `.emacs.d` directory, whose configuration is
 focused on making Python and JavaScript development more fun.  You might
@@ -29,3 +28,18 @@ looking up each customization variable inside of Emacs by running `M-x`
 docstring does not give you enough information, then the next best place
 is usually a Google search for "Emacs wiki <variable-name>" which will
 hopefully unlock a trove of information at http://emacswiki.org.
+
+## Crib sheet
+
+Here are useful keystrokes that I need to remember here in Spring 2024,
+as I’m getting used to `eglot-mode`, which I have not used before:
+
+    eglot-code-actions  I should bind this to something (mouse already works).
+    middle mouse   Brings up actions associated with the current line.
+    eglot-rename   Seems to rename all instances of a symbol. Worth binding?
+    C-h .          Show documentation for symbol under point! (eldoc)
+    M-.            I’ve used this for years, to jump to definition.
+    M-?            But this is new to me: show where something is referenced!
+
+Questions: why does clicking on a line with a ruff complaint not show
+suggestions for fixing it?

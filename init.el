@@ -150,7 +150,43 @@
 ;; let's try out "pylsp" from "python-lsp-server" (see SETUP.sh).
 
 (add-hook 'python-mode-hook 'eglot-ensure)
-(add-to-list 'exec-path "~/.emacs.d/venv/bin")
+(add-to-list 'exec-path "~/.emacs.d/venv/bin")  ; so it finds `pylsp`
+
+;; To debug `pylsp`, for instance after editing `~/.config/pycodestyle`:
+
+;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;                '(python-mode . ("pylsp" "-vv"))))
+
+;; But "Eglot" has a terrible behavior: every time you pause while
+;; navigating the buffer, it computes and displays the documentation for
+;; the symbol at point, which is both distracting and also burns your
+;; laptop's CPU and battery to the ground.  So let's disable its timers
+;; and switch to manually invoking it via a keystroke.
+
+;;(setq eldoc-display-functions '(eldoc-display-in-buffer)  ; buffer only
+
+(defun bcr-update-eglot-key-map ()
+  (define-key eglot-mode-map (kbd "C-h .")
+              'eldoc-print-current-symbol-info))
+
+(defun bcr-remove-eldoc-hooks ()
+  (remove-hook 'post-command-hook #'eldoc-schedule-timer t)
+  (remove-hook 'pre-command-hook #'eldoc-pre-command-refresh-echo-area t))
+
+(add-hook 'eglot-managed-mode-hook 'bcr-update-eglot-key-map)
+(add-hook 'eldoc-mode-hook 'bcr-remove-eldoc-hooks)
+
+;; Another very poor behavior of Eldoc: after splitting the window and
+;; displaying its documentation buffer, it leaves your cursor stranded
+;; over in the source code, so that closing the documentation requires
+;; several keystrokes - `C-x o` then `q`.  Let's instead move focus to
+;; the buffer, so simply typing `q` will dismiss the docs.
+
+(defun bcr-switch-to-eldoc-window (docs interactive)
+  (other-window 1))
+
+(advice-add 'eldoc-display-in-buffer :after #'bcr-switch-to-eldoc-window)
 
 ;; Quickly jump up or down to the previous or next use of the name
 ;; sitting under point.
