@@ -22,8 +22,11 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 mkdir -p third-party
 
 for i in \
+    "https://github.com/bling/fzf.el master" \
+    "https://github.com/emacs-compat/compat 29.1.4.5" \
+    "https://github.com/jscheid/dtrt-indent 1.17" \
     "https://github.com/minad/consult 1.4" \
-    "https://github.com/bling/fzf.el master"
+    "https://github.com/minad/vertico 1.7"
 do
     set -- $i
     url=$1
@@ -36,39 +39,10 @@ do
             --branch $version \
             $url \
             third-party/$d
+        emacs --batch --eval \
+              '(package-install-file "~/.emacs.d/third-party/'$d'")'
     fi
 done
-
-if [ ! -d third-party/dtrt-indent ]
-then
-    url=https://github.com/jscheid/dtrt-indent
-    git clone \
-        --depth 1 \
-        --branch 1.17 \
-        $url \
-        third-party/dtrt-indent
-    # e45fa76
-fi
-
-if [ ! -d third-party/vertico ]
-then
-    url=https://github.com/minad/vertico
-    git clone \
-        --depth 1 \
-        --branch 1.7 \
-        $url \
-        third-party/vertico
-fi
-
-if [ ! -d third-party/compat ]
-then
-    url=https://github.com/emacs-compat/compat
-    git clone \
-        --depth 1 \
-        --branch 29.1.4.5 \
-        $url \
-        third-party/compat
-fi
 
 #https://github.com/emacs-compat/compat
 
