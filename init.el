@@ -398,20 +398,6 @@
 
 (add-hook 'python-mode-hook 'set-up-tab-for-python)
 
-;; Assume that .dat files belong to Ledger and support tab completion
-;; for account names, that can contain internal spaces and colons.
-
-(defun set-up-ledger ()
-  (interactive)
-  (text-mode)
-  (make-variable-buffer-local 'dabbrev-case-fold-search)
-  (make-variable-buffer-local 'dabbrev-abbrev-char-regexp)
-  (setq dabbrev-case-fold-search nil)
-  (setq dabbrev-abbrev-char-regexp "\\w\\|:\\| \\b")
-  (set-up-tabbing))
-
-(add-to-list 'auto-mode-alist '("\\.dat$" . (lambda () (set-up-ledger))))
-
 ;; Org mode should display totals in hours, not days-and-hours.
 ;; http://stackoverflow.com/questions/17929979/
 
