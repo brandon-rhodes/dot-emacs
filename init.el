@@ -521,6 +521,7 @@
 ;; which makes it easy to move or rename it.
 
 (global-set-key (kbd "C-x d") 'dired-jump)
+(global-set-key (kbd "C-x C-d") 'dired-jump)
 
 ;; Make it easy to jump between files inside a project.
 
