@@ -68,6 +68,13 @@
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
 
+;; The escape-glyph color (above) was designed to make longlines mode
+;; easier for me to read by making the visible newline characters blend
+;; into the background instead of standing visually in the way of the
+;; text.  It was produced by chroma.js acting on Solarized colors:
+;; > chroma.mix('#b58900', '#fdf6e3').hex()
+;; < "#d9c072"
+
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 ;; TODO: look back over the packages I previously had selected:
@@ -648,13 +655,6 @@ insert straight double quotes instead."
   (interactive "P")
   (add-hook 'python-mode-hook 'blacken-mode)
   )
-
-;; The escape-gylph color (above) was designed to make longlines mode
-;; easier for me to read by making the visible newline characters blend
-;; into the background instead of standing visually in the way of the
-;; text.  It was produced by chroma.js acting on Solarized colors:
-;; > chroma.mix('#b58900', '#fdf6e3').hex()
-;; < "#d9c072"
 
 ;; When selecting a file from dired, I'm usually there to just read, so
 ;; "view" mode is far more convenient (it's like less(1): the spacebar
