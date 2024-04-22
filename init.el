@@ -46,8 +46,6 @@
  '(org-duration-format 'h:mm)
  '(org-startup-folded t)
  '(org-startup-truncated nil)
- '(package-selected-packages
-   '(git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag))
  '(recenter-positions '(middle))
  '(safe-local-variable-values '((encoding . utf-8)))
  '(scroll-preserve-screen-position t)
@@ -72,8 +70,9 @@
 
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-(dolist (p (file-expand-wildcards "~/.emacs.d/third-party/*"))
-  (add-to-list 'load-path p))
+;; TODO: look back over the packages I previously had selected:
+;; '(package-selected-packages
+;;   '(git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag))
 
 ;; Essential Mac OS X keybindings, put here at the top so that they
 ;; get installed even if something later in this file fails.  My
@@ -525,7 +524,7 @@
 
 ;; Make it easy to jump between files inside a project.
 
-(load-library "fzf.el")
+(require 'fzf)
 (global-set-key (kbd "C-x C-r") 'fzf-git-files)
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
@@ -576,7 +575,7 @@
 ;; live in a separate file, since the Customize sub-system sometimes
 ;; re-writes the custom-set-* calls here in init.el.
 
-(load-library "~/.emacs.d/customizations.el")
+(load "~/.emacs.d/customizations.el")
 
 ;; Turn on TypeScript mode for .tsx files.
 
@@ -586,11 +585,11 @@
 ;; passwords that should not be stored in version control).
 
 (if (file-exists-p "~/.emacs.d/local.el")
-    (load-library "~/.emacs.d/local.el"))
+    (load "~/.emacs.d/local.el"))
 
 ;; It may be obsolete, but it provides a combination of features I need.
 
-(load-library "longlines")
+(require 'longlines)
 
 ;; My own smart-quotes approach, based on Gareth Rees `smart-quotes.el`.
 
@@ -657,7 +656,7 @@ insert straight double quotes instead."
 
 ;; Make it easy for me to edit projects that use Black.
 
-;; (load-library "blacken")
+;; (require 'blacken)
 (defun black (&optional arg)
   "Turn on blacken-mode in all Python buffers"
   (interactive "P")
@@ -717,7 +716,7 @@ insert straight double quotes instead."
 ;; Auto-detect C identation per-file (useful when working maintanence
 ;; work in the fairly heterogeneous XEphem and PyEphem code bases).
 
-(load-library "dtrt-indent")
+(require 'dtrt-indent)
 (dtrt-indent-global-mode)
 
 ;; Inline evaluation of math expressions, without my having to fill my
@@ -775,8 +774,9 @@ insert straight double quotes instead."
 
 ;; See the Vertico README.
 
-(load-library "vertico")
-(vertico-mode)
+(use-package vertico
+  :init
+  (vertico-mode))
 
 (setq minibuffer-prompt-properties
       '(read-only t cursor-intangible t face minibuffer-prompt))
