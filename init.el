@@ -887,6 +887,15 @@ insert straight double quotes instead."
   ;; (setq consult-project-function nil)
 )
 
+;; Use `consult-completion-in-region' if Vertico is enabled.
+;; Otherwise use the default `completion--in-region' function.
+(setq completion-in-region-function
+      (lambda (&rest args)
+        (apply (if vertico-mode
+                   #'consult-completion-in-region
+                 #'completion--in-region)
+               args)))
+
 ;; A random setting that I'm trying out: leave highlights sitting around
 ;; when a search is done, as they provide a bit of visual context about
 ;; how I 'got here' in the code.  I used to find it intolerable to have
