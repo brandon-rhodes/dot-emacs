@@ -582,7 +582,7 @@ insert straight double quotes instead."
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
 
-;;(setq create-lockfiles nil)
+(setq create-lockfiles nil)
 
 ;; Format Go on each save.
 
