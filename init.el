@@ -869,6 +869,13 @@ insert straight double quotes instead."
 
 (setq auto-save-list-file-prefix nil)
 
+;; I can never remember that `l` is the Back button in a *Help* buffer,
+;; so this lets me instead use M-. and M-, to visit a link and then pop
+;; back out to where I was reading.
+
+(define-key help-mode-map (kbd "M-.") 'push-button)
+(define-key help-mode-map (kbd "M-,") 'help-go-back)
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)

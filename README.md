@@ -32,7 +32,7 @@ hopefully unlock a trove of information at http://emacswiki.org.
 ## Crib sheet
 
 Here are useful keystrokes that I need to remember here in Spring 2024,
-as I’m getting used to `eglot-mode`, which I have not used before:
+as I’m getting used to new tools like Consult and Eglot:
 
     eglot-code-actions  I should bind this to something (mouse already works).
     middle mouse   Brings up actions associated with the current line.
