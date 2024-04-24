@@ -265,24 +265,6 @@
 ;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
 
-;; When I press enter in rst-mode, the *previous* line gets wrongly
-;; re-indented.  This was supposed to have been fixed, says the docs, by
-;; the setting of electric-indent-inhibit in rst.el, but the problem is
-;; now happening for me on Emacs 24.5.1 so:
-
-(defun set-up-rst-mode ()
-  (make-local-variable 'indent-line-function)
-  (setq indent-line-function 'indent-relative)
-  (make-local-variable 'electric-indent-inhibit)
-  (setq electric-indent-inhibit t)
-
-  ;; And, while I am here, prevent its overwriting my ag bindings.
-  (local-set-key (kbd "M-a") 'ag-current-word)
-  (local-set-key (kbd "M-C-a") 'ag-project-regexp)
-  )
-
-(add-hook 'rst-mode-hook 'set-up-rst-mode)
-
 ;; Recognize Unicode curly apostrophe during spell checks, instead of
 ;; assuming it breaks contractions into two separate words.
 
