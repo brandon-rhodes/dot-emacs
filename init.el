@@ -146,6 +146,8 @@
 
 (add-hook 'python-mode-hook
   (lambda ()
+    (define-key python-mode-map (kbd "M-[") #'python-indent-shift-left)
+    (define-key python-mode-map (kbd "M-]") #'python-indent-shift-right)
     (setq outline-regexp " *\\(class\\|def\\) ")))
 
 ;; The "Eglot" language server library is now built-in to Emacs 29, so
@@ -508,28 +510,6 @@
 ;; "PageDn" keys.
 
 (autoload 'page-mode "page-mode" nil t)
-
-;; M-i and Shift-M-i indent currently highlighted region in and out,
-;; like Command-[ and Command-] do for my friends who use TextMate.
-
-(defun sustainable-shift-left ()
-  "Shift left, leaving the region active."
-  (interactive)
-  (let (deactivate-mark)
-    (call-interactively 'python-shift-left)))
-
-(defun sustainable-shift-right ()
-  "Shift right, leaving the region active."
-  (interactive)
-  (let (deactivate-mark)
-    (call-interactively 'python-shift-right)))
-
-(defun set-up-sustainable-shifts ()
-  (define-key python-mode-map (kbd "M-I") 'sustainable-shift-left)
-  (define-key python-mode-map (kbd "M-i") 'sustainable-shift-right)
-  (remove-hook 'python-mode-hook 'set-up-sustainable-shifts))
-
-;; (add-hook 'python-mode-hook 'set-up-sustainable-shifts)
 
 ;; Fix the fact that Emacs misinterprets Shift-Up from an xterm.
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
