@@ -428,52 +428,22 @@
 
 (global-set-key (kbd "C-x v g") 'magit-blame)
 
-;; Colorize the diff that "git commit -v" (which I alias as "git ci")
-;; includes when it asks me for a commit message by turning on Emacs
-;; "diff-mode", and properly display the already-colorized ANSI
-;; festooned diff that "hg ci" includes in the commit-message buffer.
+;; Colorize the diff that "git commit -v" (alias "git ci") includes in
+;; the "COMMIT_EDITMSG" file; and, prevent "M-q" (fill-paragraph) from
+;; mixing my text together with the git-generated comment that follows.
 
-(define-derived-mode hg-commit-mode text-mode
-  (setq mode-name "Hg-Commit")
+(define-derived-mode git-commit-mode diff-mode "Git-Commit"
+  (setq-local paragraph-start "#")
   (auto-fill-mode)
-  (if (executable-find "aspell")
-      (flyspell-mode))
-  (ansi-color-buffer))
+  (flyspell-mode))
 
-(add-to-list 'auto-mode-alist '("msg$" . hg-commit-mode))
-
-(defun ansi-color-buffer ()
-  "Replace all ANSI escape sequences in the current buffer with real colors."
-  (interactive)
-  (ansi-color-apply-on-region (point-min-marker) (point-max-marker)))
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . git-commit-mode))
 
 ;; A few other file extensions.
 
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.mako\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . text-mode))
-
-;; When I run "git commit", I always do it through an alias "git ci".
-;; (Which is what "commit" was always called when I used RCS, then CVS,
-;; then Subversion, then Mercurial, so I have quite a bit of muscle
-;; memory invested - and who would use a six-letter subcommand for
-;; something so critical, anyway?)  And my "git ci" is in fact aliased
-;; to "git commit -v" so that the buffer contains a diff of what I am
-;; about to commit, since only by quickly reviewing the diff can I
-;; reliably make sure that I do not, at the last moment of typing the
-;; command, accidentally committing more than I intended.  Anyway, the
-;; diffs were very hard to read, until I got the idea to turn on Emacs
-;; "diff" mode when editing a git "COMMIT_EDITMSG" file (see above), and
-;; now they look wonderful and are very easy to scan.  But it did cause
-;; one final problem: diff mode defines M-q as "quit window", kicking me
-;; out of the commit message every time I press the button to re-format
-;; the paragraph that I am writing about my commit.  Hence the following
-;; fix, which maps M-q back to where it belongs!
-
-(defun fix-meta-q ()
-  (define-key (current-local-map) (kbd "M-q") 'fill-paragraph))
-
-(add-hook 'diff-mode-hook 'fix-meta-q)
 
 ;; Have dired hide irrelevant files by default; this can be toggled
 ;; interactively with M-o.
