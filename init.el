@@ -432,12 +432,22 @@
 ;; the "COMMIT_EDITMSG" file; and, prevent "M-q" (fill-paragraph) from
 ;; mixing my text together with the git-generated comment that follows.
 
-(define-derived-mode git-commit-mode diff-mode "Git-Commit"
-  (setq-local paragraph-start "#")
-  (auto-fill-mode)
-  (flyspell-mode))
+(defface commit-plus-face
+  '((((class color)) :foreground "dark green"))
+  "Diff lines preceded with a plus.")
 
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . git-commit-mode))
+(setq commit-highlights
+      '(("^+.*" . 'commit-plus-face)
+        ("^-.*" . 'error)))
+
+(define-derived-mode commit-mode fundamental-mode "Commit Mode"
+  (setq-local font-lock-defaults '(commit-highlights))
+  (setq-local paragraph-start "#")
+  (setq-local show-trailing-whitespace nil)
+  (activate-smart-quotes)
+  (auto-fill-mode))
+
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . commit-mode))
 
 ;; A few other file extensions.
 
@@ -544,10 +554,12 @@ insert straight double quotes instead."
            (progn (delete-char -1) #x0022))
        (if (looking-back smart-quotes-left-context) #x201C #x201D))))
 
-(with-eval-after-load 'text-mode
-  (define-key text-mode-map "'" 'smart-quotes-insert-single)
-  (define-key text-mode-map "\"" 'smart-quotes-insert-double)
-  )
+(defun activate-smart-quotes ()
+  (interactive)
+  (local-set-key "'" 'smart-quotes-insert-single)
+  (local-set-key "\"" 'smart-quotes-insert-double))
+
+(add-hook 'text-mode-hook 'activate-smart-quotes)
 
 ;; Prevent Emacs from constantly creating and deleting ".#filename"
 ;; symlinks (requires Emacs 24.3, which is not yet the Ubuntu default).
