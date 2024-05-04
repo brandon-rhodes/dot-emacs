@@ -46,7 +46,7 @@ done
 
 #https://github.com/emacs-compat/compat
 
-if [ ! -f .venv/bin/activate ]
+if [ ! -f venv/bin/activate ]
 then
     uv venv venv
 fi
