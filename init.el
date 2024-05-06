@@ -68,6 +68,14 @@
  '(magit-item-highlight ((t nil)))
  '(quote (mode-line-highlight ((t nil)))))
 
+;; I tried turning vc-handled-backends back on, and then trying to
+;; disable all of the Emacs chatter of constantly running `git` with the
+;; following, but it didn't bring Emacs under control.  Alas.
+
+;; (eval-after-load "vc" '(remove-hook 'find-file-hook 'vc-refresh-state))
+;; (with-eval-after-load 'vc-hooks
+;;   (remove-hook 'find-file-hook 'vc-refresh-state))
+
 ;; The escape-glyph color (above) was designed to make longlines mode
 ;; easier for me to read by making the visible newline characters blend
 ;; into the background instead of standing visually in the way of the
