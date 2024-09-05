@@ -16,6 +16,13 @@ trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
 # Exit immediately if a command fails.
 set -ex
 
+# Verify Emacs version.
+if ! emacs --version | grep 'GNU Emacs 29'
+then
+    echo -e '\nWrong Emacs version; please install Emacs 29\n'
+    exit 1
+fi
+
 # Change directory to the directory containing this script.
 cd "$(dirname ${BASH_SOURCE[0]})"
 
