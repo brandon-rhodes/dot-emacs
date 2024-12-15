@@ -426,7 +426,13 @@
 ;;   (require 'magit) ;; only load magit in sessions where I use it
 ;;   (magit-blame))
 
-;; (global-set-key (kbd "C-x v g") 'magit-blame)
+(defun my-blame ()
+  (interactive)
+  (start-process "blame" "*Messages*" ",blame"
+                 (file-name-nondirectory (buffer-file-name))
+                 (number-to-string (line-number-at-pos))))
+
+(global-set-key (kbd "C-x v g") 'my-blame)
 
 ;; Colorize the diff that "git commit -v" (alias "git ci") includes in
 ;; the "COMMIT_EDITMSG" file; and, prevent "M-q" (fill-paragraph) from
