@@ -28,30 +28,38 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 
 mkdir -p third-party
 
-for i in \
-    "https://github.com/bling/fzf.el master" \
-    "https://github.com/emacs-compat/compat 29.1.4.5" \
-    "https://github.com/jscheid/dtrt-indent 1.17" \
-    "https://github.com/minad/consult 1.4" \
-    "https://github.com/minad/vertico 1.7"
+# To rebuild the 'sums' file that drives this loop, run:
+#
+# (cd third-party && sha256sum *.tar) > sums
+
+while read -r signature tarfile
 do
-    set -- $i
-    url=$1
-    version=$2
-    d=$(basename $url)
-    if [ ! -d third-party/$d ]
+    if [ ! -f third-party/$tarfile ]
     then
-        git clone \
-            --depth 1 \
-            --branch $version \
-            $url \
-            third-party/$d
-        emacs --batch --eval \
-              '(package-install-file "~/.emacs.d/third-party/'$d'")'
+        cd third-party
+        if [[ "$tarfile" == compat* ]]
+        then
+            url=https://elpa.gnu.org/packages
+        else
+            url=https://melpa.org/packages
+        fi
+        wget $url/$tarfile
+        cd ..
+    fi
+done < sums
+
+cd third-party
+sha256sum -c ../sums
+cd ..
+
+for tarfile in $(cd third-party && echo *.tar)
+do
+    package=${tarfile%.tar}
+    if [ ! -d elpa/$package ]
+    then
+        emacs --batch --eval '(package-install-file "third-party/'$tarfile'")'
     fi
 done
-
-#https://github.com/emacs-compat/compat
 
 if [ ! -f venv/bin/activate ]
 then
