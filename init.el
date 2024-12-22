@@ -719,7 +719,7 @@ insert straight double quotes instead."
          ;; M-s bindings in `search-map'
          ("M-s d" . consult-find)                  ;; Alternative: consult-fd
          ("M-s c" . consult-locate)
-         ("M-s g" . consult-grep)
+         ("M-s g" . consult-ripgrep)               ;; bcr: was consult-grep
          ("M-s G" . consult-git-grep)
          ("M-s r" . consult-ripgrep)
          ("M-s l" . consult-line)
