@@ -871,6 +871,25 @@ insert straight double quotes instead."
 (define-key help-mode-map (kbd "M-.") 'push-button)
 (define-key help-mode-map (kbd "M-,") 'help-go-back)
 
+;; Consult defines many "M-s" search actions, but leaves the crucial
+;; keystroke "M-s M-s" free for the end user.  Let's try using it for a
+;; project-wide ripgrep of the symbol at point.
+
+(defun consult-ripgrep-symbol-at-point (&optional dir)
+  (interactive "P")
+  (consult-ripgrep dir (pcre-word-delimit (thing-at-point 'symbol))))
+
+(global-set-key (kbd "M-s M-s") 'consult-ripgrep-symbol-at-point)
+
+;; I should come up with a keystroke that will let me try out Embark.
+
+;;(define-key global-map (kbd "C-c a") 'embark-act)
+
+;; Since "M-x" isn't useful in the minibuffer anyway, let's make it a
+;; shortcut to the Embark "export" command.
+
+(define-key minibuffer-local-map (kbd "M-x") 'embark-export)
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)
