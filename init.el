@@ -838,6 +838,12 @@ insert straight double quotes instead."
   ;; (setq consult-project-function nil)
 )
 
+;; The point of this is the "--sort path" at the end; the rest is pasted
+;; from the default value. (TODO: can I append it programmatically, so
+;; that the rest of the string doesn't go out of date?)
+
+(setq consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 --path-separator / --smart-case --no-heading --with-filename --line-number --search-zip --sort path")
+
 ;; Use `consult-completion-in-region' if Vertico is enabled.
 ;; Otherwise use the default `completion--in-region' function.
 (setq completion-in-region-function
