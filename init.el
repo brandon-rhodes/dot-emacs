@@ -77,7 +77,7 @@
 
 ;; TODO: look back over the packages I previously had selected:
 ;; '(package-selected-packages
-;;   '(git-link importmagic multiple-cursors magit json-mode go-mode fzf edit-server browse-kill-ring ag))
+;;   '(git-link importmagic multiple-cursors json-mode go-mode edit-server browse-kill-ring))
 
 ;; Essential Mac OS X keybindings, put here at the top so that they
 ;; get installed even if something later in this file fails.  My
@@ -101,15 +101,6 @@
 ;; starting with capital letters).
 
 (setq-default major-mode 'text-mode)
-
-;; Emacs had started hanging every time I started it, and I found this
-;; recommendation at http://spacemacs.org/doc/FAQ#orgheadline14 - it
-;; stops tramp mode (why does tramp mode, which I never use, get to run
-;; at startup?) from invoking SSH on an unknown hostname that my ISP
-;; apparently intercepts.
-
-(setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 ;; Ctrl-Tab and Shift-Ctrl-Tab switch between tabs in my browser.
 ;; To re-use that muscle memory, make them switch buffers in Emacs.
@@ -327,23 +318,16 @@
 
 (global-set-key "\C-m" 'newline-and-indent)
 
-;; Dedicated doctest mode.
-
-(add-to-list 'auto-mode-alist '("\\.doctest$" . doctest-mode))
-(autoload 'doctest-mode "doctest-mode" nil t)
-
 ;; Make the Tab key do something separate from C-i, which I want to keep
-;; at its default definition of "indent".
+;; at its default definition of "indent".  I used to do it this way:
 
 ;; (defun set-up-tabbing ()
 ;;   (setq local-function-key-map (delq '(kp-tab . [9]) local-function-key-map))
 ;;   (define-key (current-local-map) (kbd "<tab>") 'dabbrev-completion)
 ;;   (define-key (current-local-map) (kbd "C-i") 'indent-for-tab-command))
+;; (add-hook 'css-mode-hook 'set-up-tabbing) ...
 
-;; (add-hook 'css-mode-hook 'set-up-tabbing)
-;; (add-hook 'html-mode-hook 'set-up-tabbing)
-;; (add-hook 'js-mode-hook 'set-up-tabbing)
-;; (add-hook 'sh-mode-hook 'set-up-tabbing)
+;; --- but with modern Emacs it seems this is now sufficient?
 
 (defun set-up-tab-for-python ()
   (define-key (current-local-map) [tab] 'completion-at-point))
@@ -356,21 +340,6 @@
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
-;; Org mode reports should not use \emsp as their indent symbol.
-;; http://emacs.stackexchange.com/questions/9528/
-
-(defun my-org-clocktable-indent-string (level)
-  (if (= level 1)
-      ""
-    (let ((str ". "))
-      (while (> level 2)
-        (setq level (1- level)
-              str (concat str ". ")))
-      (concat str "» "))))
-
-(advice-add 'org-clocktable-indent-string
-            :override #'my-org-clocktable-indent-string)
-
 ;; Custom keywords.
 
 (setq org-todo-keywords
@@ -379,13 +348,7 @@
 (setq org-todo-keyword-faces
       '(("WONT" . "orange")))
 
-;; Magit
-
-;; (defun my-magit-blame ()
-;;   "Load magit and run its magnificent blame command."
-;;   (interactive)
-;;   (require 'magit) ;; only load magit in sessions where I use it
-;;   (magit-blame))
+;; Git blame.
 
 (defun my-blame ()
   (interactive)
@@ -457,21 +420,6 @@
 ;; "PageDn" keys.
 
 (autoload 'page-mode "page-mode" nil t)
-
-;; Fix the fact that Emacs misinterprets Shift-Up from an xterm.
-;; http://lists.gnu.org/archive/html/help-gnu-emacs/2011-05/msg00211.html
-;; I cannot get the above solution to work. A subsequent initialization
-;; setup seems to erase my input-decode-map adjustment, even if I run it
-;; in term-setup-hook! So I bind the offending key itself to the routine
-;; that replaces its definition. I should learn how to also make itself
-;; re-invoke the keystroke, but have spent enough time on this problem
-;; for the evening.
-
-(defun repair-shift-up ()
-  (interactive)
-  (define-key input-decode-map "\e[1;2A" [S-up]))
-
-(global-set-key [select] 'repair-shift-up)
 
 ;; Allow for hand-written calls to customization functions; they must
 ;; live in a separate file, since the Customize sub-system sometimes
@@ -567,21 +515,14 @@ insert straight double quotes instead."
   (add-hook 'python-mode-hook 'blacken-mode)
   )
 
-;; When selecting a file from dired, I'm usually there to just read, so
-;; "view" mode is far more convenient (it's like less(1): the spacebar
-;; pages down instead of adding a space to the file, et cetera).  I can
-;; press "e" to start editing if I really mean to modify the file.
-
-;;(define-key dired-mode-map (kbd "RET") 'dired-view-file)
-
 ;; Set the executable bit automatically.  This is going to save me SO
 ;; MUCH TIME!
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
-(setq js-indent-level 4)
+;; JavaScript
 
-(setq git-commit-filename-regexp "regex-that-never-matches-anything")
+(setq js-indent-level 4)
 
 ;; With much thanks to: https://www.emacswiki.org/emacs/RenumberList
 
