@@ -10,8 +10,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ag-arguments
-   '("--hidden" "--ignore" ".git" "--ignore" ".tox" "--smart-case" "--stats" "--width" "240"))
  '(auto-save-default nil)
  '(blacken-executable "~/.emacs.d/usr/bin/black")
  '(blacken-fast-unsafe t)
@@ -192,7 +190,7 @@
 
 (advice-add 'eldoc-display-in-buffer :after #'bcr-switch-to-eldoc-window)
 
-;; Search with "ag".
+;; Support routines for some "ripgrep" search functions below.
 
 (require 'thingatpt)
 
@@ -218,43 +216,6 @@
 ;; (pcre-word-delimit ".a")".a\\b"
 ;; (pcre-word-delimit "a.")"\\ba."
 ;; (pcre-word-delimit ".a.")".a."
-
-;; My own hand-tuned "ag" behavior: if the region is active, search for
-;; the text in the region; otherwise search for the symbol at point;
-;; otherwise prompt the user for a regular expression.  In the first two
-;; cases, if the pattern begins or ends with a letter than "\b" is
-;; prefixed or suffixed to constrain the results.
-
-(defun ag-word (word)
-  (ag-project-regexp (pcre-word-delimit (pcre-quote word)))
-  (other-window 1))
-
-(defun ag-current-word ()
-  (interactive)
-  (if (use-region-p)
-      (ag-word (buffer-substring (region-beginning) (region-end)))
-    (let ((word (thing-at-point 'symbol)))
-      (if word
-          (ag-word word)
-        (progn
-          (call-interactively 'ag-project-regexp)
-          (other-window 1))))))
-
-;; (global-set-key (kbd "M-a") 'ag-current-word)
-
-;; I like jumping automatically to compilation errors (see the stanza
-;; later in this file that mentions "recompile"), but I don't like
-;; jumping to whatever happens to be the first search result when "ag"
-;; uses compilation mode to present search results.  So in that case
-;; let's turn the setting off.
-
-(add-hook 'ag-mode-hook
-          (lambda ()
-            (make-local-variable 'compilation-auto-jump-to-first-error)
-            (setq compilation-auto-jump-to-first-error nil)
-            ))
-
-(require 'compile)
 
 ;; Never auto-split a frame into a left and right window.
 
