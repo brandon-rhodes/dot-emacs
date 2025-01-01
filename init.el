@@ -492,6 +492,7 @@ insert straight double quotes instead."
 ;; is producing paths relative to a directory, also set this locally:
 ;; (add-to-list 'compilation-search-path "/home/brhodes/livegrep")
 
+(require 'compile)  ;; otherwise, F5 prints "Wrong type argument: commandp"
 (global-set-key (kbd "<f5>") 'recompile)
 (setq compilation-auto-jump-to-first-error t)
 (setq compilation-scroll-output 'first-error)
