@@ -817,6 +817,15 @@ insert straight double quotes instead."
 
 (define-key minibuffer-local-map (kbd "M-x") 'embark-export)
 
+;; Have F5 commit my collection of text files.
+
+(dir-locals-set-class-variables 'auto-committing-directory
+   '((nil . ((compile-command . "$(git rev-parse --show-toplevel)/bin/commit")
+             ))))
+
+(dir-locals-set-directory-class
+   "/home/brandon/Plain" 'auto-committing-directory)
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)
