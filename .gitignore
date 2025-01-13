@@ -1,5 +1,7 @@
 /ac-comphist.dat
 /aspell-huge
 /local.el
-/straight/
+/straight/build/
+/straight/build-cache.el
+/straight/repos/
 /site-lisp/*.elc

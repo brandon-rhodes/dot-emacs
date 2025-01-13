@@ -1,0 +1,13 @@
+(("compat" . "6926fcc1c891d4ff677515c0eaadf84d3ab364b1")
+ ("consult" . "b73cea539029e66b1b8188a980231cd0af9291d6")
+ ("dtrt-indent" . "a8aa356684804c52f26602d4e315f1306c6f3e59")
+ ("el-get" . "c5ab1b334e6d0e1afcfc203fe460faed10c3e1ae")
+ ("emacsmirror-mirror" . "261977d33e84ec9f92a673b9ba2d3977f3edeb13")
+ ("fzf.el" . "641aef33c88df3733f13d559bcb2acc548a4a0c3")
+ ("gnu-elpa-mirror" . "c1792e74257d63ea3245d686f773db5127e5c123")
+ ("melpa" . "c3370b9fad4199e5c5c3e48f0606af2fd9744c82")
+ ("nongnu-elpa" . "c408a345c3d4b571585ad51ba0e8339795110c04")
+ ("seq" . "da86da9bf111f68fb81efd466d76d53af5aebc00")
+ ("straight.el" . "33fb4695066781c634ff1c3c81ba96e880deccf7")
+ ("vertico" . "c033c7149de510b4da9c473b31a6d73619868ce0"))
+:gamma

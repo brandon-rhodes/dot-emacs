@@ -26,40 +26,14 @@ fi
 # Change directory to the directory containing this script.
 cd "$(dirname ${BASH_SOURCE[0]})"
 
-mkdir -p third-party
+# Byte-compile plain Emacs LISP files.
+find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm
+emacs --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
 
-# To rebuild the 'sums' file that drives this loop, run:
-#
-# (cd third-party && sha256sum *.tar) > sums
+# Create empty local.el if none exists.
+if [ ! -f local.el ]; then touch local.el ;fi
 
-while read -r signature tarfile
-do
-    if [ ! -f third-party/$tarfile ]
-    then
-        cd third-party
-        if [[ "$tarfile" == compat* ]]
-        then
-            url=https://elpa.gnu.org/packages
-        else
-            url=https://melpa.org/packages
-        fi
-        wget $url/$tarfile
-        cd ..
-    fi
-done < sums
-
-cd third-party
-sha256sum -c ../sums
-cd ..
-
-for tarfile in $(cd third-party && echo *.tar)
-do
-    package=${tarfile%.tar}
-    if [ ! -d elpa/$package ]
-    then
-        emacs --batch --eval '(package-install-file "third-party/'$tarfile'")'
-    fi
-done
+# TODO: invoke straight.el for the first time to install packages.
 
 if [ ! -f venv/bin/activate ]
 then
@@ -97,76 +71,6 @@ uv pip install python-lsp-ruff==2.2.0 $(cat <<EOF
   typing-extensions==4.11.0
 EOF
 )
-
-exit
-
-
-
-# Emacs 24 can no longer install Magit from melpa, but Ubuntu supplies it!
-source /etc/lsb-release
-if [ "$DISTRIB_RELEASE" = "16.04" ]
-then
-    if ! dpkg -s elpa-magit
-    then
-        sudo apt install -y elpa-magit
-    fi
-fi
-
-# Change directory to the directory containing this script.
-cd "$(dirname ${BASH_SOURCE[0]})"
-
-# Create empty local.el if none exists.
-if [ ! -f local.el ]; then touch local.el ;fi
-
-# Unpack and install everything inside virtualenv named "~/.emacs/usr".
-USR=$PWD/usr
-
-rm -rf elpa $USR
-
-~/.pyenv/bin/pyenv install --skip-existing 3.6.8
-~/.pyenv/versions/3.6.8/bin/python src/virtualenv.py $USR
-source $USR/bin/activate
-
-pip install --upgrade 'pip<22' setuptools
-
-pip install -r /dev/stdin <<'END'
-black
-epc
-jedi
-pyflakes
-END
-
-# Install third-party Emacs packages.
-if [ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]
-then
-    EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
-elif [ -x /usr/bin/emacs26 ]
-then
-    EMACS=emacs26
-elif [ -x /usr/bin/emacs-gtk ]
-then
-    EMACS=emacs-gtk
-elif [ -x /usr/bin/emacs25 ]
-then
-    EMACS=emacs25
-else
-    EMACS=emacs
-fi
-
-$EMACS --script setup/phase1.el
-
-# Force update of elpa key.
-FINGERPRINT=066DAFCB81E42C40
-if ! gpg --homedir ~/.emacs.d/elpa/gnupg --list-keys $FINGERPRINT
-then
-    gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys $FINGERPRINT
-fi
-
-$EMACS --script setup/phase2.el
-
-# Byte-compile plain Emacs LISP files.
-find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm
-$EMACS --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
 
 echo
 echo
