@@ -1,5 +1,28 @@
 ;; Emacs configuration for Brandon Rhodes, who does lots of Python.
 
+(setq straight-use-package-by-default t)
+
+;; It feels unhappy to possibly have network use taking place merely by
+;; invoking Emacs on a new laptop, so, TODO: figure out how to replace
+;; this with something that won't ever do I/O, and then move this into a
+;; 'setup.el' that I can call only when I'm expecting to install packages.
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
 ;; Let's start with all the variables set through M-x customize-apropos.
 ;; I keep them here at the top of the file so that if a later error
 ;; prevents the rest of this file from being loaded, I at least get to
@@ -411,8 +434,9 @@
 
 ;; Make it easy to jump between files inside a project.
 
-(require 'fzf)
-(global-set-key (kbd "C-x C-r") 'fzf-git-files)
+(use-package fzf
+  :bind (("C-x C-r" . fzf-git-files))
+  )
 
 ;; I sometimes write presentations right in an Emacs buffer, with "^L"
 ;; separating the slides.  By turning on "page-mode", I can move between
@@ -555,7 +579,7 @@ insert straight double quotes instead."
 ;; Auto-detect C identation per-file (useful when working maintanence
 ;; work in the fairly heterogeneous XEphem and PyEphem code bases).
 
-(require 'dtrt-indent)
+(use-package dtrt-indent)
 (dtrt-indent-global-mode)
 
 ;; Inline evaluation of math expressions, without my having to fill my

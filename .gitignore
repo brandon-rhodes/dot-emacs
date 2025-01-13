@@ -1,7 +1,5 @@
-/third-party
-/transient
-ac-comphist.dat
-aspell-huge
-elpa/
-local.el
-site-lisp/*.elc
+/ac-comphist.dat
+/aspell-huge
+/local.el
+/straight/
+/site-lisp/*.elc
