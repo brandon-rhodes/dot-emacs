@@ -65,7 +65,7 @@
  '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total 'current)
  '(org-duration-format 'h:mm)
- '(org-startup-folded t)
+ '(org-startup-folded nil)
  '(org-startup-truncated nil)
  '(recenter-positions '(middle))
  '(safe-local-variable-values '((encoding . utf-8)))
