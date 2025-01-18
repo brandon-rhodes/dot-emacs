@@ -826,6 +826,12 @@ insert straight double quotes instead."
 (dir-locals-set-directory-class
    "/home/brandon/Plain" 'auto-committing-directory)
 
+;; I'm always opening a new file, adding a shebang line at the top, then
+;; having to somehow get the buffer into the correct mode for the shell
+;; or language on the shebang line.  So, a 'M = Mode' I/O command.
+
+(global-set-key (kbd "C-x C-m") 'normal-mode)
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)
