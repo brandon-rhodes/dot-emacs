@@ -832,6 +832,10 @@ insert straight double quotes instead."
 
 (global-set-key (kbd "C-x C-m") 'normal-mode)
 
+;; For providing links to source code in online discussions.
+
+(use-package git-link)
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)

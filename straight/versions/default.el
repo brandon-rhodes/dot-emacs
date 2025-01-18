@@ -4,6 +4,7 @@
  ("el-get" . "c5ab1b334e6d0e1afcfc203fe460faed10c3e1ae")
  ("emacsmirror-mirror" . "261977d33e84ec9f92a673b9ba2d3977f3edeb13")
  ("fzf.el" . "641aef33c88df3733f13d559bcb2acc548a4a0c3")
+ ("git-link" . "40f7b1674d2c703199ff2f82b464f17aa6f61b4b")
  ("gnu-elpa-mirror" . "c1792e74257d63ea3245d686f773db5127e5c123")
  ("melpa" . "c3370b9fad4199e5c5c3e48f0606af2fd9744c82")
  ("nongnu-elpa" . "c408a345c3d4b571585ad51ba0e8339795110c04")
