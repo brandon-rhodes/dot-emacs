@@ -808,9 +808,28 @@ insert straight double quotes instead."
 
 (global-set-key (kbd "M-s M-s") 'consult-ripgrep-symbol-at-point)
 
-;; I should come up with a keystroke that will let me try out Embark.
+;; Try out Embark, Marginalia, and wgrep together, like Jeremy talks about.
 
-;;(define-key global-map (kbd "C-c a") 'embark-act)
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
+
+(use-package embark
+  :ensure t
+  :bind
+  (("C-." . embark-act)
+   ("C-;" . embark-dwim)))
+
+(use-package embark-consult
+  :ensure t
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package wgrep
+  :ensure t
+  :init
+  (setq wgrep-enable-key "e"))
 
 ;; Since "M-x" isn't useful in the minibuffer anyway, let's make it a
 ;; shortcut to the Embark "export" command.
