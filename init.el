@@ -276,6 +276,9 @@
                     (set-variable 'js-indent-level 2))
                   (flyspell-prog-mode)))))
 
+(eval-after-load "flyspell"
+  '(define-key flyspell-mode-map (kbd "C-.") nil))
+
 ;; Only 2 space indents for JSON.  It is just data, after all.
 
 (add-hook 'json-mode-hook
