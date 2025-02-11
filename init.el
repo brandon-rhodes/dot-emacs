@@ -392,9 +392,13 @@
   '((((class color)) :foreground "dark green"))
   "Diff lines preceded with a plus.")
 
+(defface commit-minus-face
+  '((((class color)) :foreground "dark red"))
+  "Diff lines preceded with a plus.")
+
 (setq commit-highlights
       '(("^+.*" . 'commit-plus-face)
-        ("^-.*" . 'error)))
+        ("^-.*" . 'commit-minus-face)))
 
 (define-derived-mode commit-mode fundamental-mode "Commit Mode"
   (setq-local font-lock-defaults '(commit-highlights))
