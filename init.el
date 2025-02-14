@@ -868,9 +868,12 @@ insert straight double quotes instead."
 ;;(use-package modus-themes)
 
 (defun bcr-run-random (items)
-  (let* ((size (length items))
-         (index (random size)))
-    (eval (nth index items))))
+  (when (display-graphic-p)
+    (let* ((size (length items))
+           (index (random size))
+           (theme (nth index items)))
+      (message "%s" theme)
+      (eval theme))))
 
 (bcr-run-random
  '(
