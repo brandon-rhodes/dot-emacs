@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Plain/todo"
+(("cheat-sheet"
+ (filename . "~/local/texts/cheat-sheet")
+ (front-context-string . "\nBrandon’s UNIX ")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26544 50767 416951 383000))
+("Plain/todo"
  (filename . "~/Plain/todo")
  (front-context-string . "\nFind temperatur")
  (rear-context-string)
