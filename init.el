@@ -398,7 +398,8 @@
 
 (setq commit-highlights
       '(("^+.*" . 'commit-plus-face)
-        ("^-.*" . 'commit-minus-face)))
+        ("^-.*" . 'commit-minus-face)
+        ("^#.*" . 'font-lock-comment-face)))
 
 (define-derived-mode commit-mode fundamental-mode "Commit Mode"
   (setq-local font-lock-defaults '(commit-highlights))
