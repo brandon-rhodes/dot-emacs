@@ -878,24 +878,24 @@ insert straight double quotes instead."
 
 (bcr-run-random
  '(
-   (load-theme 'adwaita)
-   (load-theme 'deeper-blue)
-   (load-theme 'dichromacy)
-   (load-theme 'leuven-dark)
-   (load-theme 'leuven)
-   (load-theme 'light-blue)
-   (load-theme 'manoj-dark)
-   (load-theme 'misterioso)
-   (load-theme 'modus-operandi)
-   (load-theme 'modus)
-   (load-theme 'modus-vivendi)
-   (load-theme 'tango-dark)
-   (load-theme 'tango)
-   (load-theme 'tsdh-dark)
-   (load-theme 'tsdh-light)
+   ;; (load-theme 'adwaita)
+   ;; (load-theme 'deeper-blue)
+   (load-theme 'dichromacy)  ; bright, but contrast isn't very high?
+   ;; (load-theme 'leuven-dark)
+   (load-theme 'leuven)  ; kind of fun; but green text color lacks contrast?
+   ;; (load-theme 'light-blue)
+   ;; (load-theme 'manoj-dark)
+   ;; (load-theme 'misterioso)
+   (load-theme 'modus-operandi)  ; pretty nice
+   ;; (load-theme 'modus)  (no such theme)
+   ;; (load-theme 'modus-vivendi)
+   ;; (load-theme 'tango-dark)
+   ;; (load-theme 'tango)  ; too gray, not enough contrast
+   ;; (load-theme 'tsdh-dark)
+   (load-theme 'tsdh-light)  ; kind of nice!
    (load-theme 'wheatgrass)
-   (load-theme 'whiteboard)
-   (load-theme 'wombat)
+   (load-theme 'whiteboard)  ; decent; colors a bit lackluster; contrast low
+   ;; (load-theme 'wombat)
    ))
 
 ;; Uncomment this line to receive a traceback on error:
