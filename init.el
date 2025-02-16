@@ -863,6 +863,11 @@ insert straight double quotes instead."
 
 (use-package git-link)
 
+;; For the fill-paragraph (M-q) command, recognize a (possibly indented)
+;; checkbox `[ ]` or `[X]` or `[.]` as the beginning of a paragraph.
+
+(setq paragraph-start "\f\\|[ \t]*$\\| *\\[[ .X]\\] ")
+
 ;; Theme.
 
 ;;(use-package gruvbox-theme)
