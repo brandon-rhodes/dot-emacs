@@ -868,6 +868,12 @@ insert straight double quotes instead."
 
 (setq paragraph-start "\f\\|[ \t]*$\\| *\\[[ .X]\\] ")
 
+;; And, indent the paragraph that starts with `[ ]`.  (This is the
+;; standard RE for this value in Emacs, with my pattern added.)
+
+(setq adaptive-fill-regexp
+      "[ 	]*\\([-–!|#%;>*·•‣⁃◦]+[ 	]*\\|\\[ ] +\\)*")
+
 ;; Theme.
 
 ;;(use-package gruvbox-theme)

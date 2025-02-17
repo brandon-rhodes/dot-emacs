@@ -10,6 +10,7 @@
  ("gnu-elpa-mirror" . "c1792e74257d63ea3245d686f773db5127e5c123")
  ("marginalia" . "5282d5755ad1098c1f06113bf9180fd26450b92a")
  ("melpa" . "c3370b9fad4199e5c5c3e48f0606af2fd9744c82")
+ ("modus-themes" . "610ae60123707c4669651b8da3308e9c54b83620")
  ("nongnu-elpa" . "c408a345c3d4b571585ad51ba0e8339795110c04")
  ("seq" . "da86da9bf111f68fb81efd466d76d53af5aebc00")
  ("straight.el" . "33fb4695066781c634ff1c3c81ba96e880deccf7")

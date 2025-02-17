@@ -37,7 +37,7 @@ if [ ! -f local.el ]; then touch local.el ;fi
 
 if [ ! -f venv/bin/activate ]
 then
-    uv venv venv
+    uv venv --python 3.12 venv
 fi
 source venv/bin/activate
 
