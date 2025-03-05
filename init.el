@@ -882,7 +882,7 @@ insert straight double quotes instead."
 
 ;; Theme.
 
-;;(use-package gruvbox-theme)
+(use-package gruvbox-theme)
 ;;(use-package modus-themes)
 
 (defun bcr-run-random (items)
@@ -900,6 +900,7 @@ insert straight double quotes instead."
    (load-theme 'dichromacy)  ; bright, but contrast isn't very high?
    ;; (load-theme 'leuven-dark)
    (load-theme 'leuven)  ; kind of fun; but green text color lacks contrast?
+                         ; and highlight color is barely-visible yellow bg
    ;; (load-theme 'light-blue)
    ;; (load-theme 'manoj-dark)
    ;; (load-theme 'misterioso)
@@ -910,9 +911,12 @@ insert straight double quotes instead."
    ;; (load-theme 'tango)  ; too gray, not enough contrast
    ;; (load-theme 'tsdh-dark)
    (load-theme 'tsdh-light)  ; kind of nice!
-   (load-theme 'wheatgrass)
+   ;; (load-theme 'wheatgrass)
    (load-theme 'whiteboard)  ; decent; colors a bit lackluster; contrast low
    ;; (load-theme 'wombat)
+   ;; (load-theme 'gruvbox-light-medium)
+   ;; (load-theme 'gruvbox-light-soft)
+   (load-theme 'gruvbox-light-hard)
    ))
 
 ;; Uncomment this line to receive a traceback on error:
