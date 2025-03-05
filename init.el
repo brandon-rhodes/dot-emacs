@@ -638,7 +638,8 @@ insert straight double quotes instead."
 ;; Experiment with the built-in completion techniques before trying
 ;; something external like "orderless".
 
-(setq completion-styles '(basic substring partial-completion flex)
+(setq ;completion-styles '(basic substring partial-completion flex)
+      completion-styles '(flex)
       read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t)
