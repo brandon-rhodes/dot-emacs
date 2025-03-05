@@ -875,6 +875,11 @@ insert straight double quotes instead."
 (setq adaptive-fill-regexp
       "[ 	]*\\([-–!|#%;>*·•‣⁃◦]+[ 	]*\\|\\[ ] +\\)*")
 
+;; Look up a word in the dictionary (thus 'dictd' in ,setup-ubuntu script).
+;; James Somers waxes poetic about Websters: http://jsomers.net/blog/dictionary
+
+(define-key text-mode-map (kbd "M-.") 'dictionary-lookup-definition)
+
 ;; Theme.
 
 ;;(use-package gruvbox-theme)
