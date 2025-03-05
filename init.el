@@ -880,6 +880,10 @@ insert straight double quotes instead."
 
 (define-key text-mode-map (kbd "M-.") 'dictionary-lookup-definition)
 
+;; In text-mode, finally try out that Emacs abbrev feature I've always ignored.
+
+(add-hook 'text-mode-hook #'abbrev-mode)
+
 ;; Theme.
 
 (use-package gruvbox-theme)
