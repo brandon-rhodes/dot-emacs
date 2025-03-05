@@ -92,6 +92,7 @@
     ("Undomiel" "Undómiel" nil :count 1)
     ("Widfara" "Wídfara" nil :count 1)
     ("asea" "asëa" nil :count 1)
+    ("cafe" "café" nil :count 2)
     ("dun-udan" "dún-udan" nil :count 1)
     ("eored" "éored" nil :count 1)
     ("ghash" "ghâsh" nil :count 1)
@@ -103,5 +104,6 @@
     ("resume" "résumé" nil :count 1)
     ("simbelmyne" "simbelmynë" nil :count 1)
     ("teh" "the" nil :count 1)
+    ("weel" "well" nil :count 1)
    ))
 
