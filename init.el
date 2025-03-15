@@ -71,6 +71,7 @@
  '(safe-local-variable-values '((encoding . utf-8)))
  '(scroll-preserve-screen-position t)
  '(search-default-mode 'char-fold-to-regexp)
+ '(search-whitespace-regexp "[ \11\12]+")
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
