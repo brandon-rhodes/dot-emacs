@@ -906,26 +906,26 @@ insert straight double quotes instead."
  '(
    ;; (load-theme 'adwaita)
    ;; (load-theme 'deeper-blue)
-   (load-theme 'dichromacy)  ; bright, but contrast isn't very high?
+   (load-theme 'dichromacy)  ; bright; makes me happy when I see it
    ;; (load-theme 'leuven-dark)
-   (load-theme 'leuven)  ; kind of fun; but green text color lacks contrast?
-                         ; and highlight color is barely-visible yellow bg
+   ;; (load-theme 'leuven)  ; kind of fun; but green text color lacks contrast?
+   ;;                       ; and highlight color is barely-visible yellow bg
    ;; (load-theme 'light-blue)
    ;; (load-theme 'manoj-dark)
    ;; (load-theme 'misterioso)
-   (load-theme 'modus-operandi)  ; pretty nice
+   ;; (load-theme 'modus-operandi)  ; pretty nice
    ;; (load-theme 'modus)  (no such theme)
    ;; (load-theme 'modus-vivendi)
    ;; (load-theme 'tango-dark)
    ;; (load-theme 'tango)  ; too gray, not enough contrast
    ;; (load-theme 'tsdh-dark)
-   (load-theme 'tsdh-light)  ; kind of nice!
+   ;; (load-theme 'tsdh-light)  ; kind of nice!
    ;; (load-theme 'wheatgrass)
-   (load-theme 'whiteboard)  ; decent; colors a bit lackluster; contrast low
+   ;; (load-theme 'whiteboard)  ; decent; colors a bit lackluster; contrast low
    ;; (load-theme 'wombat)
    ;; (load-theme 'gruvbox-light-medium)
    ;; (load-theme 'gruvbox-light-soft)
-   (load-theme 'gruvbox-light-hard)
+   ;; (load-theme 'gruvbox-light-hard)  ; very pretty
    ))
 
 ;; Uncomment this line to receive a traceback on error:
