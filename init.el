@@ -51,12 +51,10 @@
    '("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm"
      "pnm"))
  '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
  '(kill-do-not-save-duplicates t)
  '(line-number-mode t)
  '(longlines-show-hard-newlines t)
  '(make-backup-files nil)
- '(menu-bar-mode nil)
  '(mode-line-format
    '("%e" mode-line-front-space mode-line-mule-info mode-line-client
      mode-line-modified mode-line-frame-identification
@@ -79,7 +77,6 @@
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
- '(tool-bar-mode nil)
  '(tooltip-mode nil)
  '(uniquify-buffer-name-style 'forward nil (uniquify))
  '(use-file-dialog nil)
@@ -898,45 +895,6 @@ insert straight double quotes instead."
 ;; https://lists.gnu.org/archive/html/emacs-orgmode/2023-04/msg00421.html
 
 (add-hook 'org-persist-before-write-hook (lambda (&rest _args) t) nil t)
-
-;; Theme.
-
-(use-package gruvbox-theme)
-;;(use-package modus-themes)
-
-(defun bcr-run-random (items)
-  (when (display-graphic-p)
-    (let* ((size (length items))
-           (index (random size))
-           (theme (nth index items)))
-      (message "%s" theme)
-      (eval theme))))
-
-(bcr-run-random
- '(
-   ;; (load-theme 'adwaita)
-   ;; (load-theme 'deeper-blue)
-   (load-theme 'dichromacy)  ; bright; makes me happy when I see it
-   ;; (load-theme 'leuven-dark)
-   ;; (load-theme 'leuven)  ; kind of fun; but green text color lacks contrast?
-   ;;                       ; and highlight color is barely-visible yellow bg
-   ;; (load-theme 'light-blue)
-   ;; (load-theme 'manoj-dark)
-   ;; (load-theme 'misterioso)
-   ;; (load-theme 'modus-operandi)  ; pretty nice
-   ;; (load-theme 'modus)  (no such theme)
-   ;; (load-theme 'modus-vivendi)
-   ;; (load-theme 'tango-dark)
-   ;; (load-theme 'tango)  ; too gray, not enough contrast
-   ;; (load-theme 'tsdh-dark)
-   ;; (load-theme 'tsdh-light)  ; kind of nice!
-   ;; (load-theme 'wheatgrass)
-   ;; (load-theme 'whiteboard)  ; decent; colors a bit lackluster; contrast low
-   ;; (load-theme 'wombat)
-   ;; (load-theme 'gruvbox-light-medium)
-   ;; (load-theme 'gruvbox-light-soft)
-   ;; (load-theme 'gruvbox-light-hard)  ; very pretty
-   ))
 
 ;; Uncomment this line to receive a traceback on error:
 
