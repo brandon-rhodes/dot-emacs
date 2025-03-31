@@ -63,8 +63,11 @@
      mode-line-buffer-identification "   " mode-line-position "  "
      mode-name mode-line-misc-info mode-line-end-spaces))
  '(mouse-yank-at-point t)
+ '(org-babel-load-languages
+   '((awk . t) (dot . t) (emacs-lisp . t) (python . t) (shell . t)))
  '(org-clock-into-drawer nil)
  '(org-clock-mode-line-total 'current)
+ '(org-confirm-babel-evaluate nil)
  '(org-duration-format 'h:mm)
  '(org-startup-folded t)
  '(org-startup-truncated nil)
