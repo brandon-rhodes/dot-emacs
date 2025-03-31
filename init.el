@@ -244,42 +244,11 @@
 ;; (global-set-key (kbd "M-n") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "M-p") 'mc/unmark-next-like-this)
 
-;; Recognize Unicode curly apostrophe during spell checks, instead of
-;; assuming it breaks contractions into two separate words.
+;; Spell checking.
 
-(setq ispell-local-dictionary-alist
-      '(("english" "[[:alpha:]]" "[^[:alpha:]]" "['’]" t ("-d" "en") nil utf-8)
-        ))
-
-(setq ispell-dictionary "english")
-
-;; I'm not sure why the following didn't work for recognizing curly
-;; single quotes in ispell; the change it makes never seems to show up
-;; in the alist?  Leaving it here as a mystery so that I don't forget
-;; the syntax:
-
-;; (setf (alist-get "english" ispell-dictionary-alist nil nil 'equal)
-;;       '("[[:alpha:]]" "[^[:alpha:]]" "'’" t ("-d" "en") nil utf-8))
-
-;; Flyspell to check my spelling and underline possible mistakes.
-;; Thanks to http://stackoverflow.com/questions/8332163/
-
-(if (executable-find "aspell")
-    (progn
-      (add-hook 'message-mode-hook 'turn-on-flyspell)
-      (add-hook 'rst-mode-hook 'turn-on-flyspell)
-      (add-hook 'text-mode-hook 'turn-on-flyspell)
-
-      ;; (add-hook 'python-mode-hook (lambda () (flyspell-prog-mode)))
-      (add-hook 'js-mode-hook
-                (lambda ()
-                  (when (string-match-p "^  [A-Za-z]" (buffer-string))
-                    (make-variable-buffer-local 'js-indent-level)
-                    (set-variable 'js-indent-level 2))
-                  (flyspell-prog-mode)))))
-
-(eval-after-load "flyspell"
-  '(define-key flyspell-mode-map (kbd "C-.") nil))
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)))
 
 ;; Only 2 space indents for JSON.  It is just data, after all.
 
@@ -299,48 +268,6 @@
     (fill-paragraph nil region)))
 
 (define-key global-map "\M-Q" 'unfill-paragraph)
-
-;; Ispell should stop suggesting that it can cure a misspelling by
-;; splitting a word into two quite different words.
-
-(require 'cl)                       ; for Common List remove-if function
-
-(defun contains-space-p (s)
-  "Determine whether a given string contains spaces."
-  (string-match-p " " s))
-
-(defadvice ispell-parse-output (after remove-multi-words activate)
-  "Remove multi-word suggestions from ispell-style output."
-  (if (listp ad-return-value)
-      (setq ad-return-value
-            (list (nth 0 ad-return-value) ;; original word
-                  (nth 1 ad-return-value) ;; offset in file
-                  (remove-if 'contains-space-p (nth 2 ad-return-value))
-                  (remove-if 'contains-space-p (nth 3 ad-return-value))
-                  ))))
-
-;; Spell-check the whole buffer upon entry (thanks, Ryan McGuire!)
-;; unless it is really huge.
-
-(defadvice flyspell-mode
-  (after advice-flyspell-check-buffer-on-start activate)
-  (if (< (buffer-size) 40000)
-      (flyspell-buffer)))
-
-;; Use an alternative dictionary, if available (see ./SETUP-spell.sh).
-;; The "sug-mode" suggested by http://emacswiki.org/emacs/InteractiveSpell
-
-(if (and (executable-find "aspell")
-         (file-exists-p "~/.emacs.d/aspell-huge"))
-    (progn
-      (setq ispell-program-name "aspell")
-      (setq ispell-extra-args
-            (list
-             ;; The --local-data-dir option is necessary because of:
-             ;; https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=772415
-             "--local-data-dir=/usr/lib/aspell"
-             (concat "--master=" (expand-file-name "~/.emacs.d/aspell-huge"))
-             " --sug-mode=ultra"))))
 
 ;; Pressing Enter should go ahead and indent the new line.
 

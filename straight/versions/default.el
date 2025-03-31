@@ -8,6 +8,7 @@
  ("fzf.el" . "641aef33c88df3733f13d559bcb2acc548a4a0c3")
  ("git-link" . "40f7b1674d2c703199ff2f82b464f17aa6f61b4b")
  ("gnu-elpa-mirror" . "c1792e74257d63ea3245d686f773db5127e5c123")
+ ("jinx" . "bd0b4673eb2b3bbddd7814e7b61128acb644615b")
  ("marginalia" . "5282d5755ad1098c1f06113bf9180fd26450b92a")
  ("melpa" . "c3370b9fad4199e5c5c3e48f0606af2fd9744c82")
  ("nongnu-elpa" . "c408a345c3d4b571585ad51ba0e8339795110c04")
