@@ -893,6 +893,12 @@ insert straight double quotes instead."
 
 (add-hook 'text-mode-hook #'abbrev-mode)
 
+;; Try to avoid this warning:
+;; Emacs reader failed to read data in "/home/brandon/.cache/org-persist/gc-lock.eld". The error was: "End of file during parsing"
+;; https://lists.gnu.org/archive/html/emacs-orgmode/2023-04/msg00421.html
+
+(add-hook 'org-persist-before-write-hook (lambda (&rest _args) t) nil t)
+
 ;; Theme.
 
 (use-package gruvbox-theme)
