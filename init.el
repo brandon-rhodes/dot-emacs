@@ -98,8 +98,6 @@
 ;; > chroma.mix('#b58900', '#fdf6e3').hex()
 ;; < "#d9c072"
 
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp")
-
 ;; TODO: look back over the packages I previously had selected:
 ;; '(package-selected-packages
 ;;   '(git-link importmagic multiple-cursors json-mode go-mode edit-server browse-kill-ring))

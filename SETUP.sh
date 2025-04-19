@@ -26,10 +26,6 @@ fi
 # Change directory to the directory containing this script.
 cd "$(dirname ${BASH_SOURCE[0]})"
 
-# Byte-compile plain Emacs LISP files.
-find ~/.emacs.d/site-lisp -name '*.elc' | xargs -r rm
-emacs --batch -f batch-byte-compile ~/.emacs.d/site-lisp/*.el
-
 # Create empty local.el if none exists.
 if [ ! -f local.el ]; then touch local.el ;fi
 
