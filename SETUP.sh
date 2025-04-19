@@ -17,9 +17,10 @@ trap '{ set +x; } 2>/dev/null && make_it_more_obvious_we_failed' 0
 set -ex
 
 # Verify Emacs version.
-if ! emacs --version | grep 'GNU Emacs 29'
+expected="GNU Emacs 30.1"
+if [ "$(emacs --version | head -1)" != "$expected" ]
 then
-    echo -e '\nWrong Emacs version; please install Emacs 29\n'
+    echo -e "\nWrong Emacs version; please install $expected\n"
     exit 1
 fi
 
