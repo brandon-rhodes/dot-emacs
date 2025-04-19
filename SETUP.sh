@@ -30,7 +30,22 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 # Create empty local.el if none exists.
 if [ ! -f local.el ]; then touch local.el ;fi
 
-# TODO: invoke straight.el for the first time to install packages.
+# Run 'init.el' so that 'straight.el' can download any new packages.
+
+emacs --batch --load init.el
+
+# Load 'Jinx' spell checker with "CC" reset; otherwise, Jinx incorrectly
+# tries to run "ccache cc" as a binary with a space in its name.
+
+if ! dpkg -s libenchant-2-dev >/dev/null 2>&1
+then
+    echo -e "\nError: install libenchant-2-dev so Emacs can compile Jinx\n"
+    exit 1
+fi
+
+CC=cc emacs --batch --load init.el --eval '(jinx-mode)'
+
+# Create virtual environment which will run Python LSP and Ruff.
 
 if [ ! -f venv/bin/activate ]
 then
