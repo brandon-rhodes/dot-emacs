@@ -815,6 +815,11 @@ insert straight double quotes instead."
 
 (add-hook 'text-mode-hook #'abbrev-mode)
 
+;; Reload images automatically, to help me iterate quickly when working
+;; on Graphviz images in org-mode.
+
+(add-hook 'image-mode-hook 'auto-revert-mode)
+
 ;; Try to avoid this warning:
 ;; Emacs reader failed to read data in "/home/brandon/.cache/org-persist/gc-lock.eld". The error was: "End of file during parsing"
 ;; https://lists.gnu.org/archive/html/emacs-orgmode/2023-04/msg00421.html
