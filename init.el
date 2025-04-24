@@ -287,10 +287,6 @@
 
 (add-hook 'python-mode-hook 'set-up-tab-for-python)
 
-;; And let's try out that new Emacs 30.1 completion mode.
-
-(add-hook 'python-mode-hook 'completion-preview-mode)
-
 ;; Org mode should display totals in hours, not days-and-hours.
 ;; http://stackoverflow.com/questions/17929979/
 
