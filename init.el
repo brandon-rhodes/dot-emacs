@@ -716,13 +716,6 @@ insert straight double quotes instead."
                  #'completion--in-region)
                args)))
 
-;; A random setting that I'm trying out: leave highlights sitting around
-;; when a search is done, as they provide a bit of visual context about
-;; how I 'got here' in the code.  I used to find it intolerable to have
-;; dangling highlighting, so I might have become less rigid over time.
-
-(setq lazy-highlight-cleanup nil)
-
 ;; Don't create `~/.emacs.d/auto-save-list/`.
 
 (setq auto-save-list-file-prefix nil)
