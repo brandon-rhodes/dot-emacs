@@ -800,9 +800,14 @@ insert straight double quotes instead."
 
 (define-key text-mode-map (kbd "M-.") 'dictionary-lookup-definition)
 
-;; In text-mode, finally try out that Emacs abbrev feature I've always ignored.
+;; In text-mode, try out the Emacs 'abbrev' feature I've always ignored.
+;; But remove all the unexpected mode-defined abbrevs in RST mode.
 
 (add-hook 'text-mode-hook #'abbrev-mode)
+(add-hook 'rst-mode-hook
+          (lambda ()
+            (clear-abbrev-table rst-mode-abbrev-table)
+            (setq abbrevs-changed nil)))
 
 ;; Reload images automatically, to help me iterate quickly when working
 ;; on Graphviz images in org-mode.
