@@ -814,6 +814,11 @@ insert straight double quotes instead."
 
 (add-hook 'image-mode-hook 'auto-revert-mode)
 
+;; Load supplementary bookmarks.
+
+(when (file-exists-p "/home/brandon/Plain/bookmarks")
+  (bookmark-load "/home/brandon/Plain/bookmarks"))
+
 ;; Try to avoid this warning:
 ;; Emacs reader failed to read data in "/home/brandon/.cache/org-persist/gc-lock.eld". The error was: "End of file during parsing"
 ;; https://lists.gnu.org/archive/html/emacs-orgmode/2023-04/msg00421.html
