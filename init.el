@@ -511,8 +511,8 @@ insert straight double quotes instead."
 (remove-hook 'org-cycle-hook
              #'org-optimize-window-after-visibility-change)
 
-;; Auto-detect C identation per-file (useful when working maintanence
-;; work in the fairly heterogeneous XEphem and PyEphem code bases).
+;; Auto-detect C indentation per-file (useful when doing maintenance in
+;; the fairly heterogeneous XEphem and PyEphem code bases).
 
 (use-package dtrt-indent)
 (dtrt-indent-global-mode)
