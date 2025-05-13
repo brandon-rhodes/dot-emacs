@@ -159,8 +159,9 @@
 
 (add-hook 'python-mode-hook
   (lambda ()
-    (define-key python-mode-map (kbd "M-[") #'python-indent-shift-left)
-    (define-key python-mode-map (kbd "M-]") #'python-indent-shift-right)
+    ;; TODO: whoops, this breaks 'ESC [ O' and 'ESC [ I' terminal ANSI codes!
+    ;; (define-key python-mode-map (kbd "M-[") #'python-indent-shift-left)
+    ;; (define-key python-mode-map (kbd "M-]") #'python-indent-shift-right)
     (setq outline-regexp " *\\(class\\|def\\) ")))
 
 ;; The "Eglot" language server library is now built-in to Emacs 29, so
