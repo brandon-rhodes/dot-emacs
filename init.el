@@ -67,6 +67,7 @@
  '(org-clock-mode-line-total 'current)
  '(org-confirm-babel-evaluate nil)
  '(org-duration-format 'h:mm)
+ '(org-return-follows-link t)
  '(org-startup-folded t)
  '(org-startup-truncated nil)
  '(recenter-positions '(middle))
