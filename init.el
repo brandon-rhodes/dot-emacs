@@ -38,6 +38,7 @@
  '(blacken-fast-unsafe t)
  '(blacken-skip-string-normalization t)
  '(blink-cursor-mode nil)
+ '(bookmark-fringe-mark nil)
  '(c-default-style
    '((c-mode . "k&r") (c++-mode . "k&r") (java-mode . "java")
      (awk-mode . "awk") (other . "gnu")))
