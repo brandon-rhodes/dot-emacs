@@ -826,6 +826,12 @@ insert straight double quotes instead."
 
 (add-hook 'org-persist-before-write-hook (lambda (&rest _args) t) nil t)
 
+;; This only works if placed fairly late in this init file.  (Why?)
+
+(when this-is-termux
+  (custom-set-faces
+   '(highlight ((t (:background "brightblack"))))))
+
 ;; Uncomment this line to receive a traceback on error:
 
 ;;(setq debug-on-error t)
