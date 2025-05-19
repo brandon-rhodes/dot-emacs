@@ -168,8 +168,10 @@
 ;; The "Eglot" language server library is now built-in to Emacs 29, so
 ;; let's try out "pylsp" from "python-lsp-server" (see SETUP.sh).
 
-(add-hook 'python-mode-hook 'eglot-ensure)
-(add-to-list 'exec-path "~/.emacs.d/venv/bin")  ; so it finds `pylsp`
+(unless this-is-termux
+  (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-to-list 'exec-path "~/.emacs.d/venv/bin")  ; so it finds `pylsp`
+  )
 
 ;; To debug `pylsp`, for instance after editing `~/.config/pycodestyle`:
 
