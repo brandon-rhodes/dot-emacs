@@ -52,6 +52,11 @@
    '("png" "jpeg" "jpg" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm"
      "pnm"))
  '(indent-tabs-mode nil)
+ '(jinx-include-faces
+   '((prog-mode font-lock-comment-face font-lock-doc-face
+                font-lock-string-face)
+     (conf-mode font-lock-comment-face font-lock-string-face)))
+ '(jinx-menu-suggestions 3)
  '(kill-do-not-save-duplicates t)
  '(line-number-mode t)
  '(longlines-show-hard-newlines t)
