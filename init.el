@@ -320,9 +320,11 @@
 
 (defun my-blame ()
   (interactive)
-  (start-process "blame" "*Messages*" ",blame"
-                 (file-name-nondirectory (buffer-file-name))
-                 (number-to-string (line-number-at-pos))))
+  (start-process "blame" "*Messages*" ",tig"
+                 "blame"
+                 (concat "+" (number-to-string (line-number-at-pos)))
+                 "--"
+                 (file-name-nondirectory (buffer-file-name))))
 
 (global-set-key (kbd "C-x v g") 'my-blame)
 
