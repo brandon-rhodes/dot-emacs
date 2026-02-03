@@ -1,5 +1,10 @@
 ;; Emacs configuration for Brandon Rhodes, who does lots of Python.
 
+;; Flag that indicates whether we are running under Termux.
+;; (Duplicated from `early-init.el`, for the case where `init.el` is
+;; invoked directly from `SETUP.sh`.)
+(setq this-is-termux (string-match-p "android" operating-system-release))
+
 (setq straight-use-package-by-default t)
 
 ;; It feels unhappy to possibly have network use taking place merely by
