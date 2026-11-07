@@ -86,6 +86,7 @@
  '(scroll-preserve-screen-position t)
  '(search-default-mode 'char-fold-to-regexp)
  '(search-whitespace-regexp "[ \11\12]+")
+ '(select-enable-clipboard nil)
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
@@ -837,6 +838,31 @@ insert straight double quotes instead."
 ;; https://lists.gnu.org/archive/html/emacs-orgmode/2023-04/msg00421.html
 
 (add-hook 'org-persist-before-write-hook (lambda (&rest _args) t) nil t)
+
+;; I could no longer endure having the system clipboard wiped of its
+;; content every time I ran a small command like M-DEL to delete a word,
+;; so I set `select-enable-clipboard` to nil.  But how can I then make
+;; the top of the Emacs kill ring available for pasting into the
+;; browser?  Since "C-c" means "copy to clipboard" everywhere else
+;; besides Emacs, let's use "C-c C-c" within Emacs.
+;;
+;; (TODO: should I just bind this to "C-c"?  I never use any commands
+;; that start with C-c, I don't think?)
+
+(defun bcr-kill-to-clipboard ()
+  "Copy the top item of the kill ring to the system clipboard."
+  (interactive)
+  (if kill-ring
+      (let ((top-kill (current-kill 0 t))
+            (select-enable-clipboard t))
+        (gui-select-text top-kill)
+        (message "Copied top of kill ring to clipboard!"))
+    (message "Kill ring is empty.")))
+
+(global-set-key (kbd "C-c C-c") 'bcr-kill-to-clipboard)
+
+(with-eval-after-load 'conf-mode
+  (define-key conf-mode-map (kbd "C-c C-c") 'bcr-kill-to-clipboard))
 
 ;; This only works if placed fairly late in this init file.  (Why?)
 
